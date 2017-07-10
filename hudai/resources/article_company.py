@@ -27,3 +27,17 @@ class ArticleCompanyResource(Resource):
             'data': pick(params, 'company_id', 'article_type', 'published_at'),
             'url': '/article-companies'
         })
+
+    def update(self, params):
+        return self.make_request({
+            'method': 'PUT',
+            'data': pick(params, 'company'),
+            'url': '/article-companies'
+        })
+
+    def delete(self, id):
+        return self.make_request({
+            'method': 'DELETE',
+            'params': {'id': id},
+            'url': '/article-companies/{id}'
+        })

@@ -27,3 +27,17 @@ class CleanArticleResource(Resource):
             'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
             'url': '/clean-articles'
         })
+
+    def update(self, params):
+        return self.make_request({
+            'method': 'PUT',
+            'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
+            'url': '/clean-articles'
+        })
+
+    def delete(self, uuid):
+        return self.make_request({
+            'method': 'DELETE',
+            'params': {'uuid': uuid},
+            'url': '/clean-articles/{uuid}'
+        })

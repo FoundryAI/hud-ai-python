@@ -27,3 +27,17 @@ class ArticleKeytermResource(Resource):
             'data': pick(params, 'keyterm'),
             'url': '/article-keyterms'
         })
+
+    def update(self, params):
+        return self.make_request({
+            'method': 'PUT',
+            'data': pick(params, 'keyterm'),
+            'url': '/article-keyterms'
+        })
+
+    def delete(self, id):
+        return self.make_request({
+            'method': 'DELETE',
+            'params': {'id': id},
+            'url': '/article-keyterms/{id}'
+        })
