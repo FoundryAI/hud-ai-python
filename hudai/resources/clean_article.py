@@ -32,7 +32,8 @@ class CleanArticleResource(Resource):
         return self.make_request({
             'method': 'PUT',
             'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
-            'url': '/clean-articles'
+            'params': pick(params, 'uuid'),
+            'url': '/clean-articles/{uuid}'
         })
 
     def delete(self, uuid):

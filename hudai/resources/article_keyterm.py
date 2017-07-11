@@ -32,6 +32,7 @@ class ArticleKeytermResource(Resource):
         return self.make_request({
             'method': 'PUT',
             'data': pick(params, 'keyterm'),
+            'params': pick(params, 'id'),
             'url': '/article-keyterms'
         })
 

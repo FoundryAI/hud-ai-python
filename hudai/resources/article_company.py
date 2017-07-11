@@ -32,12 +32,13 @@ class ArticleCompanyResource(Resource):
         return self.make_request({
             'method': 'PUT',
             'data': pick(params, 'company'),
-            'url': '/article-companies'
+            'params': pick(params, 'article_uuid'),
+            'url': '/article-companies/{article_uuid}'
         })
 
-    def delete(self, id):
+    def delete(self, article_uuid):
         return self.make_request({
             'method': 'DELETE',
-            'params': {'id': id},
-            'url': '/article-companies/{id}'
+            'params': {'article_uuid': article_uuid},
+            'url': '/article-companies/{article_uuid}'
         })

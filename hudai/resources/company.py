@@ -32,7 +32,8 @@ class CompanyResource(Resource):
         return self.make_request({
             'method': 'PUT',
             'data': pick(params, 'company', 'ticket'),
-            'url': '/companies'
+            'params': pick(params, 'company_id'),
+            'url': '/companies/{company_id}'
         })
 
     def delete(self, company_id):
