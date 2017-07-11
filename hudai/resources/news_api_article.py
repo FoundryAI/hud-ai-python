@@ -11,21 +11,21 @@ class NewsApiArticleResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'uuid': uuid},
-            'url': '/news-api-articles/{uuid}'
+            'url': '/news-api-articles/internal/{uuid}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'published_at', 'source'),
-            'url': '/news-api-articles'
+            'url': '/news-api-articles/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'data', 'published_at', 'source'),
-            'url': '/news-api-articles'
+            'url': '/news-api-articles/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class NewsApiArticleResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'data', 'published_at', 'source'),
             'params': pick(params, 'uuid'),
-            'url': '/news-api-articles/{uuid}'
+            'url': '/news-api-articles/internal/{uuid}'
         })
 
     def delete(self, uuid):
         return self.make_request({
             'method': 'DELETE',
             'params': {'uuid': uuid},
-            'url': '/news-api-articles/{uuid}'
+            'url': '/news-api-articles/internal/{uuid}'
         })

@@ -11,21 +11,21 @@ class UserResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'id': id},
-            'url': '/users/{id}'
+            'url': '/users/internal/{id}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'email', 'name'),
-            'url': '/users'
+            'url': '/users/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'email', 'name', 'hash'),
-            'url': '/users'
+            'url': '/users/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class UserResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'email', 'name', 'hash'),
             'params': pick(params, 'id'),
-            'url': '/users/{id}'
+            'url': '/users/internal/{id}'
         })
 
     def delete(self, id):
         return self.make_request({
             'method': 'DELETE',
             'params': {'id': id},
-            'url': '/users/{id}'
+            'url': '/users/internal/{id}'
         })

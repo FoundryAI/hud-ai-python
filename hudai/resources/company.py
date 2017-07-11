@@ -11,21 +11,21 @@ class CompanyResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'company_id': company_id},
-            'url': '/companies/{company_id}'
+            'url': '/companies/internal/{company_id}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'company', 'ticket'),
-            'url': '/companies'
+            'url': '/companies/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params,'company', 'ticket'),
-            'url': '/companies'
+            'url': '/companies/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class CompanyResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'company', 'ticket'),
             'params': pick(params, 'company_id'),
-            'url': '/companies/{company_id}'
+            'url': '/companies/internal/{company_id}'
         })
 
     def delete(self, company_id):
         return self.make_request({
             'method': 'DELETE',
             'params': {'company_id': company_id},
-            'url': '/companies/{company_id}'
+            'url': '/companies/internal/{company_id}'
         })

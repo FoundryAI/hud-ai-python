@@ -11,21 +11,21 @@ class DomainResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'domain': domain},
-            'url': '/domains/{domain}'
+            'url': '/domains/internal/{domain}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'company_id'),
-            'url': '/domains'
+            'url': '/domains/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'domain', 'company_id'),
-            'url': '/domains'
+            'url': '/domains/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class DomainResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'company_id'),
             'params': pick(params, 'domain'),
-            'url': '/domains/{domain}'
+            'url': '/domains/internal/{domain}'
         })
 
     def delete(self, domain):
         return self.make_request({
             'method': 'DELETE',
             'params': {'domain': domain},
-            'url': '/domains/{domain}'
+            'url': '/domains/internal/{domain}'
         })

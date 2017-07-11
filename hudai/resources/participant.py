@@ -11,21 +11,21 @@ class ParticipantResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'id': id},
-            'url': '/participants/{id}'
+            'url': '/participants/internal/{id}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params),
-            'url': '/participants'
+            'url': '/participants/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params),
-            'url': '/participants'
+            'url': '/participants/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class ParticipantResource(Resource):
             'method': 'PUT',
             'data': pick(params),
             'params': pick(params, 'id'),
-            'url': '/participants/{id}'
+            'url': '/participants/internal/{id}'
         })
 
     def delete(self, id):
         return self.make_request({
             'method': 'DELETE',
             'params': {'participant': id},
-            'url': '/participants/{id}'
+            'url': '/participants/internal/{id}'
         })

@@ -11,21 +11,21 @@ class ArticleCompanyResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'article_uuid': article_uuid},
-            'url': '/article-companies/{article_uuid}'
+            'url': '/article-companies/internal/{article_uuid}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'company_id', 'article_type', 'published_at'),
-            'url': '/article-companies'
+            'url': '/article-companies/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'company_id', 'article_type', 'published_at'),
-            'url': '/article-companies'
+            'url': '/article-companies/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class ArticleCompanyResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'company'),
             'params': pick(params, 'article_uuid'),
-            'url': '/article-companies/{article_uuid}'
+            'url': '/article-companies/internal/{article_uuid}'
         })
 
     def delete(self, article_uuid):
         return self.make_request({
             'method': 'DELETE',
-            'params': {'article_uuid': article_uuid},
-            'url': '/article-companies/{article_uuid}'
+            'params': {'id': article_uuid},
+            'url': '/article-companies/internal/{article_uuid}'
         })

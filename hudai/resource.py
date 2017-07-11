@@ -18,10 +18,11 @@ class Resource:
         :param request_config:
         :return:
         """
+        base_url = 'https://api.hud.ai/v1'
         session = Session()
         req = Request(
             request_config.method,
-            'https://api.hud.ai/v1' + self.build_url(request_config),
+            base_url + self.build_url(request_config),
             data=request_config.data,
             params=request_config.query
         )

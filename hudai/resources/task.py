@@ -11,19 +11,19 @@ class TaskResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'uuid': uuid},
-            'url': '/tasks/{uuid}'
+            'url': '/tasks/internal/{uuid}'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'uuid'),
-            'url': '/tasks'
+            'url': '/tasks/internal'
         })
 
     def delete(self, uuid):
         return self.make_request({
             'method': 'DELETE',
             'params': {'uuid': uuid},
-            'url': '/tasks/{uuid}'
+            'url': '/tasks/internal/{uuid}'
         })

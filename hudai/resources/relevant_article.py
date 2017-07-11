@@ -11,14 +11,14 @@ class RelevantArticleResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'user', 'scored_at'),
-            'url': '/relevant-articles'
+            'url': '/relevant-articles/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'user', 'scored_at', 'relevant_articles'),
-            'url': '/relevant-articles'
+            'url': '/relevant-articles/internal'
         })
 
     def update(self, params):
@@ -26,12 +26,12 @@ class RelevantArticleResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'scored_at', 'relevant_articles'),
             'params': pick(params, 'user'),
-            'url': '/relevant-articles/{user}'
+            'url': '/relevant-articles/internal/{user}'
         })
 
     def delete(self, user):
         return self.make_request({
             'method': 'DELETE',
             'params': {'user': user},
-            'url': '/relevant-articles/{user}'
+            'url': '/relevant-articles/internal/{user}'
         })

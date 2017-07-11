@@ -11,21 +11,21 @@ class RssArticleResource(Resource):
         return self.make_request({
             'method': 'GET',
             'params': {'uuid': uuid},
-            'url': '/rss-articles/{uuid}'
+            'url': '/rss-articles/internal/{uuid}'
         })
 
     def search(self, params):
         return self.make_request({
             'method': 'GET',
             'params': pick(params, 'feed_url', 'feed_uuid', 'published_at'),
-            'url': '/rss-articles'
+            'url': '/rss-articles/internal'
         })
 
     def create(self, params):
         return self.make_request({
             'method': 'POST',
             'data': pick(params, 'data', 'feed_url', 'feed_uuid', 'published_at'),
-            'url': '/rss-articles'
+            'url': '/rss-articles/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class RssArticleResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'data', 'feed_url', 'feed_uuid', 'published_at'),
             'params': pick(params, 'uuid'),
-            'url': '/rss-articles/{uuid}'
+            'url': '/rss-articles/internal/{uuid}'
         })
 
     def delete(self, uuid):
         return self.make_request({
             'method': 'DELETE',
             'params': {'uuid': uuid},
-            'url': '/rss-articles/{uuid}'
+            'url': '/rss-articles/internal/{uuid}'
         })
