@@ -22,12 +22,12 @@ class Resource:
         req = Request(
             request_config.method,
             'https://api.hud.ai/v1' + self.build_url(request_config),
-            auth=(self.secret_key, ''),
             data=request_config.data,
             params=request_config.query
         )
         prepared = req.prepare()
         prepared.headers['User-Agent'] = 'Hud.ai python v1.0.0 +(https://github.com/FoundryAI/hud-ai-python#readme)'
+        prepared.headers['x-api-key'] = self.secret_key
         return session.send(prepared).json()
 
     def build_url(request_config):
