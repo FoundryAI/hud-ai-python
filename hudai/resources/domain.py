@@ -17,7 +17,7 @@ class DomainResource(Resource):
     def search(self, params):
         return self.make_request({
             'method': 'GET',
-            'params': pick(params, 'domain', 'company_id'),
+            'params': pick(params, 'company_id'),
             'url': '/domains'
         })
 
