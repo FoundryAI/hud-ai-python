@@ -39,6 +39,6 @@ class MessageResource(Resource):
     def delete(self, message_id):
         return self.make_request({
             'method': 'DELETE',
-            'params': {'message': message_id},
+            'params': {'message_id': message_id},
             'url': '/messages/{message_id}'
         })
