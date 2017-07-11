@@ -1,3 +1,4 @@
+from os import getenv
 from pydash import map_keys
 from requests import Request, Session
 from hudai.error import HudAiError
@@ -18,7 +19,7 @@ class Resource:
         :param request_config:
         :return:
         """
-        base_url = 'https://api.hud.ai/v1'
+        base_url = getenv('HUDAI_API_BASE_URL', 'https://api.hud.ai/v1')
         session = Session()
         req = Request(
             request_config.method,
