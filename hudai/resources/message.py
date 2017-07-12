@@ -4,7 +4,7 @@ from pydash import pick
 
 class MessageResource(Resource):
     def __init__(self, secret_key):
-        super(secret_key)
+        Resource.__init__(self, secret_key)
         self.resource_name = 'Message'
 
     def get(self, message_id):

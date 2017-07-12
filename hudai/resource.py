@@ -3,7 +3,7 @@ from pydash import map_keys
 from requests import Request, Session
 from hudai.error import HudAiError
 
-class Resource:
+class Resource(object):
     def __init__(self, secret_key):
         """
         :param secret_key: API secret key

@@ -4,7 +4,7 @@ from pydash import pick
 
 class TextCorpusResource(Resource):
     def __init__(self, secret_key):
-        super(secret_key)
+        Resource.__init__(self, secret_key)
         self.resource_name = 'TextCorpus'
 
     def get(self, id):

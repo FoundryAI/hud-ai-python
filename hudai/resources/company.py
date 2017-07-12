@@ -4,7 +4,7 @@ from pydash import pick
 
 class CompanyResource(Resource):
     def __init__(self, secret_key):
-        super(secret_key)
+        Resource.__init__(self, secret_key)
         self.resource_name = 'Company'
 
     def get(self, company_id):
