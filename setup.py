@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 setup(
   name = 'hudai',
   packages = ['hudai', 'hudai/resources'], # this must be the same as the name above
-  version = '1.0',
+  version = '1.1',
   description = 'HUD.ai python bindings',
   author = 'Nick Gerner',
   author_email = 'nick@foundry.ai',
