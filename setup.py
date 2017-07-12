@@ -7,7 +7,7 @@ setup(
   author = 'Nick Gerner',
   author_email = 'nick@foundry.ai',
   url = 'https://github.com/FoundryAI/hud-ai-python', # use the URL to the github repo
-  download_url = 'https://github.com/FoundryAI/foundrybot-python/archive/1.0.tar.gz',
+  download_url = 'https://github.com/FoundryAI/foundrybot-python/archive/1.1.tar.gz',
   keywords = ['hudai', 'foundry.ai', 'foundrydc'], # arbitrary keywords
   classifiers = [
     # How mature is this project? Common values are
