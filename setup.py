@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 setup(
   name = 'hudai',
-  packages = ['hudai'], # this must be the same as the name above
+  packages = ['hudai', 'hudai/resources'], # this must be the same as the name above
   version = '1.0',
   description = 'HUD.ai python bindings',
   author = 'Nick Gerner',
