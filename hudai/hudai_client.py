@@ -20,8 +20,6 @@ class HudAiClient:
         return HudAiClient(secret_key)
 
     def __init__(self, secret_key):
-        print 'secret'
-        print secret_key
         self.secret_key = secret_key
 
         if self.secret_key is None:
