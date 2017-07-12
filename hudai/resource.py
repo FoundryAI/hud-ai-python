@@ -19,24 +19,26 @@ class Resource(object):
         :param request_config:
         :return:
         """
-        base_url = getenv('HUDAI_API_BASE_URL', 'https://api.hud.ai/v1')
+        base_url = getenv('HUDAI_API_BASE_URL', 'https://api.hud.ai')
         session = Session()
         req = Request(
-            request_config.method,
+            request_config.get('method'),
             base_url + self.build_url(request_config),
-            data=request_config.data,
-            params=request_config.query
+            data=request_config.get('data'),
+            params=request_config.get('query')
         )
         prepared = req.prepare()
         prepared.headers['User-Agent'] = 'Hud.ai python v1.0.0 +(https://github.com/FoundryAI/hud-ai-python#readme)'
         prepared.headers['x-api-key'] = self.secret_key
         return session.send(prepared).json()
 
-    def build_url(request_config):
+    def build_url(self, request_config):
         """
         Build the url path string
         :return url:
         """
-        url = request_config.url
-        map_keys(request_config.params, lambda value, key: url.replace('{' + key + '}', value))
+        url = request_config.get('url')
+        params = request_config.get('params')
+        if params is not None:
+            url = url.format(**params)
         return url
