@@ -13,7 +13,7 @@ You must first acquire a HUD.ai secret key before you can use this module.
 ```python
 from hudai.client import HudAi
 
-client = HudAi()
+client = HudAi('your-api-token-here')
 
 client.company.list()
 
