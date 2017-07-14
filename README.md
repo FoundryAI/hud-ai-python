@@ -7,3 +7,15 @@ You must first acquire a HUD.ai secret key before you can use this module.
 ## Installation
 
 `pip install hudai`
+
+## Usage
+
+```python
+from hudai.client import HudAi
+
+client = HudAi()
+
+client.company.list()
+
+client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
+```
