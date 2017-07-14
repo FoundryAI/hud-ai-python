@@ -1,11 +1,14 @@
 from setuptools import setup, find_packages
+
+from hudai import __version__
+
 setup(
   name = 'hudai',
-  packages = ['hudai', 'hudai/resources'], # this must be the same as the name above
-  version = '1.1',
+  packages = find_packages(), # this must be the same as the name above
+  version = __version__,
   description = 'HUD.ai python bindings',
-  author = 'Nick Gerner',
-  author_email = 'nick@foundry.ai',
+  author = 'HUD.ai Engineering',
+  author_email = 'engineering@hud.ai',
   url = 'https://github.com/FoundryAI/hud-ai-python', # use the URL to the github repo
   download_url = 'https://github.com/FoundryAI/foundrybot-python/archive/1.1.tar.gz',
   keywords = ['hudai', 'foundry.ai', 'foundrydc'], # arbitrary keywords

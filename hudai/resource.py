@@ -1,44 +1,40 @@
-from os import getenv
-from pydash import map_keys
-from requests import Request, Session
-from hudai.error import HudAiError
+from hudai import HudAiError
+from hudai.client import HudAi
 
 class Resource(object):
-    def __init__(self, secret_key):
+    def __init__(self, client):
         """
-        :param secret_key: API secret key
+        :param client: API client
         """
-        self.secret_key = secret_key
 
-        if self.secret_key is None:
-            raise HudAiError('Missing required "secretKey".', 'authentication_error')
+        if client is None or type(client) is not HudAi:
+            raise HudAiError('client required', 'initialization_error')
 
-    def make_request(self, request_config):
+        self._client = client
+        self._base_path = '/'
+
+    def _request(self, request_params):
         """
         Abstracted request method, request config is defined in the resource itself
-        :param request_config:
+        :param params:
         :return:
         """
-        base_url = getenv('HUDAI_API_BASE_URL', 'https://api.hud.ai')
-        session = Session()
-        req = Request(
-            request_config.get('method'),
-            base_url + self.build_url(request_config),
-            data=request_config.get('data'),
-            params=request_config.get('query')
-        )
-        prepared = req.prepare()
-        prepared.headers['User-Agent'] = 'Hud.ai python v1.0.0 +(https://github.com/FoundryAI/hud-ai-python#readme)'
-        prepared.headers['x-api-key'] = self.secret_key
-        return session.send(prepared).json()
+        method = request_params.get('method', 'GET')
+        params = request_params.get('params', {})
+        path = self._build_path(request_params)
+        data = request_params.get('data', {})
 
-    def build_url(self, request_config):
+        return self._client.make_request(method, path, params, data)
+
+    def _build_path(self, params):
         """
         Build the url path string
         :return url:
         """
-        url = request_config.get('url')
-        params = request_config.get('params')
-        if params is not None:
-            url = url.format(**params)
-        return url
+        path = self._base_path + params.get('url', '')
+        params = params.get('params')
+
+        if params is None:
+            return path
+
+        return path.format(**params)
