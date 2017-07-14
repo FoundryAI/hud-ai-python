@@ -14,10 +14,10 @@ class CleanArticleResource(Resource):
             'url': '/clean-articles/internal/{uuid}'
         })
 
-    def search(self, params):
+    def list(self, params):
         return self.make_request({
             'method': 'GET',
-            'params': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
+            'query': pick(params, 'uuid', 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
             'url': '/clean-articles/internal'
         })
 
