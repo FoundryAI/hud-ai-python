@@ -3,6 +3,7 @@ from hudai.resources.article_keyterm import ArticleKeytermResource
 from hudai.resources.clean_article import CleanArticleResource
 from hudai.resources.company import CompanyResource
 from hudai.resources.domain import DomainResource
+from hudai.resources.key_term import KeyTermResource
 from hudai.resources.message import MessageResource
 from hudai.resources.news_api_article import NewsApiArticleResource
 from hudai.resources.participant import ParticipantResource

@@ -18,6 +18,7 @@ class HudAi:
         self.clean_article = CleanArticleResource(self)
         self.company = CompanyResource(self)
         self.domain = DomainResource(self)
+        self.key_term = KeyTermResource(self)
         self.message = MessageResource(self)
         self.news_api_article = NewsApiArticleResource(self)
         self.participant = ParticipantResource(self)
