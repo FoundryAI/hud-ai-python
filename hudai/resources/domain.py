@@ -3,33 +3,33 @@ from pydash import pick
 
 
 class DomainResource(Resource):
-    def __init__(self, secret_key):
-        Resource.__init__(self, secret_key)
+    def __init__(self, client):
+        Resource.__init__(self, client)
         self.resource_name = 'Domain'
 
     def get(self, domain):
-        return self.make_request({
+        return self._make_request({
             'method': 'GET',
             'params': {'domain': domain},
             'url': '/domains/internal/{domain}'
         })
 
-    def search(self, params):
-        return self.make_request({
+    def list(self, params):
+        return self._make_request({
             'method': 'GET',
             'params': pick(params, 'company_id'),
             'url': '/domains/internal'
         })
 
     def create(self, params):
-        return self.make_request({
+        return self._make_request({
             'method': 'POST',
             'data': pick(params, 'domain', 'company_id'),
             'url': '/domains/internal'
         })
 
     def update(self, params):
-        return self.make_request({
+        return self._make_request({
             'method': 'PUT',
             'data': pick(params, 'company_id'),
             'params': pick(params, 'domain'),
@@ -37,7 +37,7 @@ class DomainResource(Resource):
         })
 
     def delete(self, domain):
-        return self.make_request({
+        return self._make_request({
             'method': 'DELETE',
             'params': {'domain': domain},
             'url': '/domains/internal/{domain}'
