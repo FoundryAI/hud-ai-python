@@ -7,11 +7,11 @@ USER_AGENT = 'HUD.ai Python v{} +(https://github.com/FoundryAI/hud-ai-python#rea
 
 class HudAi:
     def __init__(self, secret_key, base_url='https://api.hud.ai'):
+        if secret_key is None:
+            raise HudAiError('missing secret_key', 'initialization_error')
+
         self._secret_key = secret_key
         self._base_url = base_url
-
-        if self._secret_key is None:
-            raise HudAiError('Missing required "secretKey".', 'authentication_error')
 
         self.article_company = ArticleCompanyResource(self)
         self.article_keyterm = ArticleKeytermResource(self)
