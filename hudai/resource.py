@@ -1,5 +1,4 @@
 from hudai import HudAiError
-from hudai.client import HudAi
 
 class Resource(object):
     def __init__(self, client):
@@ -7,7 +6,7 @@ class Resource(object):
         :param client: API client
         """
 
-        if client is None or type(client) is not HudAi:
+        if client is None:
             raise HudAiError('client required', 'initialization_error')
 
         self._client = client
