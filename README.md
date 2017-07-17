@@ -1,6 +1,10 @@
 # HUD.ai Python Client
+[![Build Status][ci-badge]][ci-url]
+[![PyPI][pypi-badge]][pypi-url]
+[![License][license-badge]]()
 
-The HUD.ai Python Client provides an easy to use wrapper to interact with the HUD.ai API in python applications.
+The HUD.ai Python Client provides an easy to use wrapper to interact with the
+HUD.ai API in python applications.
 
 You must first acquire a HUD.ai secret key before you can use this module.
 
@@ -30,3 +34,10 @@ Then upload it via twine
 ```bash
 twine upload dist/hudai-NEW_VERSION_HERE.tar.gz
 ```
+
+
+[ci-badge]: https://travis-ci.org/FoundryAI/hud-ai-python.svg?branch=master
+[ci-url]: https://travis-ci.org/FoundryAI/hud-ai-python
+[pypi-badge]: https://img.shields.io/pypi/v/hudai.svg
+[pypi-url]: https://pypi.python.org/pypi/hudai
+[license-badge]: https://img.shields.io/pypi/l/hudai.svg
