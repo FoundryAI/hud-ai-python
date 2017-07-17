@@ -8,21 +8,21 @@ class RelevantArticleResource(Resource):
         self.resource_name = 'RelevantArticle'
 
     def list(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': pick(params, 'user', 'scored_at'),
             'url': '/relevant-articles/internal'
         })
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params, 'user', 'scored_at', 'relevant_articles'),
             'url': '/relevant-articles/internal'
         })
 
     def update(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'PUT',
             'data': pick(params, 'scored_at', 'relevant_articles'),
             'params': pick(params, 'user'),
@@ -30,7 +30,7 @@ class RelevantArticleResource(Resource):
         })
 
     def delete(self, user):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'user': user},
             'url': '/relevant-articles/internal/{user}'

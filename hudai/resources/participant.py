@@ -8,28 +8,28 @@ class ParticipantResource(Resource):
         self.resource_name = 'Participant'
 
     def get(self, id):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'id': id},
             'url': '/participants/internal/{id}'
         })
 
     def list(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': pick(params),
             'url': '/participants/internal'
         })
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params),
             'url': '/participants/internal'
         })
 
     def update(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'PUT',
             'data': pick(params),
             'params': pick(params, 'id'),
@@ -37,7 +37,7 @@ class ParticipantResource(Resource):
         })
 
     def delete(self, id):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'participant': id},
             'url': '/participants/internal/{id}'

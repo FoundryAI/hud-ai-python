@@ -8,28 +8,28 @@ class CleanArticleResource(Resource):
         self.resource_name = 'CleanArticle'
 
     def get(self, uuid):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'uuid': uuid},
             'url': '/clean-articles/internal/{uuid}'
         })
 
     def list(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'query': pick(params, 'uuid', 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
             'url': '/clean-articles/internal'
         })
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
             'url': '/clean-articles/internal'
         })
 
     def update(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'PUT',
             'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
             'params': pick(params, 'uuid'),
@@ -37,7 +37,7 @@ class CleanArticleResource(Resource):
         })
 
     def delete(self, uuid):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'uuid': uuid},
             'url': '/clean-articles/internal/{uuid}'

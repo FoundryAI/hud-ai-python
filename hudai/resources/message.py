@@ -8,28 +8,28 @@ class MessageResource(Resource):
         self.resource_name = 'Message'
 
     def get(self, message_id):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'message_id': message_id},
             'url': '/messages/internal/{message_id}'
         })
 
     def list(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': pick(params, 'sender', 'sent_at', 'subject', 'thread_id'),
             'url': '/messages/internal'
         })
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params, 'sender', 'sent_at', 'subject', 'thread_id'),
             'url': '/messages/internal'
         })
 
     def update(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'PUT',
             'data': pick(params, 'sender', 'sent_at', 'subject', 'thread_id'),
             'params': pick(params, 'message_id'),
@@ -37,7 +37,7 @@ class MessageResource(Resource):
         })
 
     def delete(self, message_id):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'message_id': message_id},
             'url': '/messages/internal/{message_id}'
