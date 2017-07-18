@@ -3,9 +3,10 @@ from unittest import TestCase
 from mock import patch, MagicMock
 
 from test.helpers.test_util import TestUtil
-from hudai.hudai_client import HudAiClient
+from hudai.client import HudAi
 
 from hudai.resources.article_company import ArticleCompanyResource
+from hudai.resources.article_highlights import ArticleHighlightResource
 from hudai.resources.article_keyterm import ArticleKeytermResource
 from hudai.resources.clean_article import CleanArticleResource
 from hudai.resources.company import CompanyResource
@@ -23,28 +24,10 @@ from hudai.resources.user import UserResource
 
 class TestHudAiClient(TestCase):
     def test_client(self):
-        client = HudAiClient(TestUtil.get_key())
-        self.assertIsInstance(client, HudAiClient)
+        client = HudAi(TestUtil.get_key())
+        self.assertIsInstance(client, HudAi)
         self.assertIsInstance(client.article_company, ArticleCompanyResource)
-        self.assertIsInstance(client.article_keyterm, ArticleKeytermResource)
-        self.assertIsInstance(client.clean_article, CleanArticleResource)
-        self.assertIsInstance(client.company, CompanyResource)
-        self.assertIsInstance(client.domain, DomainResource)
-        self.assertIsInstance(client.message, MessageResource)
-        self.assertIsInstance(client.news_api_article, NewsApiArticleResource)
-        self.assertIsInstance(client.participant, ParticipantResource)
-        self.assertIsInstance(client.relevant_article, RelevantArticleResource)
-        self.assertIsInstance(client.rss_article, RssArticleResource)
-        self.assertIsInstance(client.rss_feed_metadata, RssFeedMetadataResource)
-        self.assertIsInstance(client.task, TaskResource)
-        self.assertIsInstance(client.text_corpus, TextCorpusResource)
-        self.assertIsInstance(client.user, UserResource)
-
-    def test_client_static(self):
-        self.assertTrue(HudAiClient.create)
-        client = HudAiClient.create(TestUtil.get_key())
-        self.assertIsInstance(client, HudAiClient)
-        self.assertIsInstance(client.article_company, ArticleCompanyResource)
+        self.assertIsInstance(client.article_highlight, ArticleHighlightResource)
         self.assertIsInstance(client.article_keyterm, ArticleKeytermResource)
         self.assertIsInstance(client.clean_article, CleanArticleResource)
         self.assertIsInstance(client.company, CompanyResource)
