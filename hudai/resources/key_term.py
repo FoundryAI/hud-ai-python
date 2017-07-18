@@ -33,7 +33,7 @@ class KeyTermResource(Resource):
 
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params, 'keyterm'),
             'url': '/key-terms/internal'
@@ -41,7 +41,7 @@ class KeyTermResource(Resource):
 
 
     def get(self, id):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'id': id},
             'url': '/key-terms/internal/{id}'
@@ -49,7 +49,7 @@ class KeyTermResource(Resource):
 
 
     def delete(self, id):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'id': id},
             'url': '/key-terms/internal/{id}'
@@ -57,14 +57,14 @@ class KeyTermResource(Resource):
 
 
     def _associated_with(self, term, association):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'term': term, 'association': association},
             'url': '/key-terms/internal'
         })
 
     def _list_for(self, key, val):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': { key : val },
             'url': '/key-terms/internal'

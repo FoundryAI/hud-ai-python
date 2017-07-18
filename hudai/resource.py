@@ -1,7 +1,7 @@
 from hudai import HudAiError
 
 class Resource(object):
-    def __init__(self, client):
+    def __init__(self, client, base_path=''):
         """
         :param client: API client
         """
@@ -10,30 +10,31 @@ class Resource(object):
             raise HudAiError('client required', 'initialization_error')
 
         self._client = client
-        self._base_path = '/'
+        self._base_path = base_path
 
-    def _request(self, request_params):
+    def request(self, params):
         """
         Abstracted request method, request config is defined in the resource itself
         :param params:
         :return:
         """
-        method = request_params.get('method', 'GET')
-        params = request_params.get('params', {})
-        path = self._build_path(request_params)
-        data = request_params.get('data', {})
+        method = params.get('method', 'GET')
+        query_params = params.get('params', {})
+        url = params.get('url', '')
+        data = params.get('data', {})
 
-        return self._client.make_request(method, path, params, data)
+        path = self._build_path(url, query_params)
 
-    def _build_path(self, params):
+        return self._client.make_request(method, path, query_params, data)
+
+    def _build_path(self, url, query_params):
         """
         Build the url path string
         :return url:
         """
-        path = self._base_path + params.get('url', '')
-        params = params.get('params')
+        path = "{}{}".format(self._base_path, url)
 
-        if params is None:
+        if query_params is None:
             return path
 
-        return path.format(**params)
+        return path.format(**query_params)
