@@ -14,6 +14,7 @@ class HudAi:
         self._base_url = base_url
 
         self.article_company = ArticleCompanyResource(self)
+        self.article_highlight = ArticleHighlightResource(self)
         self.article_keyterm = ArticleKeytermResource(self)
         self.clean_article = CleanArticleResource(self)
         self.company = CompanyResource(self)
