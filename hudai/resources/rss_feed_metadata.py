@@ -8,28 +8,28 @@ class RssFeedMetadataResource(Resource):
         self.resource_name = 'RssFeedMetadata'
 
     def get(self, uuid):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'uuid': uuid},
             'url': '/rss-feed-metadata/internal{uuid}'
         })
 
     def list(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': pick(params, 'feed_url', 'metadata', 'pulled_at'),
             'url': '/rss-feed-metadata/internal'
         })
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params, 'data', 'feed_url', 'metadata', 'pulled_at'),
             'url': '/rss-feed-metadata/internal'
         })
 
     def update(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'PUT',
             'data': pick(params, 'data', 'feed_url', 'metadata', 'pulled_at'),
             'params': pick(params, 'uuid'),
@@ -37,7 +37,7 @@ class RssFeedMetadataResource(Resource):
         })
 
     def delete(self, uuid):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'uuid': uuid},
             'url': '/rss-feed-metadata/internal{uuid}'

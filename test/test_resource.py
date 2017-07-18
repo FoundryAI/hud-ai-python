@@ -1,24 +1,50 @@
-from mock import patch
-from unittest import TestCase
-from mock import patch, MagicMock
+from pytest_mock import mocker
 
-from test.helpers.test_util import TestUtil
+from hudai.client import HudAi
 from hudai.resource import Resource
 
+client = HudAi('mock-api-key')
 
-class TestResource(TestCase):
-    def test_resource(self):
-        resource = Resource(TestUtil.get_key())
-        self.assertIsInstance(resource, Resource)
-        self.assertTrue(resource.make_request)
-        self.assertTrue(resource.build_url)
+def test_inherited_resource_methods(mocker):
+    resource = Resource(client)
 
-    def test_build_url(self):
-        resource = Resource(TestUtil.get_key())
-        url = resource.build_url({
-            'method': 'GET',
-            'params': {'id': 1},
-            'url': '/test/{id}'
-        })
+    assert callable(resource.request)
 
-        self.assertEqual(url, '/test/1')
+
+def test_request(mocker):
+    mocker.patch.object(client, 'make_request', autospec=True)
+    resource = Resource(client)
+
+    method = 'GET'
+    params = { 'test': 'param' }
+    data = { 'test': 'data' }
+    url = '/test/path'
+
+    resource.request({
+        'method': method,
+        'url': url,
+        'params': params,
+        'data': data
+    })
+
+    client.make_request.assert_called_once_with(method, url, params, data)
+
+
+def test_request_defaults(mocker):
+    mocker.patch.object(client, 'make_request', autospec=True)
+    resource = Resource(client)
+
+    resource.request({ 'url': '/test/path' })
+
+    client.make_request.assert_called_once_with('GET', '/test/path', {}, {})
+
+
+def test_request_path_building(mocker):
+    client.make_request = mocker.stub(name='make_request')
+    resource = Resource(client)
+
+    params = { 'replace_me': 'foo' }
+
+    resource.request({ 'url': '/test/{replace_me}/path', 'params': params })
+
+    client.make_request.assert_called_once_with('GET', '/test/foo/path', params, {})

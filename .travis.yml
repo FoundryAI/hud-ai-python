@@ -1,0 +1,12 @@
+language: python
+python:
+  - '2.7'
+install: pip install -r requirements.txt --upgrade
+script: python -m pytest
+deploy:
+  provider: pypi
+  user: foundryai
+  password:
+    secure: P5W/6Oo5kw2IZxXZ4bG2ICS/eGT14mof55Gbv7qGVN69SOx17+mY2TdbSbMY2hipvvLK2NqSVqjeA62D7gkJ2NfcJFST3/P6rVenUdBwalFZtuvekkV7nVpHAtMEH3bMYb5vGNJGPyGHxltkk5E9NTPfUjpd+hYBoEufimFCJ30KPlnQXR6sZGxy/glvb7tvWpPN560AGpqYkouBnYVil9BUZbvSwLdmdycZV40sujLgsoNnBhrKnGHqmysRd7OwsLCBoKFzVTt+S7zQ9qWJFk52xl5I2n35wQ+sju73Yo5136XtW8LPiyeT4zLhtPsS8HJXWBxt2FPD9B4x2rwZ2HzX6oXB5DU/5PfhB9KUZabNOpxqZxJinOnzlJS7hGDo56fT9jTogJFP+UXDKRxp9KjNy+8gYpPyH7Y8gvm5t1kqnhi+gFKyiGkIa0sUYZnNPvY7QJhFadXZHrRl4+UM9pHNQTk9cQt5btjtKyhiLmG08ydqCRk1NPZdpYkcIm6faYmjZBKNSxAiGBOGLeONpTe5UPiCrPsHDQj5AwNfBPwy+ta2S1EerWUspKAHK78mQdomQHD4lqDZo509InKAH1DDEpw6XikF6CE2IdW5y7oVZB+3sahCBp4xi6Qn6EgzL0Gu/4Qu/8wfnVuS4VYCzho8+qsxd0DavA2KBWDXfxU=
+  on:
+    tags: true

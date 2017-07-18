@@ -8,28 +8,28 @@ class TextCorpusResource(Resource):
         self.resource_name = 'TextCorpus'
 
     def get(self, id):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': {'id': id},
             'url': '/test-corpora/internal/{id}'
         })
 
     def list(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'GET',
             'params': pick(params, 'user_id', 'type'),
             'url': '/test-corpora/internal'
         })
 
     def create(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'POST',
             'data': pick(params, 'user_id', 'type', 'body'),
             'url': '/test-corpora/internal'
         })
 
     def update(self, params):
-        return self._make_request({
+        return self.request({
             'method': 'PUT',
             'data': pick(params, 'user_id', 'type', 'body'),
             'params': pick(params, 'id'),
@@ -37,7 +37,7 @@ class TextCorpusResource(Resource):
         })
 
     def delete(self, id):
-        return self._make_request({
+        return self.request({
             'method': 'DELETE',
             'params': {'id': id},
             'url': '/test-corpora/internal/{id}'
