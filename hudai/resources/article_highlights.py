@@ -2,7 +2,7 @@ from hudai.resource import Resource
 from pydash import pick
 
 
-class ArticleHighlightResource(Resource):
+class ArticleHighlightsResource(Resource):
     def __init__(self, client):
         Resource.__init__(self, client, base_path='/article-highlights')
         self.resource_name = 'ArticleHighlight'

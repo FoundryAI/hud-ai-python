@@ -1,5 +1,5 @@
 from hudai.resources.article_company import ArticleCompanyResource
-from hudai.resources.article_highlights import ArticleHighlightResource
+from hudai.resources.article_highlights import ArticleHighlightsResource
 from hudai.resources.article_key_term import ArticleKeyTermResource
 from hudai.resources.clean_article import CleanArticleResource
 from hudai.resources.company import CompanyResource
