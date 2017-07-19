@@ -3,7 +3,7 @@ from hudai.resources import *
 
 
 def test_initialization():
-    client = HudAi('mock-api-key')
+    client = HudAi(api_key='mock-api-key')
 
     assert isinstance(client, HudAi)
     assert isinstance(client.article_company, ArticleCompanyResource)

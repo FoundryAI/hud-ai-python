@@ -3,7 +3,7 @@ from pytest_mock import mocker
 from hudai.client import HudAi
 from hudai.resource import Resource
 
-client = HudAi('mock-api-key')
+client = HudAi(api_key='mock-api-key')
 
 def test_inherited_resource_methods(mocker):
     resource = Resource(client)
