@@ -1,4 +1,4 @@
-from requests import Request, Session
+from requests import get, post, put, patch, delete
 
 from hudai import __version__, HudAiError
 from hudai.resources import *
@@ -6,11 +6,11 @@ from hudai.resources import *
 USER_AGENT = 'HUD.ai Python v{} +(https://github.com/FoundryAI/hud-ai-python#readme)'.format(__version__)
 
 class HudAi:
-    def __init__(self, secret_key, base_url='https://api.hud.ai'):
-        if not secret_key:
-            raise HudAiError('missing secret_key', 'initialization_error')
+    def __init__(self, api_key=None, base_url='https://api.hud.ai'):
+        if not api_key:
+            raise HudAiError('missing api_key', 'initialization_error')
 
-        self._secret_key = secret_key
+        self._api_key = api_key
         self._base_url = base_url
 
         self.article_company = ArticleCompanyResource(self)
@@ -30,18 +30,45 @@ class HudAi:
         self.text_corpus = TextCorpusResource(self)
         self.user = UserResource(self)
 
-    def make_request(self, method, path, params, data):
-        """
-        Abstracted request method, request config is defined in the resource itself
-        :param method:
-        :param path:
-        :param params:
-        :param data:
-        :return:
-        """
-        session = Session()
-        req = Request(method, (self._base_url + path), data=data, params=params)
-        prepared = req.prepare()
-        prepared.headers['User-Agent'] = USER_AGENT
-        prepared.headers['x-api-key'] = self._secret_key
-        return session.send(prepared).json()
+
+    def get(self, path, params, payload):
+        return get(self._build_url(path),
+                    params=params,
+                    data=payload,
+                    headers=self._get_headers())
+
+
+    def post(self, path, params, payload):
+        return post(self._build_url(path),
+                    params=params,
+                    data=payload,
+                    headers=self._get_headers())
+
+
+    def put(self, path, params, payload):
+        return put(self._build_url(path),
+                    params=params,
+                    data=payload,
+                    headers=self._get_headers())
+
+
+    def patch(self, path, params, payload):
+        return patch(self._build_url(path),
+                    params=params,
+                    data=payload,
+                    headers=self._get_headers())
+
+
+    def delete(self, path, params, payload):
+        return delete(self._build_url(path),
+                    params=params,
+                    data=payload,
+                    headers=self._get_headers())
+
+
+    def _build_url(self, path):
+        return '{}{}'.format(self._base_url, path)
+
+
+    def _get_headers(self):
+        return { 'User-Agent': USER_AGENT, 'x-api-key': self._api_key }

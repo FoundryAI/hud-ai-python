@@ -12,6 +12,7 @@ class Resource(object):
         self._client = client
         self._base_path = base_path
 
+
     def request(self, params):
         """
         Abstracted request method, request config is defined in the resource itself
@@ -21,11 +22,27 @@ class Resource(object):
         method = params.get('method', 'GET')
         query_params = params.get('params', {})
         url = params.get('url', '')
-        data = params.get('data', {})
+        payload = params.get('data', {})
 
         path = self._build_path(url, query_params)
 
-        return self._client.make_request(method, path, query_params, data)
+        if method.lower() == 'get':
+            return self._client.get(path, params=params)
+
+        if method.lower() == 'post':
+            return self._client.post(path, params=params, data=payload)
+
+        if method.lower() == 'put':
+            return self._client.put(path, params=params, data=payload)
+
+        if method.lower() == 'patch':
+            return self._client.patch(path, params=params, data=payload)
+
+        if method.lower() == 'delete':
+            return self._client.delete(path, params=params)
+
+        raise ValueError('method.invalid:{}'.format(method))
+
 
     def _build_path(self, url, query_params):
         """
