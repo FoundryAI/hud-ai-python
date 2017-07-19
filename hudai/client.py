@@ -1,4 +1,4 @@
-from requests import get, post, put, patch, delete
+import requests
 
 from hudai import __version__, HudAiError
 from hudai.resources import *
@@ -31,39 +31,39 @@ class HudAi:
         self.user = UserResource(self)
 
 
-    def get(self, path, params, payload):
-        return get(self._build_url(path),
-                    params=params,
-                    data=payload,
-                    headers=self._get_headers())
+    def get(self, path, params={}, data={}):
+        return requests.get(self._build_url(path),
+                            params=params,
+                            data=data,
+                            headers=self._get_headers())
 
 
-    def post(self, path, params, payload):
-        return post(self._build_url(path),
-                    params=params,
-                    data=payload,
-                    headers=self._get_headers())
+    def post(self, path, params={}, data={}):
+        return requests.post(self._build_url(path),
+                            params=params,
+                            data=data,
+                            headers=self._get_headers())
 
 
-    def put(self, path, params, payload):
-        return put(self._build_url(path),
-                    params=params,
-                    data=payload,
-                    headers=self._get_headers())
+    def put(self, path, params={}, data={}):
+        return requests.put(self._build_url(path),
+                            params=params,
+                            data=data,
+                            headers=self._get_headers())
 
 
-    def patch(self, path, params, payload):
-        return patch(self._build_url(path),
-                    params=params,
-                    data=payload,
-                    headers=self._get_headers())
+    def patch(self, path, params={}, data={}):
+        return requests.patch(self._build_url(path),
+                            params=params,
+                            data=data,
+                            headers=self._get_headers())
 
 
-    def delete(self, path, params, payload):
-        return delete(self._build_url(path),
-                    params=params,
-                    data=payload,
-                    headers=self._get_headers())
+    def delete(self, path, params={}, data={}):
+        return requests.delete(self._build_url(path),
+                            params=params,
+                            data=data,
+                            headers=self._get_headers())
 
 
     def _build_url(self, path):

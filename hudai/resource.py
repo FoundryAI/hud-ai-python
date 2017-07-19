@@ -19,27 +19,27 @@ class Resource(object):
         :param params:
         :return:
         """
-        method = params.get('method', 'GET')
+        method = params.get('method', 'get').lower()
         query_params = params.get('params', {})
         url = params.get('url', '')
-        payload = params.get('data', {})
+        data = params.get('data', {})
 
         path = self._build_path(url, query_params)
 
-        if method.lower() == 'get':
-            return self._client.get(path, params=params)
+        if method == 'get':
+            return self._client.get(path, params=query_params, data=data)
 
-        if method.lower() == 'post':
-            return self._client.post(path, params=params, data=payload)
+        if method == 'post':
+            return self._client.post(path, params=query_params, data=data)
 
-        if method.lower() == 'put':
-            return self._client.put(path, params=params, data=payload)
+        if method == 'put':
+            return self._client.put(path, params=query_params, data=data)
 
-        if method.lower() == 'patch':
-            return self._client.patch(path, params=params, data=payload)
+        if method == 'patch':
+            return self._client.patch(path, params=query_params, data=data)
 
-        if method.lower() == 'delete':
-            return self._client.delete(path, params=params)
+        if method == 'delete':
+            return self._client.delete(path, params=query_params, data=data)
 
         raise ValueError('method.invalid:{}'.format(method))
 
