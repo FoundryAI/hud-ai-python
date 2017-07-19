@@ -7,8 +7,8 @@ def test_initialization():
 
     assert isinstance(client, HudAi)
     assert isinstance(client.article_company, ArticleCompanyResource)
-    assert isinstance(client.article_highlight, ArticleHighlightResource)
-    assert isinstance(client.article_keyterm, ArticleKeytermResource)
+    assert isinstance(client.article_highlights, ArticleHighlightsResource)
+    assert isinstance(client.article_key_term, ArticleKeyTermResource)
     assert isinstance(client.clean_article, CleanArticleResource)
     assert isinstance(client.company, CompanyResource)
     assert isinstance(client.domain, DomainResource)
