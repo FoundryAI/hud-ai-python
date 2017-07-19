@@ -17,7 +17,7 @@ class CompanyResource(Resource):
     def list(self, params):
         return self.request({
             'method': 'GET',
-            'params': pick(params, 'company', 'ticket'),
+            'params': pick(params, 'company', 'ticker'),
             'url': '/companies/internal'
         })
 
