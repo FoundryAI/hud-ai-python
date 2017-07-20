@@ -27,21 +27,24 @@ class Resource(object):
         path = self._build_path(url, query_params)
 
         if method == 'get':
-            return self._client.get(path, params=query_params, data=data)
+            response = self._client.get(path, params=query_params, data=data)
 
-        if method == 'post':
-            return self._client.post(path, params=query_params, data=data)
+        elif method == 'post':
+            response = self._client.post(path, params=query_params, data=data)
 
-        if method == 'put':
-            return self._client.put(path, params=query_params, data=data)
+        elif method == 'put':
+            response = self._client.put(path, params=query_params, data=data)
 
-        if method == 'patch':
-            return self._client.patch(path, params=query_params, data=data)
+        elif method == 'patch':
+            response = self._client.patch(path, params=query_params, data=data)
 
-        if method == 'delete':
-            return self._client.delete(path, params=query_params, data=data)
+        elif method == 'delete':
+            response = self._client.delete(path, params=query_params, data=data)
 
-        raise ValueError('method.invalid:{}'.format(method))
+        else:
+            raise ValueError('method.invalid:{}'.format(method))
+
+        return response.json()
 
 
     def _build_path(self, url, query_params):
