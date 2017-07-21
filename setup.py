@@ -11,6 +11,7 @@ setup(
   description = 'HUD.ai python bindings',
   author = 'HUD.ai Engineering',
   author_email = 'engineering@hud.ai',
+  license='MIT',
   url = HOMEPAGE,
   download_url = '{}/releases/{}.tar.gz'.format(HOMEPAGE, __version__),
   keywords = ['hudai', 'foundry.ai', 'foundrydc'], # arbitrary keywords

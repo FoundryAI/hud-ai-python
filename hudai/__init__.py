@@ -8,7 +8,7 @@ from hudai.client import HudAi
 client = HudAi()
 """
 
-__version__ = '1.4.2'
+__version__ = '1.5.0'
 
 class HudAiError(Exception):
     def __init__(self, message=None, type='validation_error'):
