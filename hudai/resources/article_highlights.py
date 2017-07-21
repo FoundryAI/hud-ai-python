@@ -2,29 +2,29 @@ from hudai.resource import Resource
 from pydash import pick
 
 
-class ArticleHighlightResource(Resource):
+class ArticleHighlightsResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client)
+        Resource.__init__(self, client, base_path='/article-highlights')
         self.resource_name = 'ArticleHighlight'
 
     def get(self, params):
         return self.request({
             'method': 'GET',
             'params': pick(params, 'url'),
-            'url': '/article-highlights/internal/{url}'
+            'url': '/internal/{url}'
         })
 
     def list(self, params):
         return self.request({
             'method': 'GET',
-            'url': '/article-highlights/internal'
+            'url': '/internal'
         })
 
     def create(self, params):
         return self.request({
             'method': 'POST',
             'data': pick(params, 'url', 'user_id', 'body'),
-            'url': '/article-highlights/internal'
+            'url': '/internal'
         })
 
     def update(self, params):
@@ -32,12 +32,12 @@ class ArticleHighlightResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'body'),
             'params': pick(params, 'url'),
-            'url': '/article-highlights/internal/{url}'
+            'url': '/internal/{url}'
         })
 
     def delete(self, params):
         return self.request({
             'method': 'DELETE',
             'params': pick(params, 'url'),
-            'url': '/article-highlights/internal/{url}'
+            'url': '/internal/{url}'
         })

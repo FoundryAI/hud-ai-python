@@ -4,28 +4,28 @@ from pydash import pick
 
 class CleanArticleResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client)
+        Resource.__init__(self, client, base_path='/clean-articles')
         self.resource_name = 'CleanArticle'
 
     def get(self, uuid):
         return self.request({
             'method': 'GET',
             'params': {'uuid': uuid},
-            'url': '/clean-articles/internal/{uuid}'
+            'url': '/internal/{uuid}'
         })
 
     def list(self, params):
         return self.request({
             'method': 'GET',
             'query': pick(params, 'uuid', 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
-            'url': '/clean-articles/internal'
+            'url': '/internal'
         })
 
     def create(self, params):
         return self.request({
             'method': 'POST',
             'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
-            'url': '/clean-articles/internal'
+            'url': '/internal'
         })
 
     def update(self, params):
@@ -33,12 +33,12 @@ class CleanArticleResource(Resource):
             'method': 'PUT',
             'data': pick(params, 'article_type', 'description', 'important_score', 'link', 'source', 'title', 'published_at'),
             'params': pick(params, 'uuid'),
-            'url': '/clean-articles/internal/{uuid}'
+            'url': '/internal/{uuid}'
         })
 
     def delete(self, uuid):
         return self.request({
             'method': 'DELETE',
             'params': {'uuid': uuid},
-            'url': '/clean-articles/internal/{uuid}'
+            'url': '/internal/{uuid}'
         })

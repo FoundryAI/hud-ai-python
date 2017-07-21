@@ -3,7 +3,7 @@ from pytest_mock import mocker
 from hudai.client import HudAi
 from hudai.resource import Resource
 
-client = HudAi('mock-api-key')
+client = HudAi(api_key='mock-api-key')
 
 def test_inherited_resource_methods(mocker):
     resource = Resource(client)
@@ -12,7 +12,7 @@ def test_inherited_resource_methods(mocker):
 
 
 def test_request(mocker):
-    mocker.patch.object(client, 'make_request', autospec=True)
+    mocker.patch.object(client, 'get', autospec=True)
     resource = Resource(client)
 
     method = 'GET'
@@ -27,24 +27,24 @@ def test_request(mocker):
         'data': data
     })
 
-    client.make_request.assert_called_once_with(method, url, params, data)
+    client.get.assert_called_once_with(url, params=params, data=data)
 
 
 def test_request_defaults(mocker):
-    mocker.patch.object(client, 'make_request', autospec=True)
+    mocker.patch.object(client, 'get', autospec=True)
     resource = Resource(client)
 
     resource.request({ 'url': '/test/path' })
 
-    client.make_request.assert_called_once_with('GET', '/test/path', {}, {})
+    client.get.assert_called_once_with('/test/path', params={}, data={})
 
 
 def test_request_path_building(mocker):
-    client.make_request = mocker.stub(name='make_request')
+    mocker.patch.object(client, 'get', autospec=True)
     resource = Resource(client)
 
     params = { 'replace_me': 'foo' }
 
     resource.request({ 'url': '/test/{replace_me}/path', 'params': params })
 
-    client.make_request.assert_called_once_with('GET', '/test/foo/path', params, {})
+    client.get.assert_called_once_with('/test/foo/path', params=params, data={})

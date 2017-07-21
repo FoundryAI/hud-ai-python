@@ -17,10 +17,10 @@ You must first acquire a HUD.ai secret key before you can use this module.
 ```python
 from hudai.client import HudAi
 
-client = HudAi('your-api-token-here')
+client = HudAi(api_key='your-api-token-here')
 
 # Alternatively, if you're working with a non-production environment
-# client = HudAi('your-api-token-here', base_url='https://stage.api.hud.ai')
+# client = HudAi(api_key='your-api-token-here', base_url='https://stage.api.hud.ai')
 
 client.company.list()
 
