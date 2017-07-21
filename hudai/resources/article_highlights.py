@@ -10,8 +10,8 @@ class ArticleHighlightsResource(Resource):
     def get(self, params):
         return self.request({
             'method': 'GET',
-            'params': pick(params, 'url'),
-            'url': '/internal/{url}'
+            'params': pick(params, 'urlHash'),
+            'url': '/internal/{urlHash}'
         })
 
     def list(self, params):
@@ -23,7 +23,7 @@ class ArticleHighlightsResource(Resource):
     def create(self, params):
         return self.request({
             'method': 'POST',
-            'data': pick(params, 'url', 'user_id', 'body'),
+            'data': pick(params, 'urlHash', 'user_id', 'body'),
             'url': '/internal'
         })
 
@@ -31,13 +31,13 @@ class ArticleHighlightsResource(Resource):
         return self.request({
             'method': 'PUT',
             'data': pick(params, 'body'),
-            'params': pick(params, 'url'),
-            'url': '/internal/{url}'
+            'params': pick(params, 'urlHash'),
+            'url': '/internal/{urlHash}'
         })
 
     def delete(self, params):
         return self.request({
             'method': 'DELETE',
-            'params': pick(params, 'url'),
-            'url': '/internal/{url}'
+            'params': pick(params, 'urlHash'),
+            'url': '/internal/{urlHash}'
         })
