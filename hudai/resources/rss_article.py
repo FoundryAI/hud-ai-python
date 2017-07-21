@@ -17,7 +17,7 @@ class RssArticleResource(Resource):
     def list(self, params):
         return self.request({
             'method': 'GET',
-            'params': pick(params, 'feed_url', 'feed_uuid', 'published_at'),
+            'params': pick(params, 'feed_url', 'published_before', 'published_after'),
             'url': '/internal'
         })
 
@@ -26,6 +26,13 @@ class RssArticleResource(Resource):
             'method': 'POST',
             'data': pick(params, 'data', 'feed_url', 'feed_uuid', 'published_at'),
             'url': '/internal'
+        })
+
+    def create_async(self, params):
+        return self.request({
+            'method': 'POST',
+            'data': pick(params, 'data', 'feed_url', 'feed_uuid', 'published_at'),
+            'url': '/internal/async'
         })
 
     def update(self, params):
