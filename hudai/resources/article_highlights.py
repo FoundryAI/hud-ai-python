@@ -10,14 +10,13 @@ class ArticleHighlightResource(Resource):
     def get(self, params):
         return self.request({
             'method': 'GET',
-            'params': pick(params, 'url', 'user_id'),
-            'url': '/article-highlights/internal/{url}/{user_id}'
+            'params': pick(params, 'url'),
+            'url': '/article-highlights/internal/{url}'
         })
 
     def list(self, params):
         return self.request({
             'method': 'GET',
-            'params': pick(params, 'user_id'),
             'url': '/article-highlights/internal'
         })
 
@@ -32,13 +31,13 @@ class ArticleHighlightResource(Resource):
         return self.request({
             'method': 'PUT',
             'data': pick(params, 'body'),
-            'params': pick(params, 'url', 'user_id'),
-            'url': '/article-highlights/internal/{url}/{user_id}'
+            'params': pick(params, 'url'),
+            'url': '/article-highlights/internal/{url}'
         })
 
     def delete(self, params):
         return self.request({
             'method': 'DELETE',
-            'params': pick(params, 'url', 'user_id'),
-            'url': '/article-highlights/internal/{url}/{user_id}'
+            'params': pick(params, 'url'),
+            'url': '/article-highlights/internal/{url}'
         })
