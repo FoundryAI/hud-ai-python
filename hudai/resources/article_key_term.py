@@ -16,27 +16,13 @@ class ArticleKeyTermResource(Resource):
     def create(self, params):
         return self.request({
             'method': 'POST',
-            'data': pick(params, 'term'),
+            'data': pick(params, 'article_id', 'term', 'published_at'),
             'url': '/internal'
         })
 
-    def get(self, id):
-        return self.request({
-            'params': {'id': id},
-            'url': '/internal/{id}'
-        })
-
-    def update(self, params):
-        return self.request({
-            'method': 'PUT',
-            'params': pick(params, 'id'),
-            'data': pick(params, 'term'),
-            'url': '/internal/{id}'
-        })
-
-    def delete(self, id):
+    def delete(self, article_id, term):
         return self.request({
             'method': 'DELETE',
-            'params': {'id': id},
-            'url': '/internal/{id}'
+            'params': { 'article_id' : article_id, 'term' : term },
+            'url': '/internal/{article_id}/{term}'
         })
