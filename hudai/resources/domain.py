@@ -1,5 +1,4 @@
 from hudai.resource import Resource
-from pydash import pick
 
 
 class DomainResource(Resource):
@@ -7,38 +6,17 @@ class DomainResource(Resource):
         Resource.__init__(self, client, base_path='/domains')
         self.resource_name = 'Domain'
 
-    def get(self, domain):
-        return self.request({
-            'method': 'GET',
-            'params': {'domain': domain},
-            'url': '/internal/{domain}'
-        })
+    def list(self, company_id=None):
+        return self._list(company_id=company_id)
 
-    def list(self, params):
-        return self.request({
-            'method': 'GET',
-            'params': pick(params, 'company_id'),
-            'url': '/internal'
-        })
+    def create(self, company_id=None, hostname=None):
+        return self._create(company_id=company_id, hostname=hostname)
 
-    def create(self, params):
-        return self.request({
-            'method': 'POST',
-            'data': pick(params, 'domain', 'company_id'),
-            'url': '/internal'
-        })
+    def get(self, id):
+        return self._get(id)
 
-    def update(self, params):
-        return self.request({
-            'method': 'PUT',
-            'data': pick(params, 'company_id'),
-            'params': pick(params, 'domain'),
-            'url': '/internal/{domain}'
-        })
+    def update(self, id, company_id=None, hostname=None):
+        return self._update(id, company_id=company_id, hostname=hostname)
 
-    def delete(self, domain):
-        return self.request({
-            'method': 'DELETE',
-            'params': {'domain': domain},
-            'url': '/internal/{domain}'
-        })
+    def delete(self, id):
+        return self._delete(id)

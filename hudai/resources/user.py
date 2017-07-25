@@ -1,44 +1,22 @@
 from hudai.resource import Resource
-from pydash import pick
 
 
 class UserResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, '/users')
+        Resource.__init__(self, client, base_path='/users')
         self.resource_name = 'User'
 
+    def list(self, email=None, name=None):
+        return self._list(email=email, name=name)
+
+    def create(self, email=None, name=None, password_hash=None):
+        return self._create(email=email, name=name, password_hash=password_hash)
+
     def get(self, id):
-        return self.request({
-            'method': 'GET',
-            'params': {'id': id},
-            'url': '/internal/{id}'
-        })
+        return self._get(id)
 
-    def list(self, params):
-        return self.request({
-            'method': 'GET',
-            'params': pick(params, 'email', 'name'),
-            'url': '/internal'
-        })
-
-    def create(self, params):
-        return self.request({
-            'method': 'POST',
-            'data': pick(params, 'email', 'name', 'hash'),
-            'url': '/internal'
-        })
-
-    def update(self, params):
-        return self.request({
-            'method': 'PUT',
-            'data': pick(params, 'email', 'name', 'hash'),
-            'params': pick(params, 'id'),
-            'url': '/internal/{id}'
-        })
+    def update(self, id, email=None, name=None, password_hash=None):
+        return self._update(id, email=email, name=name, password_hash=password_hash)
 
     def delete(self, id):
-        return self.request({
-            'method': 'DELETE',
-            'params': {'id': id},
-            'url': '/internal/{id}'
-        })
+        return self._delete(id)

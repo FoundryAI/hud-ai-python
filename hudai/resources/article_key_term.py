@@ -1,5 +1,4 @@
 from hudai.resource import Resource
-from pydash import pick
 
 
 class ArticleKeyTermResource(Resource):
@@ -7,22 +6,19 @@ class ArticleKeyTermResource(Resource):
         Resource.__init__(self, client, base_path='/article-key-terms')
         self.resource_name = 'ArticleKeyTerm'
 
-    def list(self, params):
-        return self.request({
-            'params': pick(params, 'term', 'published_before', 'published_after'),
-            'url': '/internal'
-        })
+    def list(self, article_id=None, published_after=None, published_before=None, term=None):
+        return self._list(
+            article_id=article_id,
+            published_after=published_after,
+            published_before=published_before,
+            term=term
+        )
 
-    def create(self, params):
-        return self.request({
-            'method': 'POST',
-            'data': pick(params, 'article_id', 'term', 'published_at'),
-            'url': '/internal'
-        })
+    def create(self, term=None, article_id=None, published_at=None):
+        return self._create(term=term, article_id=article_id, published_at=published_at)
 
-    def delete(self, article_id, term):
-        return self.request({
-            'method': 'DELETE',
-            'params': { 'article_id' : article_id, 'term' : term },
-            'url': '/internal/{article_id}/{term}'
-        })
+    def get(self, id):
+        return self._get(id)
+
+    def delete(self, id):
+        return self._delete(id)

@@ -6,28 +6,25 @@ from hudai.resources import *
 USER_AGENT = 'HUD.ai Python v{} +(https://github.com/FoundryAI/hud-ai-python#readme)'.format(__version__)
 
 class HudAi:
-    def __init__(self, api_key=None, base_url='https://api.hud.ai'):
+    def __init__(self, api_key=None, base_url='https://api.hud.ai/v1'):
         if not api_key:
             raise HudAiError('missing api_key', 'initialization_error')
 
         self._api_key = api_key
         self._base_url = base_url
 
-        self.article_company = ArticleCompanyResource(self)
         self.article_highlights = ArticleHighlightsResource(self)
         self.article_key_term = ArticleKeyTermResource(self)
-        self.clean_article = CleanArticleResource(self)
+        self.article = ArticleResource(self)
+        self.company_key_term = CompanyKeyTermResource(self)
         self.company = CompanyResource(self)
         self.domain = DomainResource(self)
         self.key_term = KeyTermResource(self)
-        self.message = MessageResource(self)
-        self.news_api_article = NewsApiArticleResource(self)
-        self.participant = ParticipantResource(self)
-        self.relevant_article = RelevantArticleResource(self)
-        self.rss_article = RssArticleResource(self)
-        self.rss_feed_metadata = RssFeedMetadataResource(self)
-        self.task = TaskResource(self)
+        self.system_event = SystemEventResource(self)
+        self.system_task = SystemTaskResource(self)
         self.text_corpus = TextCorpusResource(self)
+        self.user_company = UserCompanyResource(self)
+        self.user_key_term = UserKeyTermResource(self)
         self.user = UserResource(self)
 
 

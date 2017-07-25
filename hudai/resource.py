@@ -12,39 +12,58 @@ class Resource(object):
         self._client = client
         self._base_path = base_path
 
+    # Standard HTTP Verbs with url params injected into the given paths
 
-    def request(self, params):
-        """
-        Abstracted request method, request config is defined in the resource itself
-        :param params:
-        :return:
-        """
-        method = params.get('method', 'get').lower()
-        query_params = params.get('params', {})
-        url = params.get('url', '')
-        data = params.get('data', {})
+    def get(self, path, request_params):
+        full_path = self._build_path(url, request_params.get('params'))
 
-        path = self._build_path(url, query_params)
+        return self._client.get(full_path, **request_params).json()
 
-        if method == 'get':
-            response = self._client.get(path, params=query_params, data=data)
 
-        elif method == 'post':
-            response = self._client.post(path, params=query_params, data=data)
+    def post(self, path, request_params):
+        full_path = self._build_path(url, request_params.get('params'))
 
-        elif method == 'put':
-            response = self._client.put(path, params=query_params, data=data)
+        return self._client.post(full_path, **request_params).json()
 
-        elif method == 'patch':
-            response = self._client.patch(path, params=query_params, data=data)
 
-        elif method == 'delete':
-            response = self._client.delete(path, params=query_params, data=data)
+    def put(self, path, request_params):
+        full_path = self._build_path(url, request_params.get('params'))
 
-        else:
-            raise ValueError('method.invalid:{}'.format(method))
+        return self._client.put(full_path, **request_params).json()
 
-        return response.json()
+
+    def patch(self, path, request_params):
+        full_path = self._build_path(url, request_params.get('params'))
+
+        return self._client.patch(full_path, **request_params).json()
+
+
+    def delete(self, path, request_params):
+        full_path = self._build_path(url, request_params.get('params'))
+
+        return self._client.delete(full_path, **request_params).json()
+
+
+    # CRUD actions common to many endpoints
+
+
+    def _list(self, **query_params):
+        return self.get('/', { 'params': query_params })
+
+    def _create(self, **data):
+        return self.post('/', { 'data': data })
+
+    def _get(self, id):
+        return self.get('/{id}', { 'params': {'id': id} })
+
+    def _update(self, id, **data):
+        return self.get('/{id}', { 'params': {'id': id}, 'data': data })
+
+    def _delete(self, id):
+        return self.delete('/{id}', { 'params': {'id': id} })
+
+
+    # Helper functions
 
 
     def _build_path(self, url, query_params):
