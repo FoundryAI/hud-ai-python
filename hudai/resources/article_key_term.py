@@ -6,16 +6,11 @@ class ArticleKeyTermResource(Resource):
         Resource.__init__(self, client, base_path='/article-key-terms')
         self.resource_name = 'ArticleKeyTerm'
 
-    def list(self, article_id=None, published_after=None, published_before=None, term=None):
-        return self._list(
-            article_id=article_id,
-            published_after=published_after,
-            published_before=published_before,
-            term=term
-        )
+    def list(self, term=None, article_id=None):
+        return self._list(term=term, article_id=article_id)
 
-    def create(self, term=None, article_id=None, published_at=None):
-        return self._create(term=term, article_id=article_id, published_at=published_at)
+    def create(self, term=None, article_id=None):
+        return self._create(term=term, article_id=article_id)
 
     def get(self, id):
         return self._get(id)

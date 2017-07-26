@@ -9,11 +9,15 @@ class ArticleResource(Resource):
     def list(self,
              type=None,
              published_after=None,
-             published_before=None):
+             published_before=None,
+             key_term=None,
+             importance_score_above=None):
         return self._list(
             type=type,
             published_after=published_after,
-            published_before=published_before
+            published_before=published_before,
+            key_term=key_term,
+            importance_score_above=importance_score_above
         )
 
     def create(self,
@@ -25,7 +29,8 @@ class ArticleResource(Resource):
                source_url=None,
                importance_score=None,
                published_at=None,
-               raw_location=None):
+               raw_location=None,
+               authors=[]):
         return self._create(
             type=type,
             title=title,
@@ -35,7 +40,8 @@ class ArticleResource(Resource):
             source_url=source_url,
             importance_score=importance_score,
             published_at=published_at,
-            raw_location=raw_location
+            raw_location=raw_location,
+            authors=authors
         )
 
     def get(self, id):
@@ -50,7 +56,8 @@ class ArticleResource(Resource):
                source_url=None,
                importance_score=None,
                published_at=None,
-               raw_location=None):
+               raw_location=None,
+               authors=[]):
         return self._update(id,
             type=type,
             title=title,
@@ -60,7 +67,8 @@ class ArticleResource(Resource):
             source_url=source_url,
             importance_score=importance_score,
             published_at=published_at,
-            raw_location=raw_location
+            raw_location=raw_location,
+            authors=authors
         )
 
     def delete(self, id):
