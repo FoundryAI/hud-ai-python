@@ -1,28 +1,29 @@
 from hudai.resource import Resource
 
 
-class TaskResource(Resource):
+class SystemTaskResource(Resource):
     def __init__(self, client):
         Resource.__init__(self, client, base_path='/system-tasks')
-        self.resource_name = 'Task'
+        self.resource_name = 'SystemTask'
 
-    def get(self, uuid):
-        return self.request({
-            'method': 'GET',
-            'params': {'uuid': uuid},
-            'url': '/{uuid}'
-        })
+    def list(self, page=None):
+        return self._list(page=page)
 
-    def create(self, params):
-        return self.request({
-            'method': 'POST',
-            'data': pick(params, 'uuid'),
-            'url': ''
-        })
+    def create(self, id=None, started_at=None, completed_at=None):
+        return self._create(
+            id=id,
+            started_at=started_at,
+            completed_at=completed_at
+        )
 
-    def delete(self, uuid):
-        return self.request({
-            'method': 'DELETE',
-            'params': {'uuid': uuid},
-            'url': '/{uuid}'
-        })
+    def get(self, id):
+        return self._get(id)
+
+    def update(self, id, started_at=None, completed_at=None):
+        return self._update(id,
+            started_at=started_at,
+            completed_at=completed_at
+        )
+
+    def delete(self, term):
+        return self._delete(term)
