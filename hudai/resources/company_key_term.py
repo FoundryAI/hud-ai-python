@@ -1,4 +1,4 @@
-from hudai.resource import Resource
+from ..resource import Resource
 
 
 class CompanyKeyTermResource(Resource):

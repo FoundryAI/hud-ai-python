@@ -4,8 +4,6 @@
 from os import path
 from setuptools import setup, find_packages
 
-from hudai import __version__
-
 def read(filename):
     return open(path.join(path.dirname(__file__), filename)).read()
 
@@ -17,7 +15,7 @@ def parse_requirements(filename):
 
 
 pkg = {}
-exec(read('hudai/__pkg__.py'), pkg)
+exec(read('hudai/__init__.py'), pkg)
 
 readme = read('README.md')
 requirements = parse_requirements('requirements.txt')
@@ -35,7 +33,7 @@ setup(
     packages = find_packages(exclude=['test']),
     install_requires = requirements,
     download_url = '{}/releases/{}.tar.gz'.format(pkg['__url__'], pkg['__version__']),
-    keywords = pkg['__keywords__'], # arbitrary keywords
+    keywords = pkg['__keywords__'],
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

@@ -1,4 +1,4 @@
-from hudai import HudAiError
+from .error import HudAiError
 
 class Resource(object):
     def __init__(self, client, base_path=''):

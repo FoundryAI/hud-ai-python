@@ -1,7 +1,8 @@
 import requests
 
-from hudai import __version__, HudAiError
-from hudai.resources import *
+from . import __version__
+from .error import HudAiError
+from .resources import *
 
 USER_AGENT = 'HUD.ai Python v{} +(https://github.com/FoundryAI/hud-ai-python#readme)'.format(__version__)
 
