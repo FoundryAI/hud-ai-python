@@ -41,13 +41,13 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 | `authors`          | Array\<String\> | List of author names |
 | `image_url`        | String          | Image published in the article's metadata |
 | `importance_score` | Number          | `hudai-importance-scorer` output |
-| `link_url`         | **String**      | Where the article was orginally published |
+| **`link_url`**     | **String**      | Where the article was orginally published |
 | `published_at`     | Date            | Original publishing date |
-| `raw_data_url`     | **String**      | Location of raw feed content (e.g. JSON/HTML) |
-| `source_url`       | **String**      | URL of the publication source |
+| **`raw_data_url`** | **String**      | Location of raw feed content (e.g. JSON/HTML) |
+| **`source_url`**   | **String**      | URL of the publication source |
 | `text`             | String          | Plaintext format of the article body |
-| `title`            | **String**      | Title article was published as |
-| `type`             | **String**      | `rss` \| `newsApi` \| `facebook` \| `twitter` |
+| **`title`**        | **String**      | Title article was published as |
+| **`type`**         | **String**      | `rss` \| `newsApi` \| `facebook` \| `twitter` |
 
 #### `client.article.list(**params)`
 
