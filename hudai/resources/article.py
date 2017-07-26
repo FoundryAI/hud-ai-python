@@ -6,16 +6,33 @@ class ArticleResource(Resource):
         Resource.__init__(self, client, base_path='/articles')
         self.resource_name = 'Article'
 
-    def list(self, article_type=None, published_after=None, published_before=None):
+    def list(self,
+             type=None,
+             published_after=None,
+             published_before=None):
         return self._list(
-            article_type=article_type,
+            type=type,
             published_after=published_after,
             published_before=published_before
         )
 
-    def create(self, article_type=None, importance_score=None, published_at=None, raw_location=None):
+    def create(self,
+               type=None,
+               title=None,
+               text=None,
+               image_url=None,
+               link_url=None,
+               source_url=None,
+               importance_score=None,
+               published_at=None,
+               raw_location=None):
         return self._create(
-            article_type=article_type,
+            type=type,
+            title=title,
+            text=text,
+            image_url=image_url,
+            link_url=link_url,
+            source_url=source_url,
             importance_score=importance_score,
             published_at=published_at,
             raw_location=raw_location
@@ -24,9 +41,23 @@ class ArticleResource(Resource):
     def get(self, id):
         return self._get(id)
 
-    def update(self, id, article_type=None, importance_score=None, published_at=None, raw_location=None):
+    def update(self, id,
+               type=None,
+               title=None,
+               text=None,
+               image_url=None,
+               link_url=None,
+               source_url=None,
+               importance_score=None,
+               published_at=None,
+               raw_location=None):
         return self._update(id,
-            article_type=article_type,
+            type=type,
+            title=title,
+            text=text,
+            image_url=image_url,
+            link_url=link_url,
+            source_url=source_url,
             importance_score=importance_score,
             published_at=published_at,
             raw_location=raw_location
