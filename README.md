@@ -1,6 +1,7 @@
 # HUD.ai Python Client
 [![Build Status][ci-badge]][ci-url]
 [![PyPI][pypi-badge]][pypi-url]
+[![PyPI][python-versions-badge]][pypi-url]
 [![License][license-badge]]()
 
 The HUD.ai Python Client provides an easy to use wrapper to interact with the
@@ -98,4 +99,5 @@ twine upload dist/hudai-NEW_VERSION_HERE.tar.gz
 [ci-url]: https://travis-ci.org/FoundryAI/hud-ai-python
 [pypi-badge]: https://img.shields.io/pypi/v/hudai.svg
 [pypi-url]: https://pypi.python.org/pypi/hudai
+[python-versions-badge]: https://img.shields.io/pypi/pyversions/hudai.svg
 [license-badge]: https://img.shields.io/pypi/l/hudai.svg
