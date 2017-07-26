@@ -11,13 +11,13 @@ class ArticleResource(Resource):
              published_after=None,
              published_before=None,
              key_term=None,
-             importance_score_above=None):
+             importance_score_min=None):
         return self._list(
             type=type,
             published_after=published_after,
             published_before=published_before,
             key_term=key_term,
-            importance_score_above=importance_score_above
+            importance_score_min=importance_score_min
         )
 
     def create(self,

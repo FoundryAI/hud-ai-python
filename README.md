@@ -52,7 +52,7 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 #### `client.article.list(**params)`
 
 Optional Params:
-- `importance_score_above`
+- `importance_score_min`
 - `key_term`
 - `published_after`
 - `published_before`
