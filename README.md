@@ -237,6 +237,26 @@ Takes all of the model attributes as keyword params
 #### `client.key_term.delete(term)`
 
 
+### System Event
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`          | String     | Resource ID **Cannot be edited** |
+| **`name`**    | **String** | Event identifier e.g. `article.processed` |
+| **`payload`** | **Dictionary** | Event payload e.g. `{'location': 's3://my-bucket/file-path', type:'rss'}` |
+
+#### `client.system_event.list(**params)`
+
+Optional Params:
+- `page`
+
+#### `client.system_event.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.system_event.get(id)`
+
+
 ## Deployment
 
 Deploys occur automatically via Travis-CI on tagged commits that build
