@@ -35,13 +35,30 @@ def test_required_parameter_injection(mocker, http_verb):
 
     assert callable(function_under_test)
 
-    function_under_test('/test/url', query_params={'foo':'bar'}, data={'fizz':'buzz'})
+    function_under_test('/test/url')
 
     assert requests_function.call_count == 1
 
     args, kwargs = requests_function.call_args
 
     assert args[0] == 'https://api.hud.ai/v1/test/url'
-    assert kwargs['params'] == {'foo':'bar'}
-    assert kwargs['data'] == {'fizz':'buzz'}
     assert kwargs['headers']['x-api-key'] == 'mock-api-key'
+
+
+@pytest.mark.parametrize('http_verb', [('get'),('post'),('put'),('patch'),('delete')])
+def test_passing_parameters(mocker, http_verb):
+    client = HudAi(api_key='mock-api-key')
+    mocker.patch.object(requests, http_verb, autospec=True)
+
+    # Actual function call, e.g. client.get(path, params)
+    function_under_test = getattr(client, http_verb)
+    requests_function = getattr(requests, http_verb)
+
+    function_under_test('/test/url',
+                        query_params={'foo_bar':'baz'},
+                        data={'fizz_buzz':'abc'})
+
+    args, kwargs = requests_function.call_args
+
+    assert kwargs['params'] == {'foo_bar':'baz'}
+    assert kwargs['data'] == {'fizzBuzz':'abc'}
