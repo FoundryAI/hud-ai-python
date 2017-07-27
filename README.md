@@ -44,7 +44,7 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 | `authors`          | Array\<String\> | List of author names |
 | `image_url`        | String          | Image published in the article's metadata |
 | `importance_score` | Number          | `hudai-importance-scorer` output |
-| `link_hash`        | String          | Server-generated hash of the `link_url` **Cannot be edited** |
+| `link_hash`        | String          | MD5 hash of the `link_url` **Cannot be edited** |
 | **`link_url`**     | **String**      | Where the article was originally published |
 | `published_at`     | Date            | Original publishing date |
 | **`raw_data_url`** | **String**      | Location of raw feed content (e.g. JSON/HTML) |
@@ -85,12 +85,36 @@ Takes all of the model attributes as keyword params
 Returns a list of key terms (`String`) associated with the article
 
 
+### ArticleHighlights
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| **`article_id`** | **String** | Article being highlighted |
+| **`body`**       | **String** | Phrases that should be highlighted |
+| **`user_id`**    | **String** | User the highlights apply to |
+
+#### `client.article_key_term.list(**params)`
+
+Optional Params:
+- `article_id`
+- `url_hash` MD5 hash of the article URL
+- `user_id`
+
+#### `client.article_key_term.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.article_key_term.get(id)`
+
+#### `client.article_key_term.delete(id)`
+
+
 ### ArticleKeyTerm
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| **`article_id`** | String | Article identifier |
-| **`key_term`**   | String | Key term in article |
+| **`article_id`** | **String** | Article identifier |
+| **`key_term`**   | **String** | Key term in article |
 
 #### `client.article_key_term.list(**params)`
 
