@@ -29,37 +29,37 @@ class HudAi:
         self.user = UserResource(self)
 
 
-    def get(self, path, params={}, data={}):
+    def get(self, path, query_params={}, data={}):
         return requests.get(self._build_url(path),
-                            params=params,
+                            params=query_params,
                             data=data,
                             headers=self._get_headers())
 
 
-    def post(self, path, params={}, data={}):
+    def post(self, path, query_params={}, data={}):
         return requests.post(self._build_url(path),
-                            params=params,
+                            params=query_params,
                             data=data,
                             headers=self._get_headers())
 
 
-    def put(self, path, params={}, data={}):
+    def put(self, path, query_params={}, data={}):
         return requests.put(self._build_url(path),
-                            params=params,
+                            params=query_params,
                             data=data,
                             headers=self._get_headers())
 
 
-    def patch(self, path, params={}, data={}):
+    def patch(self, path, query_params={}, data={}):
         return requests.patch(self._build_url(path),
-                            params=params,
+                            params=query_params,
                             data=data,
                             headers=self._get_headers())
 
 
-    def delete(self, path, params={}, data={}):
+    def delete(self, path, query_params={}, data={}):
         return requests.delete(self._build_url(path),
-                            params=params,
+                            params=query_params,
                             data=data,
                             headers=self._get_headers())
 

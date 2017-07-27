@@ -23,6 +23,7 @@ def test_initialization():
     assert isinstance(client.user_key_term, UserKeyTermResource)
     assert isinstance(client.user, UserResource)
 
+
 @pytest.mark.parametrize('http_verb', [('get'),('post'),('put'),('patch'),('delete')])
 def test_required_parameter_injection(mocker, http_verb):
     client = HudAi(api_key='mock-api-key')
@@ -34,7 +35,7 @@ def test_required_parameter_injection(mocker, http_verb):
 
     assert callable(function_under_test)
 
-    function_under_test('/test/url', params={'foo':'bar'}, data={'fizz':'buzz'})
+    function_under_test('/test/url', query_params={'foo':'bar'}, data={'fizz':'buzz'})
 
     assert requests_function.call_count == 1
 
