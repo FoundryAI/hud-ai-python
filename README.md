@@ -195,7 +195,7 @@ Takes all of the model attributes as keyword params
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`             | String     | Resource ID **Cannot be edited** |
-| **`company_id`** | **String** | Article identifier |
+| **`company_id`** | **String** | Associated company |
 | **`hostname`**   | **String** | FQDN e.g. `api.hud.ai` |
 
 #### `client.domain.list(**params)`
@@ -215,6 +215,26 @@ Takes all of the model attributes as keyword params
 Takes all of the model attributes as keyword params
 
 #### `client.domain.delete(id)`
+
+
+### KeyTerm
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| **`term`** | **String** | Term (can be word or phrase) to find in articles |
+
+#### `client.key_term.list(**params)`
+
+Optional Params:
+- `page`
+
+#### `client.key_term.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.key_term.get(term)`
+
+#### `client.key_term.delete(term)`
 
 
 ## Deployment
