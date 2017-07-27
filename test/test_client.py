@@ -56,9 +56,9 @@ def test_passing_parameters(mocker, http_verb):
 
     function_under_test('/test/url',
                         query_params={'foo_bar':'baz'},
-                        data={'fizz_buzz':'abc'})
+                        data={'fizz_buzz':{'abc':'jackson_five'}})
 
     args, kwargs = requests_function.call_args
 
     assert kwargs['params'] == {'foo_bar':'baz'}
-    assert kwargs['data'] == {'fizzBuzz':'abc'}
+    assert kwargs['data'] == {'fizzBuzz':{'abc':'jackson_five'}}
