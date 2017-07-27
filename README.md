@@ -366,6 +366,29 @@ Takes all of the model attributes as keyword params
 #### `client.user_company.delete(id)`
 
 
+### UserKeyTerm
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`          | String     | Resource ID **Cannot be edited** |
+| **`user_id`** | **String** | Associated user |
+| **`term`**    | **String** | Term (can be word or phrase) to find in articles |
+
+#### `client.user_key_term.list(**params)`
+
+Optional Params:
+- `term`
+- `user_id`
+
+#### `client.user_key_term.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user_key_term.get(id)`
+
+#### `client.user_key_term.delete(id)`
+
+
 ## Deployment
 
 Deploys occur automatically via Travis-CI on tagged commits that build
