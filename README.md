@@ -41,6 +41,7 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
+| `id`               | String          | Resource ID **Cannot be edited** |
 | `authors`          | Array\<String\> | List of author names |
 | `image_url`        | String          | Image published in the article's metadata |
 | `importance_score` | Number          | `hudai-importance-scorer` output |
@@ -89,6 +90,7 @@ Returns a list of key terms (`String`) associated with the article
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
+| `id`             | String     | Resource ID **Cannot be edited** |
 | **`article_id`** | **String** | Article being highlighted |
 | **`body`**       | **String** | Phrases that should be highlighted |
 | **`user_id`**    | **String** | User the highlights apply to |
@@ -117,6 +119,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
+| `id`             | String     | Resource ID **Cannot be edited** |
 | **`article_id`** | **String** | Article identifier |
 | **`key_term`**   | **String** | Key term in article |
 
@@ -139,6 +142,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
+| `id`       | String     | Resource ID **Cannot be edited** |
 | **`name`** | **String** | Primary company name (others can be associated as key terms) |
 
 #### `client.company.list()`
@@ -168,8 +172,9 @@ Lists all `KeyTerm`s associated with the company
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
+| `id`             | String     | Resource ID **Cannot be edited** |
 | **`company_id`** | **String** | Associated company |
-| **`term`** | **String** | Term (can be word or phrase) to find in articles |
+| **`term`**       | **String** | Term (can be word or phrase) to find in articles |
 
 #### `client.company_key_term.list(**params)`
 
@@ -183,6 +188,33 @@ Takes all of the model attributes as keyword params
 #### `client.company_key_term.get(id)`
 
 #### `client.company_key_term.delete(id)`
+
+
+### Domain
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`             | String     | Resource ID **Cannot be edited** |
+| **`company_id`** | **String** | Article identifier |
+| **`hostname`**   | **String** | FQDN e.g. `api.hud.ai` |
+
+#### `client.domain.list(**params)`
+
+Optional Params:
+- `company_id`
+- `hostname`
+
+#### `client.domain.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.domain.get(id)`
+
+#### `client.domain.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.domain.delete(id)`
 
 
 ## Deployment
