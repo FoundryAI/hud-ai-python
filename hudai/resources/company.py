@@ -25,3 +25,8 @@ class CompanyResource(Resource):
         return self.get('/{id}/domains', {
             'params': {'id': id}
         })
+
+    def key_terms(self, id):
+        return self.get('/{id}/key-terms', {
+            'params': {'id': id}
+        })

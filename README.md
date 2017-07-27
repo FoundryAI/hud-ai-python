@@ -155,6 +155,35 @@ Takes all of the model attributes as keyword params
 
 #### `client.company.delete(id)`
 
+#### `client.company.domains(id)`
+
+Lists all `Domain`s (hostnames) associated with the company
+
+#### `client.company.key_terms(id)`
+
+Lists all `KeyTerm`s associated with the company
+
+
+### CompanyKeyTerm
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| **`company_id`** | **String** | Associated company |
+| **`term`** | **String** | Term (can be word or phrase) to find in articles |
+
+#### `client.company_key_term.list(**params)`
+
+Optional Params:
+- `company_id`
+
+#### `client.company_key_term.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.company_key_term.get(id)`
+
+#### `client.company_key_term.delete(id)`
+
 
 ## Deployment
 
