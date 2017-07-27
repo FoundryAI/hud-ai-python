@@ -70,13 +70,13 @@ client.article.list(type='rss', published_after='2017-07-26T18:18:58Z')
 
 #### `client.article.create(**params)`
 
-Takes all of the model attributes as keyword params
+Takes all of the model attributes as keyword params (except `link_hash`)
 
 #### `client.article.get(id)`
 
 #### `client.article.update(id, **params)`
 
-Takes all of the model attributes as keyword params
+Takes all of the model attributes as keyword params (except `link_hash`)
 
 #### `client.article.delete(id)`
 
@@ -93,20 +93,24 @@ Returns a list of key terms (`String`) associated with the article
 | **`body`**       | **String** | Phrases that should be highlighted |
 | **`user_id`**    | **String** | User the highlights apply to |
 
-#### `client.article_key_term.list(**params)`
+#### `client.article_highlights.list(**params)`
 
 Optional Params:
 - `article_id`
 - `link_hash` MD5 hash of the article URL
 - `user_id`
 
-#### `client.article_key_term.create(**params)`
+#### `client.article_highlights.create(**params)`
 
 Takes all of the model attributes as keyword params
 
-#### `client.article_key_term.get(id)`
+#### `client.article_highlights.get(id)`
 
-#### `client.article_key_term.delete(id)`
+#### `client.article_highlights.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.article_highlights.delete(id)`
 
 
 ### ArticleKeyTerm
@@ -129,6 +133,27 @@ Takes all of the model attributes as keyword params
 #### `client.article_key_term.get(id)`
 
 #### `client.article_key_term.delete(id)`
+
+
+### Company
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| **`name`** | **String** | Primary company name (others can be associated as key terms) |
+
+#### `client.company.list()`
+
+#### `client.company.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.company.get(id)`
+
+#### `client.company.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.company.delete(id)`
 
 
 ## Deployment
