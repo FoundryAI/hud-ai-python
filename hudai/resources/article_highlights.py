@@ -6,8 +6,10 @@ class ArticleHighlightsResource(Resource):
         Resource.__init__(self, client, base_path='/article-highlights')
         self.resource_name = 'ArticleHighlights'
 
-    def list(self, link_hash=None, user_id=None):
-        return self._list(link_hash=link_hash, user_id=user_id)
+    def list(self, article_id=None, link_hash=None, user_id=None):
+        return self._list(article_id=article_id,
+                          link_hash=link_hash,
+                          user_id=user_id)
 
     def create(self, article_id=None, user_id=None, body=None):
         return self._create(article_id=article_id, user_id=user_id, body=body)

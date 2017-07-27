@@ -97,7 +97,7 @@ Returns a list of key terms (`String`) associated with the article
 
 Optional Params:
 - `article_id`
-- `url_hash` MD5 hash of the article URL
+- `link_hash` MD5 hash of the article URL
 - `user_id`
 
 #### `client.article_key_term.create(**params)`
@@ -127,7 +127,6 @@ Optional Params:
 Takes all of the model attributes as keyword params
 
 #### `client.article_key_term.get(id)`
-
 
 #### `client.article_key_term.delete(id)`
 
