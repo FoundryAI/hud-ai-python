@@ -13,6 +13,7 @@ You must first acquire a HUD.ai secret key before you can use this module.
 
 `pip install hudai`
 
+
 ## Usage
 
 ```python
@@ -35,6 +36,7 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 
 - Bolded `Type`s indicate that the field is required
 
+
 ### Article
 
 | Attribute | Type | Description |
@@ -42,7 +44,8 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 | `authors`          | Array\<String\> | List of author names |
 | `image_url`        | String          | Image published in the article's metadata |
 | `importance_score` | Number          | `hudai-importance-scorer` output |
-| **`link_url`**     | **String**      | Where the article was orginally published |
+| `link_hash`        | String          | Server-generated hash of the `link_url` **Cannot be edited** |
+| **`link_url`**     | **String**      | Where the article was originally published |
 | `published_at`     | Date            | Original publishing date |
 | **`raw_data_url`** | **String**      | Location of raw feed content (e.g. JSON/HTML) |
 | **`source_url`**   | **String**      | URL of the publication source |
@@ -55,6 +58,7 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 Optional Params:
 - `importance_score_min`
 - `key_term`
+- `link_hash`
 - `published_after`
 - `published_before`
 - `type`
@@ -79,6 +83,30 @@ Takes all of the model attributes as keyword params
 #### `client.article.key_terms(id)`
 
 Returns a list of key terms (`String`) associated with the article
+
+
+### ArticleKeyTerm
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| **`article_id`** | String | Article identifier |
+| **`key_term`**   | String | Key term in article |
+
+#### `client.article_key_term.list(**params)`
+
+Optional Params:
+- `key_term`
+- `article_id`
+
+#### `client.article_key_term.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.article_key_term.get(id)`
+
+
+#### `client.article_key_term.delete(id)`
+
 
 ## Deployment
 

@@ -11,12 +11,14 @@ class ArticleResource(Resource):
              published_after=None,
              published_before=None,
              key_term=None,
+             link_hash=None,
              importance_score_min=None):
         return self._list(
             type=type,
             published_after=published_after,
             published_before=published_before,
             key_term=key_term,
+            link_hash=link_hash,
             importance_score_min=importance_score_min
         )
 
