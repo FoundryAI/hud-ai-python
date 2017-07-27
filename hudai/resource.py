@@ -15,31 +15,31 @@ class Resource(object):
     # Standard HTTP Verbs with url params injected into the given paths
 
     def get(self, path, request_params):
-        full_path = self._build_path(url, request_params.get('params'))
+        full_path = self._build_path(path, request_params.get('params'))
 
         return self._client.get(full_path, **request_params).json()
 
 
     def post(self, path, request_params):
-        full_path = self._build_path(url, request_params.get('params'))
+        full_path = self._build_path(path, request_params.get('params'))
 
         return self._client.post(full_path, **request_params).json()
 
 
     def put(self, path, request_params):
-        full_path = self._build_path(url, request_params.get('params'))
+        full_path = self._build_path(path, request_params.get('params'))
 
         return self._client.put(full_path, **request_params).json()
 
 
     def patch(self, path, request_params):
-        full_path = self._build_path(url, request_params.get('params'))
+        full_path = self._build_path(path, request_params.get('params'))
 
         return self._client.patch(full_path, **request_params).json()
 
 
     def delete(self, path, request_params):
-        full_path = self._build_path(url, request_params.get('params'))
+        full_path = self._build_path(path, request_params.get('params'))
 
         return self._client.delete(full_path, **request_params).json()
 

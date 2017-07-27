@@ -1,3 +1,4 @@
+import pytest
 from pytest_mock import mocker
 
 from hudai.client import HudAi
@@ -5,46 +6,26 @@ from hudai.resource import Resource
 
 client = HudAi(api_key='mock-api-key')
 
-def test_inherited_resource_methods(mocker):
+def test_standard_http_verbs_available():
     resource = Resource(client)
 
-    assert callable(resource.request)
+    assert callable(resource.get)
+    assert callable(resource.post)
+    assert callable(resource.put)
+    assert callable(resource.patch)
+    assert callable(resource.delete)
 
-
-def test_request(mocker):
-    mocker.patch.object(client, 'get', autospec=True)
+@pytest.mark.parametrize('http_verb', [('get'),('post'),('put'),('patch'),('delete')])
+def test_parameter_injection(mocker, http_verb):
+    mocker.patch.object(client, http_verb, autospec=True)
     resource = Resource(client)
 
-    method = 'GET'
-    params = { 'test': 'param' }
-    data = { 'test': 'data' }
-    url = '/test/path'
+    path = '/test/{replace_me}/path'
+    params = {'params': {'replace_me': 'replaced'}}
 
-    resource.request({
-        'method': method,
-        'url': url,
-        'params': params,
-        'data': data
-    })
+    # Actual function call, e.g. resource.get(path, params)
+    getattr(resource, http_verb)(path, params)
 
-    client.get.assert_called_once_with(url, params=params, data=data)
-
-
-def test_request_defaults(mocker):
-    mocker.patch.object(client, 'get', autospec=True)
-    resource = Resource(client)
-
-    resource.request({ 'url': '/test/path' })
-
-    client.get.assert_called_once_with('/test/path', params={}, data={})
-
-
-def test_request_path_building(mocker):
-    mocker.patch.object(client, 'get', autospec=True)
-    resource = Resource(client)
-
-    params = { 'replace_me': 'foo' }
-
-    resource.request({ 'url': '/test/{replace_me}/path', 'params': params })
-
-    client.get.assert_called_once_with('/test/foo/path', params=params, data={})
+    getattr(client, http_verb).assert_called_once_with(
+        '/test/replaced/path',
+        params={'replace_me': 'replaced'})
