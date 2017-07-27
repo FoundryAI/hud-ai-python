@@ -317,6 +317,32 @@ Takes all of the model attributes as keyword params
 #### `client.text_corpus.delete(id)`
 
 
+### User
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`        | String     | Resource ID **Cannot be edited** |
+| **`name`**  | **String** | User's full name (used in emails and other communications) |
+| **`email`** | **String** | Primary email address for updates/notifications |
+
+#### `client.user.list(**params)`
+
+Optional Params:
+- `email`
+
+#### `client.user.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user.get(id)`
+
+#### `client.user.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user.delete(id)`
+
+
 ## Deployment
 
 Deploys occur automatically via Travis-CI on tagged commits that build
