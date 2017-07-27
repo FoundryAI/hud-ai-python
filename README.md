@@ -343,6 +343,29 @@ Takes all of the model attributes as keyword params
 #### `client.user.delete(id)`
 
 
+### UserCompany
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`             | String     | Resource ID **Cannot be edited** |
+| **`company_id`** | **String** | Associated company |
+| **`user_id`**    | **String** | Associated user |
+
+#### `client.user_company.list(**params)`
+
+Optional Params:
+- `company_id`
+- `user_id`
+
+#### `client.user_company.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user_company.get(id)`
+
+#### `client.user_company.delete(id)`
+
+
 ## Deployment
 
 Deploys occur automatically via Travis-CI on tagged commits that build
