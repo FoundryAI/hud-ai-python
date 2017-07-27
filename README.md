@@ -237,7 +237,7 @@ Takes all of the model attributes as keyword params
 #### `client.key_term.delete(term)`
 
 
-### System Event
+### SystemEvent
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
@@ -257,7 +257,7 @@ Takes all of the model attributes as keyword params
 #### `client.system_event.get(id)`
 
 
-### System Task
+### SystemTask
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
@@ -287,6 +287,34 @@ Takes all of the model attributes as keyword params
 Takes all of the model attributes as keyword params
 
 #### `client.system_task.delete(id)`
+
+
+### TextCorpus
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`           | String     | Resource ID **Cannot be edited** |
+| **`user_id`**  | **String** | User the corpus is used to identify articles for |
+| **`type`**     | **String** | Text origin e.g. `email` or `custom` |
+| **`body`**     | **String** | Text blob to use for relevance matching |
+
+#### `client.text_corpus.list(**params)`
+
+Optional Params:
+- `user_id`
+- `type`
+
+#### `client.text_corpus.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.text_corpus.get(id)`
+
+#### `client.text_corpus.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.text_corpus.delete(id)`
 
 
 ## Deployment
