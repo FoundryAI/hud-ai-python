@@ -15,7 +15,9 @@ class Resource(object):
         self._client = client
         self._base_path = base_path
 
+
     # Standard HTTP Verbs with url params injected into the given paths
+
 
     def get(self, path, request_params):
         full_path = self._build_path(path, request_params.get('params'))
@@ -86,7 +88,7 @@ class Resource(object):
         """
         path = "{}{}".format(self._base_path, url)
 
-        if query_params is None:
+        if not query_params:
             return path
 
         return path.format(**query_params)
