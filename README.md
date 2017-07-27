@@ -257,6 +257,38 @@ Takes all of the model attributes as keyword params
 #### `client.system_event.get(id)`
 
 
+### System Task
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`           | String     | Resource ID **Cannot be edited** |
+| **`task_id`**  | **String** | Task identifier (typically from `celery`) |
+| `attempts`     | Number     | How many times has this job been started |
+| `started_at`   | Date       | Last time that the job was attempted |
+| `completed_at` | Date       | When the job finished (irregardless of success) |
+
+#### `client.system_task.list(**params)`
+
+Optional Params:
+- `task_id`
+- `page`
+- `started_after`
+- `started_before`
+- `completed` (Boolean)
+
+#### `client.system_task.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.system_task.get(id)`
+
+#### `client.system_task.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.system_task.delete(id)`
+
+
 ## Deployment
 
 Deploys occur automatically via Travis-CI on tagged commits that build
