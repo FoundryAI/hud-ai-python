@@ -106,8 +106,8 @@ def test_pythonification(mocker):
         'date': '2017-07-28T15:30:08.176077',
         'array': ['test', '2017-07-28T15:30:08.176077', 123],
         'object': {
-            'nested-string': 'test2',
-            'nested-date': '2017-07-28T15:30:08.176077'
+            'nestedString': 'test2',
+            'nestedDate': '2017-07-28T15:30:08.176077'
         }
     }
 
@@ -124,5 +124,5 @@ def test_pythonification(mocker):
     assert response['number'] == 123
     assert response['date'] == expected_timestamp
     assert response['array'] == ['test', expected_timestamp, 123]
-    assert response['object']['nested-string'] == 'test2'
-    assert response['object']['nested-date'] == expected_timestamp
+    assert response['object']['nested_string'] == 'test2'
+    assert response['object']['nested_date'] == expected_timestamp

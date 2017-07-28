@@ -104,19 +104,12 @@ class HudAi:
             return [self._pythonify(item) for item in value]
 
         if type(value) is dict:
-            return map_values(value, lambda val: self._pythonify(val))
+            return chain(value) \
+                .map_keys(lambda value, key: snake_case(key)) \
+                .map_values(lambda value: self._pythonify(value)) \
+                .value()
 
         return value
-
-
-    def _snakify_keys(self, value):
-        if type(value) is not dict:
-            return self._pythonify(value)
-
-        return chain(value) \
-            .map_keys(lambda value, key: snake_case(key)) \
-            .map_values(lambda value: self._snakify_keys(value)) \
-            .value()
 
 
     def _web_safe(self, value):
