@@ -96,7 +96,7 @@ class HudAi:
     def _pythonify(self, value):
         if type(value) is str:
             try:
-                return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
+                return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
             except ValueError:
                 return value
 
