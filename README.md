@@ -264,8 +264,8 @@ Takes all of the model attributes as keyword params
 | `id`           | String     | Resource ID **Cannot be edited** |
 | **`task_id`**  | **String** | Task identifier (typically from `celery`) |
 | `attempts`     | Number     | How many times has this job been started |
-| `started_at`   | Date       | Last time that the job was attempted |
 | `completed_at` | Date       | When the job finished (irregardless of success) |
+| `started_at`   | Date       | Last time that the job was attempted |
 
 #### `client.system_task.list(**params)`
 
@@ -294,9 +294,9 @@ Takes all of the model attributes as keyword params
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`           | String     | Resource ID **Cannot be edited** |
-| **`user_id`**  | **String** | User the corpus is used to identify articles for |
-| **`type`**     | **String** | Text origin e.g. `email` or `custom` |
 | **`body`**     | **String** | Text blob to use for relevance matching |
+| **`type`**     | **String** | Text origin e.g. `email` or `custom` |
+| **`user_id`**  | **String** | User the corpus is used to identify articles for |
 
 #### `client.text_corpus.list(**params)`
 
@@ -322,8 +322,9 @@ Takes all of the model attributes as keyword params
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`        | String     | Resource ID **Cannot be edited** |
-| **`name`**  | **String** | User's full name (used in emails and other communications) |
 | **`email`** | **String** | Primary email address for updates/notifications |
+| **`name`**  | **String** | User's full name (used in emails and other communications) |
+| `time_zone` | String     | [tz database][tz-database-link] time zone used to determine when to send notifications (defaults to `America/New_York`) |
 
 #### `client.user.list(**params)`
 
@@ -382,13 +383,39 @@ Takes all of the model attributes as keyword params
 #### `client.user_company.delete(id)`
 
 
+### UserDigestSubscription
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`              | String     | Resource ID **Cannot be edited** |
+| **`day_of_week`** | **String** | `sunday` \| `monday` \| `tuesday` \| `wednesday` \| `thursday` \| `friday` \| `saturday` |
+| **`iso_hour`**    | **String** | 24-hour hour e.g. `08` = 8am, `17` = 5pm |
+| **`user_id`**     | **String** | Associated user |
+
+#### `client.user_digest_subscription.list(**params)`
+
+Optional Params:
+- `day_of_week`
+- `iso_hour`
+- `page`
+- `user_id`
+
+#### `client.user_digest_subscription.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user_digest_subscription.get(id)`
+
+#### `client.user_digest_subscription.delete(id)`
+
+
 ### UserKeyTerm
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`          | String     | Resource ID **Cannot be edited** |
-| **`user_id`** | **String** | Associated user |
 | **`term`**    | **String** | Term (can be word or phrase) to find in articles |
+| **`user_id`** | **String** | Associated user |
 
 #### `client.user_key_term.list(**params)`
 
@@ -426,3 +453,4 @@ twine upload dist/hudai-NEW_VERSION_HERE.tar.gz
 [pypi-url]: https://pypi.python.org/pypi/hudai
 [python-versions-badge]: https://img.shields.io/pypi/pyversions/hudai.svg
 [license-badge]: https://img.shields.io/pypi/l/hudai.svg
+[tz-database-link]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
