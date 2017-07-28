@@ -317,6 +317,78 @@ Takes all of the model attributes as keyword params
 #### `client.text_corpus.delete(id)`
 
 
+### User
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`        | String     | Resource ID **Cannot be edited** |
+| **`name`**  | **String** | User's full name (used in emails and other communications) |
+| **`email`** | **String** | Primary email address for updates/notifications |
+
+#### `client.user.list(**params)`
+
+Optional Params:
+- `email`
+
+#### `client.user.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user.get(id)`
+
+#### `client.user.update(id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user.delete(id)`
+
+
+### UserCompany
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`             | String     | Resource ID **Cannot be edited** |
+| **`company_id`** | **String** | Associated company |
+| **`user_id`**    | **String** | Associated user |
+
+#### `client.user_company.list(**params)`
+
+Optional Params:
+- `company_id`
+- `user_id`
+
+#### `client.user_company.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user_company.get(id)`
+
+#### `client.user_company.delete(id)`
+
+
+### UserKeyTerm
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`          | String     | Resource ID **Cannot be edited** |
+| **`user_id`** | **String** | Associated user |
+| **`term`**    | **String** | Term (can be word or phrase) to find in articles |
+
+#### `client.user_key_term.list(**params)`
+
+Optional Params:
+- `term`
+- `user_id`
+
+#### `client.user_key_term.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.user_key_term.get(id)`
+
+#### `client.user_key_term.delete(id)`
+
+
 ## Deployment
 
 Deploys occur automatically via Travis-CI on tagged commits that build
