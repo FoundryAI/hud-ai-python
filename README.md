@@ -241,8 +241,8 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`          | String     | Resource ID **Cannot be edited** |
-| **`name`**    | **String** | Event identifier e.g. `article.processed` |
+| `id`          | String         | Resource ID **Cannot be edited** |
+| **`name`**    | **String**     | Event identifier e.g. `article.processed` |
 | **`payload`** | **Dictionary** | Event payload e.g. `{'location': 's3://my-bucket/file-path', type:'rss'}` |
 
 #### `client.system_event.list(**params)`
@@ -341,6 +341,22 @@ Takes all of the model attributes as keyword params
 Takes all of the model attributes as keyword params
 
 #### `client.user.delete(id)`
+
+#### `client.user.followed_terms_list(id)`
+
+Returns a list of `UserKeyTerm`s
+
+#### `client.user.followed_terms_add(id, term)`
+
+#### `client.user.followed_terms_remove(id, term)`
+
+#### `client.user.followed_companies_list(id)`
+
+Returns a list of `UserCompany`s
+
+#### `client.user.followed_companies_add(id, company_id)`
+
+#### `client.user.followed_companies_remove(user_id, company_id)`
 
 
 ### UserCompany
