@@ -6,6 +6,7 @@ class UserResource(Resource):
         Resource.__init__(self, client, base_path='/users')
         self.resource_name = 'User'
 
+
     # Core CRUD Actions
 
 
@@ -25,34 +26,34 @@ class UserResource(Resource):
         return self._delete(id)
 
 
-    # Convenience management of their tracked KeyTerms
+    # Convenience management of their followed KeyTerms
 
 
-    def tracked_terms_list(self, id):
-        return self.get('/{id}/tracked-terms',
+    def followed_terms_list(self, id):
+        return self.get('/{id}/followed-terms',
                         params={'id': id})
 
-    def tracked_terms_add(self, id, term):
-        return self.post('/{id}/tracked-terms',
+    def followed_terms_add(self, id, term):
+        return self.post('/{id}/followed-terms',
                          params={'id': id},
                          data={'term': term})
 
-    def tracked_terms_remove(self, id, term):
-        return self.delete('/{id}/tracked-terms/{term}',
+    def followed_terms_remove(self, id, term):
+        return self.delete('/{id}/followed-terms/{term}',
                            params={'id': id, 'term': term})
 
 
-    # Convenience management of their tracked Companies
+    # Convenience management of their followed Companies
 
 
-    def tracked_companies_list(self, id):
-        return self.get('/{id}/tracked-companies', params={'id': id})
+    def followed_companies_list(self, id):
+        return self.get('/{id}/followed-companies', params={'id': id})
 
-    def tracked_companies_add(self, id, company_id):
-        return self.post('/{id}/tracked-companies',
+    def followed_companies_add(self, id, company_id):
+        return self.post('/{id}/followed-companies',
                          params={'id': id},
                          data={'company_id': company_id})
 
-    def tracked_companies_remove(self, user_id, company_id):
-        return self.delete('/{user_id}/tracked-companies/{company_id}',
+    def followed_companies_remove(self, user_id, company_id):
+        return self.delete('/{user_id}/followed-companies/{company_id}',
                            params={'user_id': user_id, 'company_id': company_id})
