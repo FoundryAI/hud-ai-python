@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from pydash.chaining import chain
 from pydash.objects import map_keys, map_values
-from pydash.strings import camel_case
+from pydash.strings import camel_case, snake_case
 import requests
 
 from . import __version__
@@ -33,39 +33,46 @@ class HudAi:
         self.user = UserResource(self)
 
 
-    def get(self, path, query_params={}, data={}):
-        return requests.get(self._build_url(path),
-                            params=self._web_safe(query_params),
-                            data=self._jsonify_keys(data),
-                            headers=self._get_headers())
+    def get(self, path, query_params={}):
+        response = requests.get(self._build_url(path),
+                                params=self._web_safe(query_params),
+                                headers=self._get_headers())
 
+        return self._pythonify(response.json())
 
     def post(self, path, query_params={}, data={}):
-        return requests.post(self._build_url(path),
-                             params=self._web_safe(query_params),
-                             data=self._jsonify_keys(data),
-                             headers=self._get_headers())
+        response = requests.post(self._build_url(path),
+                                 params=self._web_safe(query_params),
+                                 data=self._jsonify(data),
+                                 headers=self._get_headers())
+
+        return self._pythonify(response.json())
 
 
     def put(self, path, query_params={}, data={}):
-        return requests.put(self._build_url(path),
-                            params=self._web_safe(query_params),
-                            data=self._jsonify_keys(data),
-                            headers=self._get_headers())
+        response = requests.put(self._build_url(path),
+                                params=self._web_safe(query_params),
+                                data=self._jsonify(data),
+                                headers=self._get_headers())
+
+        return self._pythonify(response.json())
 
 
     def patch(self, path, query_params={}, data={}):
-        return requests.patch(self._build_url(path),
-                              params=self._web_safe(query_params),
-                              data=self._jsonify_keys(data),
-                              headers=self._get_headers())
+        response = requests.patch(self._build_url(path),
+                                  params=self._web_safe(query_params),
+                                  data=self._jsonify(data),
+                                  headers=self._get_headers())
+
+        return self._pythonify(response.json())
 
 
-    def delete(self, path, query_params={}, data={}):
-        return requests.delete(self._build_url(path),
-                               params=self._web_safe(query_params),
-                               data=self._jsonify_keys(data),
-                               headers=self._get_headers())
+    def delete(self, path, query_params={}):
+        response = requests.delete(self._build_url(path),
+                                   params=self._web_safe(query_params),
+                                   headers=self._get_headers())
+
+        return self._pythonify(response.json())
 
 
     def _build_url(self, path):
@@ -76,13 +83,39 @@ class HudAi:
         return { 'User-Agent': USER_AGENT, 'x-api-key': self._api_key }
 
 
-    def _jsonify_keys(self, value):
+    def _jsonify(self, value):
         if type(value) is not dict:
             return self._web_safe(value)
 
         return chain(value) \
             .map_keys(lambda value, key: camel_case(key)) \
-            .map_values(lambda value: self._jsonify_keys(value)) \
+            .map_values(lambda value: self._jsonify(value)) \
+            .value()
+
+
+    def _pythonify(self, value):
+        if type(value) is str:
+            try:
+                return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
+            except ValueError:
+                return value
+
+        if type(value) is list:
+            return [self._pythonify(item) for item in value]
+
+        if type(value) is dict:
+            return map_values(value, lambda val: self._pythonify(val))
+
+        return value
+
+
+    def _snakify_keys(self, value):
+        if type(value) is not dict:
+            return self._pythonify(value)
+
+        return chain(value) \
+            .map_keys(lambda value, key: snake_case(key)) \
+            .map_values(lambda value: self._snakify_keys(value)) \
             .value()
 
 
@@ -96,7 +129,7 @@ class HudAi:
         if type(value) is list:
             return [self._web_safe(item) for item in value]
 
-        if type(value) is dict
+        if type(value) is dict:
             return map_values(value, lambda val: self._web_safe(val))
 
         return value
