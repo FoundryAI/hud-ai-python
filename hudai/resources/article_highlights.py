@@ -1,43 +1,24 @@
-from hudai.resource import Resource
-from pydash import pick
+from ..resource import Resource
 
 
 class ArticleHighlightsResource(Resource):
     def __init__(self, client):
         Resource.__init__(self, client, base_path='/article-highlights')
-        self.resource_name = 'ArticleHighlight'
+        self.resource_name = 'ArticleHighlights'
 
-    def get(self, params):
-        return self.request({
-            'method': 'GET',
-            'params': pick(params, 'url_hash'),
-            'url': '/internal/{url_hash}'
-        })
+    def list(self, article_id=None, link_hash=None, user_id=None):
+        return self._list(article_id=article_id,
+                          link_hash=link_hash,
+                          user_id=user_id)
 
-    def list(self, params):
-        return self.request({
-            'method': 'GET',
-            'url': '/internal'
-        })
+    def create(self, article_id=None, user_id=None, body=None):
+        return self._create(article_id=article_id, user_id=user_id, body=body)
 
-    def create(self, params):
-        return self.request({
-            'method': 'POST',
-            'data': pick(params, 'url_hash', 'user_id', 'body'),
-            'url': '/internal'
-        })
+    def get(self, id):
+        return self._get(id)
 
-    def update(self, params):
-        return self.request({
-            'method': 'PUT',
-            'data': pick(params, 'body'),
-            'params': pick(params, 'url_hash'),
-            'url': '/internal/{url_hash}'
-        })
+    def update(self, id, body=None):
+        return self._update(id, body=body)
 
-    def delete(self, params):
-        return self.request({
-            'method': 'DELETE',
-            'params': pick(params, 'url_hash'),
-            'url': '/internal/{url_hash}'
-        })
+    def delete(self, id):
+        return self._delete(id)
