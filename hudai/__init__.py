@@ -10,7 +10,7 @@ client = HudAi()
 
 __package_name__ = 'hudai'
 __description__ = ('HUD.ai API python bindings')
-__keywords__ = ('hud.ai hudai foundry.ai foundrydc')
+__keywords__ = ['hud.ai','hudai','foundry.ai','foundrydc']
 __url__ = 'https://github.com/FoundryAI/hud-ai-python'
 __version__ = '2.0.0'
 __author__ = 'HUD.ai Engineering'
