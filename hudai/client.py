@@ -29,6 +29,7 @@ class HudAi:
         self.system_task = SystemTaskResource(self)
         self.text_corpus = TextCorpusResource(self)
         self.user_company = UserCompanyResource(self)
+        self.user_digest_subscription = UserDigestSubscriptionResource(self)
         self.user_key_term = UserKeyTermResource(self)
         self.user = UserResource(self)
 

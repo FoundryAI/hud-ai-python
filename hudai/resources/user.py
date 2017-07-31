@@ -13,14 +13,14 @@ class UserResource(Resource):
     def list(self, email=None):
         return self._list(email=email)
 
-    def create(self, email=None, name=None):
-        return self._create(email=email, name=name)
+    def create(self, email=None, name=None, time_zone=None):
+        return self._create(email=email, name=name, time_zone=time_zone)
 
     def get(self, id):
         return self._get(id)
 
-    def update(self, id, email=None, name=None):
-        return self._update(id, email=email, name=name)
+    def update(self, id, email=None, name=None, time_zone=None):
+        return self._update(id, email=email, name=name, time_zone=time_zone)
 
     def delete(self, id):
         return self._delete(id)
