@@ -17,12 +17,12 @@ class ArticleResource(Resource):
              published_after=None,
              published_before=None):
         return self._list(
-            importance_score_min=importance_score_min
+            importance_score_min=importance_score_min,
             key_term=key_term,
             link_hash=link_hash,
             published_after=published_after,
             published_before=published_before,
-            type=article_type,
+            type=article_type
         )
 
     def create(self,
@@ -37,7 +37,7 @@ class ArticleResource(Resource):
                text=None,
                title=None):
         return self._create(
-            authors=authors
+            authors=authors,
             image_url=image_url,
             importance_score=importance_score,
             link_url=link_url,
@@ -46,7 +46,7 @@ class ArticleResource(Resource):
             source_url=source_url,
             text=text,
             title=title,
-            type=article_type,
+            type=article_type
         )
 
     def fetch(self, entity_id):
@@ -65,7 +65,7 @@ class ArticleResource(Resource):
                title=None):
         return self._update(
             entity_id,
-            authors=authors
+            authors=authors,
             image_url=image_url,
             importance_score=importance_score,
             link_url=link_url,
@@ -74,11 +74,12 @@ class ArticleResource(Resource):
             source_url=source_url,
             text=text,
             title=title,
-            type=article_type,
+            type=article_type
         )
 
     def delete(self, entity_id):
         return self._delete(entity_id)
 
     def key_terms(self, entity_id):
-        return self.http_get('/{id}/key-terms', {'params': {'id': entity_id}})
+        return self.http_get('/{id}/key-terms',
+                             params={'id': entity_id})

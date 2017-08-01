@@ -15,21 +15,19 @@ class CompanyResource(Resource):
     def create(self, name=None):
         return self._create(name=name)
 
-    def fetch(self, id):
+    def fetch(self, entity_id):
         return self._fetch(entity_id)
 
-    def update(self, id, name=None):
-        return self._update(id, name=name)
+    def update(self, entity_id, name=None):
+        return self._update(entity_id, name=name)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)
 
-    def domains(self, id):
-        return self.get('/{id}/domains', {
-            'params': {'id': id}
-        })
+    def domains(self, entity_id):
+        return self.http_get('/{id}/domains',
+                             params={'id': entity_id})
 
-    def key_terms(self, id):
-        return self.get('/{id}/key-terms', {
-            'params': {'id': id}
-        })
+    def key_terms(self, entity_id):
+        return self.http_get('/{id}/key-terms',
+                             params={'id': entity_id})

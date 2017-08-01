@@ -12,5 +12,5 @@ class SystemEventResource(Resource):
     def create(self, name=None, payload=None):
         return self._create(name=name, payload=payload)
 
-    def fetch(self, id):
+    def fetch(self, entity_id):
         return self._fetch(entity_id)

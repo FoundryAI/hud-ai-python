@@ -16,7 +16,7 @@ class KeyTermResource(Resource):
         return self._create(term=term)
 
     def fetch(self, term):
-        return self._fetch(entity_id)
+        return self._fetch(term)
 
     def delete(self, term):
         return self._delete(term)
