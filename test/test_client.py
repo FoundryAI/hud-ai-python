@@ -1,3 +1,10 @@
+"""HUD.ai Client Specs
+
+Ensure that the client continues to act in a predictable way so that it can be
+extended via the Resources or used directly to perform the required translations
+and inject any required headers
+"""
+
 from datetime import datetime
 import pytest
 import requests
@@ -25,13 +32,13 @@ def test_initialization():
     assert isinstance(client.user, UserResource)
 
 
-@pytest.mark.parametrize('http_verb', [('get'),('post'),('put'),('patch'),('delete')])
+@pytest.mark.parametrize('http_verb', [('get'), ('post'), ('put'), ('patch'), ('delete')])
 def test_required_parameter_injection(mocker, http_verb):
     client = HudAi(api_key='mock-api-key')
     mocker.patch.object(requests, http_verb)
 
     # Actual function call, e.g. client.get(path, params)
-    function_under_test = getattr(client, http_verb)
+    function_under_test = getattr(client, "http_{}".format(http_verb))
     requests_function = getattr(requests, http_verb)
 
     assert callable(function_under_test)
@@ -46,36 +53,36 @@ def test_required_parameter_injection(mocker, http_verb):
     assert kwargs['headers']['x-api-key'] == 'mock-api-key'
 
 
-@pytest.mark.parametrize('http_verb', [('get'),('delete')])
+@pytest.mark.parametrize('http_verb', [('get'), ('delete')])
 def test_passing_requests_params(mocker, http_verb):
     client = HudAi(api_key='mock-api-key')
     mocker.patch.object(requests, http_verb)
 
     # Actual function call, e.g. client.get(path, params)
-    function_under_test = getattr(client, http_verb)
+    function_under_test = getattr(client, "http_{}".format(http_verb))
     requests_function = getattr(requests, http_verb)
 
     function_under_test('/test/url', query_params={'foo_bar':'baz'})
 
-    args, kwargs = requests_function.call_args
+    _, kwargs = requests_function.call_args
 
     assert kwargs['params'] == {'foo_bar':'baz'}
 
 
-@pytest.mark.parametrize('http_verb', [('post'),('put'),('patch')])
-def test_passing_requests_params(mocker, http_verb):
+@pytest.mark.parametrize('http_verb', [('post'), ('put'), ('patch')])
+def test_passing_requests_params_with_data(mocker, http_verb):
     client = HudAi(api_key='mock-api-key')
     mocker.patch.object(requests, http_verb)
 
     # Actual function call, e.g. client.get(path, params)
-    function_under_test = getattr(client, http_verb)
+    function_under_test = getattr(client, "http_{}".format(http_verb))
     requests_function = getattr(requests, http_verb)
 
     function_under_test('/test/url',
                         query_params={'foo_bar':'baz'},
                         data={'fizz_buzz':{'abc':'jackson_five'}})
 
-    args, kwargs = requests_function.call_args
+    _, kwargs = requests_function.call_args
 
     assert kwargs['params'] == {'foo_bar':'baz'}
     assert kwargs['data'] == {'fizzBuzz':{'abc':'jackson_five'}}
@@ -88,9 +95,11 @@ def test_jsonifiying(mocker):
     timestamp = datetime.now()
     formatted_timestamp = timestamp.isoformat()
 
-    client.post('/test/url', query_params={'abc':timestamp}, data={'xyz':timestamp})
+    client.http_post('/test/url',
+                     query_params={'abc':timestamp},
+                     data={'xyz':timestamp})
 
-    args, kwargs = requests.post.call_args
+    _, kwargs = requests.post.call_args
 
     assert kwargs['params']['abc'] == formatted_timestamp
     assert kwargs['data']['xyz'] == formatted_timestamp
@@ -117,10 +126,10 @@ def test_pythonification(mocker):
 
     expected_timestamp = datetime(2017, 7, 28, 15, 30, 8, 176077)
 
-    response = client.get('/test/url')
+    response = client.http_get('/test/url')
 
     assert response['string'] == 'test-string'
-    assert response['boolean'] == True
+    assert response['boolean']
     assert response['number'] == 123
     assert response['date'] == expected_timestamp
     assert response['array'] == ['test', expected_timestamp, 123]

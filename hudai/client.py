@@ -124,24 +124,24 @@ class HudAi(object):
 
         return chain(value) \
             .map_keys(lambda value, key: camel_case(key)) \
-            .map_values(self._jsonify) \
+            .map_values(lambda value: self._jsonify(value)) \
             .value()
 
 
     def _pythonify(self, value):
-        if not isinstance(value, str):
+        if isinstance(value, str):
             try:
                 return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
             except ValueError:
                 return value
 
-        if not isinstance(value, list):
+        if isinstance(value, list):
             return [self._pythonify(item) for item in value]
 
-        if not isinstance(value, dict):
+        if isinstance(value, dict):
             return chain(value) \
                 .map_keys(lambda value, key: snake_case(key)) \
-                .map_values(self._pythonify) \
+                .map_values(lambda value: self._pythonify(value)) \
                 .value()
 
         return value
@@ -158,6 +158,6 @@ class HudAi(object):
             return [self._web_safe(item) for item in value]
 
         if isinstance(value, dict):
-            return map_values(value, self._web_safe)
+            return map_values(value, lambda element: self._web_safe(element))
 
         return value
