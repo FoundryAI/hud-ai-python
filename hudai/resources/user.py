@@ -16,44 +16,51 @@ class UserResource(Resource):
     def create(self, email=None, name=None, time_zone=None):
         return self._create(email=email, name=name, time_zone=time_zone)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def update(self, id, email=None, name=None, time_zone=None):
-        return self._update(id, email=email, name=name, time_zone=time_zone)
+    def update(self, entity_id, email=None, name=None, time_zone=None):
+        return self._update(entity_id,
+                            email=email,
+                            name=name,
+                            time_zone=time_zone)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)
 
 
     # Convenience management of their followed KeyTerms
 
 
-    def followed_terms_list(self, id):
-        return self.get('/{id}/followed-terms',
-                        params={'id': id})
+    def followed_terms_list(self, entity_id):
+        return self.http_get('/{id}/followed-terms',
+                             params={'id': entity_id})
 
-    def followed_terms_add(self, id, term):
-        return self.post('/{id}/followed-terms',
-                         params={'id': id},
-                         data={'term': term})
+    def followed_terms_add(self, entity_id, term):
+        return self.http_post('/{id}/followed-terms',
+                              params={'id': entity_id},
+                              data={'term': term})
 
-    def followed_terms_remove(self, id, term):
-        return self.delete('/{id}/followed-terms/{term}',
-                           params={'id': id, 'term': term})
+    def followed_terms_remove(self, entity_id, term):
+        return self.http_delete('/{id}/followed-terms/{term}',
+                                params={'id': entity_id, 'term': term})
 
 
     # Convenience management of their followed Companies
 
 
-    def followed_companies_list(self, id):
-        return self.get('/{id}/followed-companies', params={'id': id})
+    def followed_companies_list(self, entity_id):
+        return self.http_get('/{id}/followed-companies',
+                             params={'id': entity_id})
 
-    def followed_companies_add(self, id, company_id):
-        return self.post('/{id}/followed-companies',
-                         params={'id': id},
-                         data={'company_id': company_id})
+    def followed_companies_add(self, entity_id, company_id):
+        return self.http_post('/{id}/followed-companies',
+                              params={'id': entity_id},
+                              data={'company_id': company_id})
 
     def followed_companies_remove(self, user_id, company_id):
-        return self.delete('/{user_id}/followed-companies/{company_id}',
-                           params={'user_id': user_id, 'company_id': company_id})
+        return self.http_delete('/{user_id}/followed-companies/{company_id}',
+                                params={
+                                    'user_id': user_id,
+                                    'company_id': company_id
+                                })

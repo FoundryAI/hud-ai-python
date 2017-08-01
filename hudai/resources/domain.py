@@ -1,3 +1,6 @@
+"""
+hudai.resources.domain
+"""
 from ..resource import Resource
 
 
@@ -12,11 +15,11 @@ class DomainResource(Resource):
     def create(self, company_id=None, hostname=None):
         return self._create(company_id=company_id, hostname=hostname)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def update(self, id, company_id=None, hostname=None):
-        return self._update(id, company_id=company_id, hostname=hostname)
+    def update(self, entity_id, company_id=None, hostname=None):
+        return self._update(entity_id, company_id=company_id, hostname=hostname)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)

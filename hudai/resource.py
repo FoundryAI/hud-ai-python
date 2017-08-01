@@ -4,6 +4,13 @@ from .error import HudAiError
 
 
 class Resource(object):
+    """
+    Inheritable class to build out the actions that can be taken at a particular
+    endpoint (e.g. /my-resource)
+    Includes:
+        - all standard HTTP verbs as via `http_VERB` e.g. `http_get`
+        - helper methods for the standard CRUD actions
+    """
     def __init__(self, client, base_path=''):
         """
         :param client: API client
@@ -19,63 +26,88 @@ class Resource(object):
     # Standard HTTP Verbs with url params injected into the given paths
 
 
-    def get(self, path, request_params):
+    def http_get(self, path, **request_params):
+        """
+        Wrapped HTTP action that
+            - builds off the base path
+            - pulls apart the query params from the URL params
+        """
         full_path = self._build_path(path, request_params.get('params'))
 
         client_params = omit(request_params, 'params')
 
-        return self._client.get(full_path, **client_params).json()
+        return self._client.http_get(full_path, **client_params).json()
 
 
-    def post(self, path, request_params):
+    def http_post(self, path, **request_params):
+        """
+        Wrapped HTTP action that
+            - builds off the base path
+            - pulls apart the query params from the URL params
+        """
         full_path = self._build_path(path, request_params.get('params'))
 
         client_params = omit(request_params, 'params')
 
-        return self._client.post(full_path, **client_params).json()
+        return self._client.http_post(full_path, **client_params).json()
 
 
-    def put(self, path, request_params):
+    def http_put(self, path, **request_params):
+        """
+        Wrapped HTTP action that
+            - builds off the base path
+            - pulls apart the query params from the URL params
+        """
         full_path = self._build_path(path, request_params.get('params'))
 
         client_params = omit(request_params, 'params')
 
-        return self._client.put(full_path, **client_params).json()
+        return self._client.http_put(full_path, **client_params).json()
 
 
-    def patch(self, path, request_params):
+    def http_patch(self, path, **request_params):
+        """
+        Wrapped HTTP action that
+            - builds off the base path
+            - pulls apart the query params from the URL params
+        """
         full_path = self._build_path(path, request_params.get('params'))
 
         client_params = omit(request_params, 'params')
 
-        return self._client.patch(full_path, **client_params).json()
+        return self._client.http_patch(full_path, **client_params).json()
 
 
-    def delete(self, path, request_params):
+    def http_delete(self, path, **request_params):
+        """
+        Wrapped HTTP action that
+            - builds off the base path
+            - pulls apart the query params from the URL params
+        """
         full_path = self._build_path(path, request_params.get('params'))
 
         client_params = omit(request_params, 'params')
 
-        return self._client.delete(full_path, **client_params).json()
+        return self._client.http_delete(full_path, **client_params).json()
 
 
     # CRUD actions common to many endpoints
 
 
     def _list(self, **query_params):
-        return self.get('/', { 'query_params': query_params })
+        return self.http_get('/', query_params=query_params)
 
     def _create(self, **data):
-        return self.post('/', { 'data': data })
+        return self.http_post('/', data=data)
 
-    def _get(self, id):
-        return self.get('/{id}', { 'params': {'id': id} })
+    def _fetch(self, entity_id):
+        return self.http_get('/{id}', params={'id': entity_id})
 
-    def _update(self, id, **data):
-        return self.put('/{id}', { 'params': {'id': id}, 'data': data })
+    def _update(self, entity_id, **data):
+        return self.http_put('/{id}', params={'id': entity_id}, data=data)
 
-    def _delete(self, id):
-        return self.delete('/{id}', { 'params': {'id': id} })
+    def _delete(self, entity_id):
+        return self.http_delete('/{id}', params={'id': entity_id})
 
 
     # Helper functions

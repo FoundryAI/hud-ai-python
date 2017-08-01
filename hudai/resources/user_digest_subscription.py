@@ -17,11 +17,11 @@ class UserDigestSubscriptionResource(Resource):
                             day_of_week=day_of_week,
                             iso_hour=iso_hour)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def update(self, id, day_of_week=None, iso_hour=None):
-        return self._update(id, day_of_week=day_of_week, iso_hour=iso_hour)
+    def update(self, entity_id, day_of_week=None, iso_hour=None):
+        return self._update(entity_id, day_of_week=day_of_week, iso_hour=iso_hour)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)

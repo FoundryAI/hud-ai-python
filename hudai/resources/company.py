@@ -1,3 +1,6 @@
+"""
+hudai.resources.company
+"""
 from ..resource import Resource
 
 
@@ -12,8 +15,8 @@ class CompanyResource(Resource):
     def create(self, name=None):
         return self._create(name=name)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, id):
+        return self._fetch(entity_id)
 
     def update(self, id, name=None):
         return self._update(id, name=name)

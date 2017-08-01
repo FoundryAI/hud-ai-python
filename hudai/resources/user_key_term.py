@@ -12,8 +12,8 @@ class UserKeyTermResource(Resource):
     def create(self, user_id=None, term=None):
         return self._create(user_id=user_id, term=term)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)

@@ -10,7 +10,7 @@ class SystemEventResource(Resource):
         return self._list(page=page)
 
     def create(self, name=None, payload=None):
-        return self._create(name=name, payload=event_payload)
+        return self._create(name=name, payload=payload)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, id):
+        return self._fetch(entity_id)

@@ -1,3 +1,6 @@
+"""
+hudai.resources.article_key_term
+"""
 from ..resource import Resource
 
 
@@ -12,8 +15,8 @@ class ArticleKeyTermResource(Resource):
     def create(self, term=None, article_id=None):
         return self._create(term=term, article_id=article_id)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)

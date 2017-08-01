@@ -18,21 +18,21 @@ class SystemTaskResource(Resource):
             completed=completed
         )
 
-    def create(self, id=None, started_at=None, completed_at=None):
+    def create(self, entity_id=None, started_at=None, completed_at=None):
         return self._create(
-            id=id,
+            id=entity_id,
             started_at=started_at,
             completed_at=completed_at
         )
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def update(self, id, started_at=None, completed_at=None):
-        return self._update(id,
+    def update(self, entity_id, started_at=None, completed_at=None):
+        return self._update(entity_id,
             started_at=started_at,
             completed_at=completed_at
         )
 
-    def delete(self, term):
-        return self._delete(term)
+    def delete(self, entity_id):
+        return self._delete(entity_id)

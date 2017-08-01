@@ -6,17 +6,20 @@ class TextCorpusResource(Resource):
         Resource.__init__(self, client, base_path='/text-corpora')
         self.resource_name = 'TextCorpus'
 
-    def list(self, user_id=None, type=None):
-        return self._list(user_id=user_id, type=type)
+    def list(self, user_id=None, corpus_type=None):
+        return self._list(user_id=user_id, type=corpus_type)
 
-    def create(self, user_id=None, type=None, body=None):
-        return self._create(user_id=user_id, type=type, body=body)
+    def create(self, user_id=None, corpus_type=None, body=None):
+        return self._create(user_id=user_id, type=corpus_type, body=body)
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def update(self, id, user_id=None, type=None, body=None):
-        return self._update(id, user_id=user_id, type=type, body=body)
+    def update(self, entity_id, user_id=None, corpus_type=None, body=None):
+        return self._update(entity_id,
+                            user_id=user_id,
+                            type=corpus_type,
+                            body=body)
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)

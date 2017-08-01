@@ -1,3 +1,6 @@
+"""
+hudai.resources.article
+"""
 from ..resource import Resource
 
 
@@ -7,76 +10,75 @@ class ArticleResource(Resource):
         self.resource_name = 'Article'
 
     def list(self,
-             type=None,
-             published_after=None,
-             published_before=None,
+             article_type=None,
+             importance_score_min=None,
              key_term=None,
              link_hash=None,
-             importance_score_min=None):
+             published_after=None,
+             published_before=None):
         return self._list(
-            type=type,
-            published_after=published_after,
-            published_before=published_before,
+            importance_score_min=importance_score_min
             key_term=key_term,
             link_hash=link_hash,
-            importance_score_min=importance_score_min
+            published_after=published_after,
+            published_before=published_before,
+            type=article_type,
         )
 
     def create(self,
-               type=None,
-               title=None,
-               text=None,
+               article_type=None,
+               authors=[],
                image_url=None,
-               link_url=None,
-               source_url=None,
                importance_score=None,
+               link_url=None,
                published_at=None,
                raw_location=None,
-               authors=[]):
+               source_url=None,
+               text=None,
+               title=None):
         return self._create(
-            type=type,
-            title=title,
-            text=text,
+            authors=authors
             image_url=image_url,
-            link_url=link_url,
-            source_url=source_url,
             importance_score=importance_score,
+            link_url=link_url,
             published_at=published_at,
             raw_location=raw_location,
-            authors=authors
+            source_url=source_url,
+            text=text,
+            title=title,
+            type=article_type,
         )
 
-    def get(self, id):
-        return self._get(id)
+    def fetch(self, entity_id):
+        return self._fetch(entity_id)
 
-    def update(self, id,
-               type=None,
-               title=None,
-               text=None,
+    def update(self, entity_id,
+               article_type=None,
+               authors=[],
                image_url=None,
-               link_url=None,
-               source_url=None,
                importance_score=None,
+               link_url=None,
                published_at=None,
                raw_location=None,
-               authors=[]):
-        return self._update(id,
-            type=type,
-            title=title,
-            text=text,
+               source_url=None,
+               text=None,
+               title=None):
+        return self._update(
+            entity_id,
+            authors=authors
             image_url=image_url,
-            link_url=link_url,
-            source_url=source_url,
             importance_score=importance_score,
+            link_url=link_url,
             published_at=published_at,
             raw_location=raw_location,
-            authors=authors
+            source_url=source_url,
+            text=text,
+            title=title,
+            type=article_type,
         )
 
-    def delete(self, id):
-        return self._delete(id)
+    def delete(self, entity_id):
+        return self._delete(entity_id)
 
-    def key_terms(self, id):
-        return self.get('/{id}/key-terms', {
-            'params': {'id': id}
-        })
+    def key_terms(self, entity_id):
+        return self.http_get('/{id}/key-terms', {'params': {'id': entity_id}})

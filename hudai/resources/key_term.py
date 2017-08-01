@@ -1,3 +1,6 @@
+"""
+hudai.resources.key_term
+"""
 from ..resource import Resource
 
 
@@ -12,8 +15,8 @@ class KeyTermResource(Resource):
     def create(self, term=None):
         return self._create(term=term)
 
-    def get(self, term):
-        return self._get(term)
+    def fetch(self, term):
+        return self._fetch(entity_id)
 
     def delete(self, term):
         return self._delete(term)
