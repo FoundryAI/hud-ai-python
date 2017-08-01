@@ -46,10 +46,10 @@ client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
 | `image_url`        | String          | Image published in the article's metadata |
 | `importance_score` | Number          | `hudai-importance-scorer` output |
 | `link_hash`        | String          | MD5 hash of the `link_url` **Cannot be edited** |
-| **`link_url`**     | **String**      | Where the article was originally published |
+| **`link_url`**     | **String**      | Where the article was originally published (e.g. `https://www.nytimes.com/2017/08/01/world/middleeast/mosul-isis-survivors-rights.html`) |
 | `published_at`     | Date            | Original publishing date |
-| **`raw_data_url`** | **String**      | Location of raw feed content (e.g. JSON/HTML) |
-| **`source_url`**   | **String**      | URL of the publication source |
+| **`raw_data_url`** | **String**      | Location of raw feed content (e.g. JSON/HTML), this is typically an S3 location (e.g. `s3://raw-storage/2017/08/01/raw-article.json`) |
+| **`source_url`**   | **String**      | URL of the publication source (e.g. `https://newsapi.org/v1/articles?source=the-wall-street-journal`) |
 | `text`             | String          | Plaintext format of the article body |
 | **`title`**        | **String**      | Title article was published as |
 | **`type`**         | **String**      | `rss` \| `newsApi` \| `facebook` \| `twitter` |
