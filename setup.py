@@ -29,7 +29,7 @@ setup(
     author = pkg['__author__'],
     author_email = pkg['__email__'],
     description = pkg['__description__'],
-    packages = find_packages(exclude=['test']),
+    packages = find_packages(exclude=['*.test', '*.test.*', 'test.*', 'test']),
     install_requires = requirements,
     download_url = '{}/releases/{}.tar.gz'.format(pkg['__url__'], pkg['__version__']),
     keywords = pkg['__keywords__'],
