@@ -31,7 +31,7 @@ setup(
     description = pkg['__description__'],
     packages = find_packages(exclude=['*.test', '*.test.*', 'test.*', 'test']),
     install_requires = requirements,
-    download_url = '{}/releases/{}.tar.gz'.format(pkg['__url__'], pkg['__version__']),
+    download_url = '{}/archive/{}.tar.gz'.format(pkg['__url__'], pkg['__version__']),
     keywords = pkg['__keywords__'],
     classifiers = [
         'Development Status :: 3 - Alpha',
