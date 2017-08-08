@@ -3,7 +3,7 @@
 [![Build Status][ci-badge]][ci-url]
 [![PyPI][pypi-badge]][pypi-url]
 [![PyPI][python-versions-badge]][pypi-url]
-![License][license-badge]
+[![License][license-badge]]()
 
 The HUD.ai Python Client provides an easy to use wrapper to interact with the
 HUD.ai API in python applications.
