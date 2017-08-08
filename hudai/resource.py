@@ -36,7 +36,7 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
-        return self._client.http_get(full_path, **client_params).json()
+        return self._client.http_get(full_path, **client_params)
 
 
     def http_post(self, path, **request_params):
@@ -49,7 +49,7 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
-        return self._client.http_post(full_path, **client_params).json()
+        return self._client.http_post(full_path, **client_params)
 
 
     def http_put(self, path, **request_params):
@@ -62,7 +62,7 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
-        return self._client.http_put(full_path, **client_params).json()
+        return self._client.http_put(full_path, **client_params)
 
 
     def http_patch(self, path, **request_params):
@@ -75,7 +75,7 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
-        return self._client.http_patch(full_path, **client_params).json()
+        return self._client.http_patch(full_path, **client_params)
 
 
     def http_delete(self, path, **request_params):
@@ -88,7 +88,7 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
-        return self._client.http_delete(full_path, **client_params).json()
+        return self._client.http_delete(full_path, **client_params)
 
 
     # CRUD actions common to many endpoints
