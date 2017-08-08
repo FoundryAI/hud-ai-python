@@ -1,8 +1,9 @@
 # HUD.ai Python Client
+
 [![Build Status][ci-badge]][ci-url]
 [![PyPI][pypi-badge]][pypi-url]
 [![PyPI][python-versions-badge]][pypi-url]
-[![License][license-badge]]()
+![License][license-badge]
 
 The HUD.ai Python Client provides an easy to use wrapper to interact with the
 HUD.ai API in python applications.
@@ -26,14 +27,12 @@ client = HudAi(api_key='your-api-token-here')
 
 client.company.list()
 
-client.news_api_article.get('17787d76-4198-4775-a49a-b3581c37a482')
+client.article.get('17787d76-4198-4775-a49a-b3581c37a482')
 ```
 
 ***DOCUMENTATION NOTES***
 
-- All `Date` types listed below are ISO-8601 formatted strings. e.g.
-`2017-07-26T18:18:58Z`
-
+- `Date` types are automatically converted to/from standard `DateTime` objects
 - Bolded `Type`s indicate that the field is required
 
 
@@ -65,7 +64,8 @@ Optional Params:
 - `type`
 
 Example:
-```
+
+```python
 client.article.list(type='rss', published_after='2017-07-26T18:18:58Z')
 ```
 
