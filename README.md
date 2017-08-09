@@ -27,7 +27,7 @@ client = HudAi(api_key='your-api-token-here')
 
 client.company.list()
 
-client.article.get('17787d76-4198-4775-a49a-b3581c37a482')
+client.article.fetch('17787d76-4198-4775-a49a-b3581c37a482')
 ```
 
 ***DOCUMENTATION NOTES***
@@ -51,7 +51,7 @@ client.article.get('17787d76-4198-4775-a49a-b3581c37a482')
 | **`source_url`**   | **String**      | URL of the publication source (e.g. `https://newsapi.org/v1/articles?source=the-wall-street-journal`) |
 | `text`             | String          | Plaintext format of the article body |
 | **`title`**        | **String**      | Title article was published as |
-| **`type`**         | **String**      | `rss` \| `newsApi` \| `facebook` \| `twitter` |
+| **`article_type`** | **String**      | `rss` \| `newsApi` \| `facebook` \| `twitter` |
 
 #### `client.article.list(**params)`
 
@@ -61,19 +61,21 @@ Optional Params:
 - `link_hash`
 - `published_after`
 - `published_before`
-- `type`
+- `article_type`
 
 Example:
 
 ```python
-client.article.list(type='rss', published_after='2017-07-26T18:18:58Z')
+last_week = datetime.datetime.now() - datetime.timedelta(days=7)
+
+client.article.list(article_type='rss', published_after=last_week)
 ```
 
 #### `client.article.create(**params)`
 
 Takes all of the model attributes as keyword params (except `link_hash`)
 
-#### `client.article.get(id)`
+#### `client.article.fetch(id)`
 
 #### `client.article.update(id, **params)`
 
@@ -106,7 +108,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.article_highlights.get(id)`
+#### `client.article_highlights.fetch(id)`
 
 #### `client.article_highlights.update(id, **params)`
 
@@ -133,7 +135,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.article_key_term.get(id)`
+#### `client.article_key_term.fetch(id)`
 
 #### `client.article_key_term.delete(id)`
 
@@ -151,7 +153,7 @@ Takes all of the model attributes as keyword params
 
 Takes all of the model attributes as keyword params
 
-#### `client.company.get(id)`
+#### `client.company.fetch(id)`
 
 #### `client.company.update(id, **params)`
 
@@ -185,7 +187,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.company_key_term.get(id)`
+#### `client.company_key_term.fetch(id)`
 
 #### `client.company_key_term.delete(id)`
 
@@ -208,7 +210,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.domain.get(id)`
+#### `client.domain.fetch(id)`
 
 #### `client.domain.update(id, **params)`
 
@@ -232,7 +234,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.key_term.get(term)`
+#### `client.key_term.fetch(term)`
 
 #### `client.key_term.delete(term)`
 
@@ -254,7 +256,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.system_event.get(id)`
+#### `client.system_event.fetch(id)`
 
 
 ### SystemTask
@@ -280,7 +282,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.system_task.get(id)`
+#### `client.system_task.fetch(id)`
 
 #### `client.system_task.update(id, **params)`
 
@@ -308,7 +310,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.text_corpus.get(id)`
+#### `client.text_corpus.fetch(id)`
 
 #### `client.text_corpus.update(id, **params)`
 
@@ -335,7 +337,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.user.get(id)`
+#### `client.user.fetch(id)`
 
 #### `client.user.update(id, **params)`
 
@@ -378,7 +380,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.user_company.get(id)`
+#### `client.user_company.fetch(id)`
 
 #### `client.user_company.delete(id)`
 
@@ -404,7 +406,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.user_digest_subscription.get(id)`
+#### `client.user_digest_subscription.fetch(id)`
 
 #### `client.user_digest_subscription.delete(id)`
 
@@ -427,7 +429,7 @@ Optional Params:
 
 Takes all of the model attributes as keyword params
 
-#### `client.user_key_term.get(id)`
+#### `client.user_key_term.fetch(id)`
 
 #### `client.user_key_term.delete(id)`
 
