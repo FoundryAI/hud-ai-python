@@ -46,7 +46,7 @@ class HudAi(object):
             - translates the API response back into a Pythonic form
         """
         response = requests.get(self._build_url(path),
-                                params=self._web_safe(query_params),
+                                params=self._jsonify(query_params),
                                 headers=self._get_headers())
 
         return self._pythonify(response.json())
@@ -59,7 +59,7 @@ class HudAi(object):
             - translates the API response back into a Pythonic form
         """
         response = requests.post(self._build_url(path),
-                                 params=self._web_safe(query_params),
+                                 params=self._jsonify(query_params),
                                  data=self._jsonify(data),
                                  headers=self._get_headers())
 
@@ -74,7 +74,7 @@ class HudAi(object):
             - translates the API response back into a Pythonic form
         """
         response = requests.put(self._build_url(path),
-                                params=self._web_safe(query_params),
+                                params=self._jsonify(query_params),
                                 data=self._jsonify(data),
                                 headers=self._get_headers())
 
@@ -89,7 +89,7 @@ class HudAi(object):
             - translates the API response back into a Pythonic form
         """
         response = requests.patch(self._build_url(path),
-                                  params=self._web_safe(query_params),
+                                  params=self._jsonify(query_params),
                                   data=self._jsonify(data),
                                   headers=self._get_headers())
 
@@ -104,7 +104,7 @@ class HudAi(object):
             - translates the API response back into a Pythonic form
         """
         response = requests.delete(self._build_url(path),
-                                   params=self._web_safe(query_params),
+                                   params=self._jsonify(query_params),
                                    headers=self._get_headers())
 
         return self._pythonify(response.json())

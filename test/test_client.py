@@ -66,7 +66,7 @@ def test_passing_requests_params(mocker, http_verb):
 
     _, kwargs = requests_function.call_args
 
-    assert kwargs['params'] == {'foo_bar':'baz'}
+    assert kwargs['params'] == {'fooBar':'baz'}
 
 
 @pytest.mark.parametrize('http_verb', [('post'), ('put'), ('patch')])
@@ -84,7 +84,7 @@ def test_passing_requests_params_with_data(mocker, http_verb):
 
     _, kwargs = requests_function.call_args
 
-    assert kwargs['params'] == {'foo_bar':'baz'}
+    assert kwargs['params'] == {'fooBar':'baz'}
     assert kwargs['data'] == {'fizzBuzz':{'abc':'jackson_five'}}
 
 
