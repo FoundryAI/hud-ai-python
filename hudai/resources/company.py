@@ -9,8 +9,8 @@ class CompanyResource(Resource):
         Resource.__init__(self, client, base_path='/companies')
         self.resource_name = 'Company'
 
-    def list(self):
-        return self._list()
+    def list(self, page=None):
+        return self._list(page=page)
 
     def create(self, name=None):
         return self._create(name=name)

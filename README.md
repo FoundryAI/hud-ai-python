@@ -34,6 +34,7 @@ client.article.fetch('17787d76-4198-4775-a49a-b3581c37a482')
 
 - `Date` types are automatically converted to/from standard `DateTime` objects
 - Bolded `Type`s indicate that the field is required
+- All `list` resources are paginated to 50/request, with `page` being 0-indexed (e.g. `page=3` will get you the fourth page)
 
 
 ### Article
@@ -56,12 +57,14 @@ client.article.fetch('17787d76-4198-4775-a49a-b3581c37a482')
 #### `client.article.list(**params)`
 
 Optional Params:
+
+- `article_type`
 - `importance_score_min`
 - `key_term`
 - `link_hash`
+- `page`
 - `published_after`
 - `published_before`
-- `article_type`
 
 Example:
 
@@ -100,8 +103,10 @@ Returns a list of key terms (`String`) associated with the article
 #### `client.article_highlights.list(**params)`
 
 Optional Params:
+
 - `article_id`
 - `link_hash` MD5 hash of the article URL
+- `page`
 - `user_id`
 
 #### `client.article_highlights.create(**params)`
@@ -128,8 +133,10 @@ Takes all of the model attributes as keyword params
 #### `client.article_key_term.list(**params)`
 
 Optional Params:
-- `key_term`
+
 - `article_id`
+- `key_term`
+- `page`
 
 #### `client.article_key_term.create(**params)`
 
@@ -181,7 +188,9 @@ Lists all `KeyTerm`s associated with the company
 #### `client.company_key_term.list(**params)`
 
 Optional Params:
+
 - `company_id`
+- `page`
 
 #### `client.company_key_term.create(**params)`
 
@@ -203,8 +212,10 @@ Takes all of the model attributes as keyword params
 #### `client.domain.list(**params)`
 
 Optional Params:
+
 - `company_id`
 - `hostname`
+- `page`
 
 #### `client.domain.create(**params)`
 
@@ -228,6 +239,7 @@ Takes all of the model attributes as keyword params
 #### `client.key_term.list(**params)`
 
 Optional Params:
+
 - `page`
 
 #### `client.key_term.create(**params)`
@@ -250,6 +262,7 @@ Takes all of the model attributes as keyword params
 #### `client.system_event.list(**params)`
 
 Optional Params:
+
 - `page`
 
 #### `client.system_event.create(**params)`
@@ -272,11 +285,12 @@ Takes all of the model attributes as keyword params
 #### `client.system_task.list(**params)`
 
 Optional Params:
-- `task_id`
+
+- `completed` (Boolean)
 - `page`
 - `started_after`
 - `started_before`
-- `completed` (Boolean)
+- `task_id`
 
 #### `client.system_task.create(**params)`
 
@@ -303,8 +317,10 @@ Takes all of the model attributes as keyword params
 #### `client.text_corpus.list(**params)`
 
 Optional Params:
-- `user_id`
+
+- `page`
 - `type`
+- `user_id`
 
 #### `client.text_corpus.create(**params)`
 
@@ -331,7 +347,9 @@ Takes all of the model attributes as keyword params
 #### `client.user.list(**params)`
 
 Optional Params:
+
 - `email`
+- `page`
 
 #### `client.user.create(**params)`
 
@@ -373,7 +391,9 @@ Returns a list of `UserCompany`s
 #### `client.user_company.list(**params)`
 
 Optional Params:
+
 - `company_id`
+- `page`
 - `user_id`
 
 #### `client.user_company.create(**params)`
@@ -397,6 +417,7 @@ Takes all of the model attributes as keyword params
 #### `client.user_digest_subscription.list(**params)`
 
 Optional Params:
+
 - `day_of_week`
 - `iso_hour`
 - `page`
@@ -422,6 +443,8 @@ Takes all of the model attributes as keyword params
 #### `client.user_key_term.list(**params)`
 
 Optional Params:
+
+- `page`
 - `term`
 - `user_id`
 

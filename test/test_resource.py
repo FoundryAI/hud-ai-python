@@ -71,7 +71,11 @@ def test__list(mocker):
     resource._list(foo='bar')
 
     client.http_get.assert_called_once_with('/mock-resource/',
-                                            query_params={'foo': 'bar'})
+                                            query_params={
+                                                'foo': 'bar',
+                                                'limit': 50,
+                                                'offset': 0
+                                            })
 
 
 def test__create(mocker):

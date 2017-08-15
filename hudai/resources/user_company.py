@@ -6,8 +6,8 @@ class UserCompanyResource(Resource):
         Resource.__init__(self, client, base_path='/users-companies')
         self.resource_name = 'UserCompany'
 
-    def list(self, user_id=None, company_id=None):
-        return self._list(user_id=user_id, company_id=company_id)
+    def list(self, user_id=None, company_id=None, page=None):
+        return self._list(user_id=user_id, company_id=company_id, page=page)
 
     def create(self, user_id=None, company_id=None):
         return self._create(user_id=user_id, company_id=company_id)

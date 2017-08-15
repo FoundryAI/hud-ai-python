@@ -95,6 +95,15 @@ class Resource(object):
 
 
     def _list(self, **query_params):
+        query_params['limit'] = 50
+
+        if 'page' in query_params:
+            page = max(query_params['page'], 0)
+            query_params['offset'] = 50 * page
+            del query_params['page']
+        else:
+            query_params['offset'] = 0
+
         return self.http_get('/', query_params=query_params)
 
     def _create(self, **data):

@@ -15,14 +15,16 @@ class ArticleResource(Resource):
              key_term=None,
              link_hash=None,
              published_after=None,
-             published_before=None):
+             published_before=None,
+             page=None):
         return self._list(
             importance_score_min=importance_score_min,
             key_term=key_term,
             link_hash=link_hash,
             published_after=published_after,
             published_before=published_before,
-            type=article_type
+            type=article_type,
+            page=page
         )
 
     def create(self,
