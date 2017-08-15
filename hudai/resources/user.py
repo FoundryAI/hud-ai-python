@@ -10,8 +10,8 @@ class UserResource(Resource):
     # Core CRUD Actions
 
 
-    def list(self, email=None):
-        return self._list(email=email)
+    def list(self, email=None, page=None):
+        return self._list(email=email, page=page)
 
     def create(self, email=None, name=None, time_zone=None):
         return self._create(email=email, name=name, time_zone=time_zone)

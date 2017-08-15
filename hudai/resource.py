@@ -98,7 +98,8 @@ class Resource(object):
         query_params['limit'] = 50
 
         if 'page' in query_params:
-            query_params['offset'] = 50 * query_params['page']
+            page = max(query_params['page'], 0)
+            query_params['offset'] = 50 * page
             del query_params['page']
         else:
             query_params['offset'] = 0
