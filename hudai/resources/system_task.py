@@ -10,14 +10,12 @@ class SystemTaskResource(Resource):
              page=None,
              started_after=None,
              started_before=None,
-             completed=None,
-             page=None):
+             completed=None):
         return self._list(
             page=page,
             started_after=started_after,
             started_before=started_before,
-            completed=completed,
-            page=page
+            completed=completed
         )
 
     def create(self, entity_id=None, started_at=None, completed_at=None):
