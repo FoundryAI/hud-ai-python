@@ -95,15 +95,7 @@ class Resource(object):
 
 
     def _list(self, **query_params):
-        query_params['limit'] = 50
-
-        if 'page' in query_params:
-            page = max(query_params['page'], 0)
-            query_params['offset'] = 50 * page
-            del query_params['page']
-        else:
-            query_params['offset'] = 0
-
+        query_params = self._set_limit_offset(query_params)
         return self.http_get('/', query_params=query_params)
 
     def _create(self, **data):
@@ -133,3 +125,16 @@ class Resource(object):
             return path
 
         return path.format(**query_params)
+
+    def _set_limit_offset(self, params):
+        params['limit'] = 50
+
+        if 'page' in params:
+            page = max(params['page'], 0)
+            params['offset'] = 50 * page
+            del params['page']
+        else:
+            params['offset'] = 0
+
+        return params
+
