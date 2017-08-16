@@ -6,7 +6,7 @@ from ..resource import Resource
 
 class ArticleKeyTermResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/{article_id}/key-terms')
+        Resource.__init__(self, client, base_path='/articles/{article_id}/key-terms')
         self.resource_name = 'ArticleKeyTerm'
 
     def list(self, article_id, page=None):
