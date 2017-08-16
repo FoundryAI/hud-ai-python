@@ -1,3 +1,8 @@
+"""
+hudai.resources.system_task
+"""
+from datetime import datetime
+
 from ..resource import Resource
 
 
@@ -10,29 +15,56 @@ class SystemTaskResource(Resource):
              page=None,
              started_after=None,
              started_before=None,
-             completed=None):
+             completed=None,
+             task_id=None):
+        """
+        Lists the existing system tasks, filtered by the given keyword args
+        """
         return self._list(
+            task_id=task_id,
             page=page,
             started_after=started_after,
             started_before=started_before,
-            completed=completed
-        )
+            completed=completed)
 
-    def create(self, entity_id=None, started_at=None, completed_at=None):
+    def create(self, task_id=None, started_at=None, completed_at=None):
+        """
+        Creates a new system task
+        """
         return self._create(
-            id=entity_id,
+            task_id=task_id,
             started_at=started_at,
-            completed_at=completed_at
-        )
+            completed_at=completed_at)
 
     def fetch(self, entity_id):
+        """
+        Retrieves the task by its API id
+        """
         return self._fetch(entity_id)
 
+    def fetch_by_task_id(self, task_id):
+        """
+        Retrieves the task using its celery id
+        """
+        tasks = self._list(task_id=task_id).get('rows', [])
+        return tasks[0] if tasks else None
+
     def update(self, entity_id, started_at=None, completed_at=None):
+        """
+        Update the task's started_at or completed_at
+        """
         return self._update(entity_id,
-            started_at=started_at,
-            completed_at=completed_at
-        )
+                            started_at=started_at,
+                            completed_at=completed_at)
+
+    def mark_complete(self, entity_id, completed_at=datetime.now()):
+        """
+        Marks the task as complete (defaults to completed now)
+        """
+        return self._update(entity_id, completed_at=completed_at)
 
     def delete(self, entity_id):
+        """
+        Removes the task entry
+        """
         return self._delete(entity_id)

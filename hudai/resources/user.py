@@ -1,3 +1,6 @@
+"""
+hudai.resources.user
+"""
 from ..resource import Resource
 
 

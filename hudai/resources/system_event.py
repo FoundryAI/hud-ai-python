@@ -1,3 +1,6 @@
+"""
+hudai.resources.system_event
+"""
 from ..resource import Resource
 
 

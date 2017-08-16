@@ -1,3 +1,6 @@
+"""
+hudai.resources.user_company
+"""
 from ..resource import Resource
 
 

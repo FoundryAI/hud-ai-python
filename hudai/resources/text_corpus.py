@@ -1,3 +1,6 @@
+"""
+hudai.resources.text_corpus
+"""
 from ..resource import Resource
 
 
