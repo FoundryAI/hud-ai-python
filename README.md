@@ -249,9 +249,13 @@ Takes all of the model attributes as keyword params
 
 #### `client.system_task.fetch(id)`
 
+#### `client.system_task.fetch_by_task_id(task_id)`
+
 #### `client.system_task.update(id, **params)`
 
 Takes all of the model attributes as keyword params
+
+#### `client.system_task.mark_complete(task_id, completed_at?)`
 
 #### `client.system_task.delete(id)`
 

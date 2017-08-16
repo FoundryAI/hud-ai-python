@@ -1,3 +1,6 @@
+"""
+hudai.resources.user_key_term
+"""
 from ..resource import Resource
 
 

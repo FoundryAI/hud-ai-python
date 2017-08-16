@@ -1,3 +1,6 @@
+"""
+hudai.resources.user_digest_subscription
+"""
 from ..resource import Resource
 
 
