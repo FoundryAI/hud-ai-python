@@ -6,25 +6,30 @@ from ..resource import Resource
 
 class UserDigestSubscriptionResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/user-digest-subscription')
+        Resource.__init__(self, client, base_path='/users/{user_id}/digest-subscriptions')
         self.resource_name = 'UserDigestSubscription'
 
-    def list(self, user_id=None, day_of_week=None, iso_hour=None, page=None):
-        return self._list(user_id=user_id,
-                          day_of_week=day_of_week,
-                          iso_hour=iso_hour,
-                          page=page)
+    def list(self, user_id, day_of_week=None, iso_hour=None, page=None):
+        query_params = self._set_limit_offset({
+            'day_of_week': day_of_week,
+            'iso_hour': iso_hour,
+            'page': page
+        })
 
-    def create(self, user_id=None, day_of_week=None, iso_hour=None):
-        return self._create(user_id=user_id,
-                            day_of_week=day_of_week,
-                            iso_hour=iso_hour)
+        return self.http_get('/',
+                             params={'user_id': user_id},
+                             query_params=query_params)
 
-    def fetch(self, entity_id):
-        return self._fetch(entity_id)
+    def create(self, user_id, day_of_week=None, iso_hour=None):
+        return self.http_post('/',
+                              params={'user_id': user_id},
+                              data={'day_of_week': day_of_week,
+                                    'iso_hour': iso_hour})
 
-    def update(self, entity_id, day_of_week=None, iso_hour=None):
-        return self._update(entity_id, day_of_week=day_of_week, iso_hour=iso_hour)
+    def fetch(self, user_id, digest_id):
+        return self.http_get('/{id}',
+                             params={'user_id': user_id, 'id': digest_id})
 
-    def delete(self, entity_id):
-        return self._delete(entity_id)
+    def delete(self, user_id, digest_id):
+        return self.http_delete('/{id}',
+                                params={'user_id': user_id, 'id': digest_id})
