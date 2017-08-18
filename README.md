@@ -293,7 +293,7 @@ Takes all of the model attributes as keyword params
 | **`name`**  | **String** | User's full name (used in emails and other communications) |
 | `time_zone` | String     | [tz database][tz-database-link] time zone used to determine when to send notifications (defaults to `America/New_York`) |
 
-#### `client.user.list(email?, page?)`
+#### `client.user.list(email?, digest_subscription_day?, digest_subscription_hour?, name?, key_term?, page?)`
 
 #### `client.user.create(**params)`
 
@@ -306,22 +306,6 @@ Takes all of the model attributes as keyword params
 Takes all of the model attributes as keyword params
 
 #### `client.user.delete(id)`
-
-#### `client.user.followed_terms_list(id)`
-
-Returns a list of `UserKeyTerm`s
-
-#### `client.user.followed_terms_add(id, term)`
-
-#### `client.user.followed_terms_remove(id, term)`
-
-#### `client.user.followed_companies_list(id)`
-
-Returns a list of `UserCompany`s
-
-#### `client.user.followed_companies_add(id, company_id)`
-
-#### `client.user.followed_companies_remove(user_id, company_id)`
 
 
 ### UserCompany
@@ -352,15 +336,15 @@ Takes all of the model attributes as keyword params
 | **`iso_hour`**    | **String** | 24-hour hour e.g. `08` = 8am, `17` = 5pm |
 | **`user_id`**     | **String** | Associated user |
 
-#### `client.user_digest_subscription.list(user_id?, day_of_week?, iso_hour?, page?)`
+#### `client.user_digest_subscription.list(user_id, day_of_week?, iso_hour?, page?)`
 
-#### `client.user_digest_subscription.create(**params)`
+#### `client.user_digest_subscription.create(user_id, **params)`
 
 Takes all of the model attributes as keyword params
 
-#### `client.user_digest_subscription.fetch(id)`
+#### `client.user_digest_subscription.fetch(user_id, digest_id)`
 
-#### `client.user_digest_subscription.delete(id)`
+#### `client.user_digest_subscription.delete(user_id, digest_id)`
 
 
 ### UserKeyTerm
