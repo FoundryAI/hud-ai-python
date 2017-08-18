@@ -9,16 +9,19 @@ class UserResource(Resource):
         Resource.__init__(self, client, base_path='/users')
         self.resource_name = 'User'
 
-
     def list(self,
              email=None,
              digest_subscription_day=None,
              digest_subscription_hour=None,
+             name=None,
+             key_term=None,
              page=None):
         return self._list(
             email=email,
             digest_subscription_day=digest_subscription_day,
             digest_subscription_hour=digest_subscription_hour,
+            name=name,
+            key_term=key_term,
             page=page
         )
 
