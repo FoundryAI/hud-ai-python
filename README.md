@@ -355,15 +355,13 @@ Takes all of the model attributes as keyword params
 | **`term`**    | **String** | Term (can be word or phrase) to find in articles |
 | **`user_id`** | **String** | Associated user |
 
-#### `client.user_key_term.list(user_id?, term?, page?)`
+#### `client.user_key_term.list(user_id, page?)`
 
-#### `client.user_key_term.create(**params)`
+#### `client.user_key_term.create(user_id, term)`
 
-Takes all of the model attributes as keyword params
+#### `client.user_key_term.fetch(user_id, term)`
 
-#### `client.user_key_term.fetch(id)`
-
-#### `client.user_key_term.delete(id)`
+#### `client.user_key_term.delete(user_id, term)`
 
 
 ## Deployment
