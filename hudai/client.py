@@ -23,19 +23,33 @@ class HudAi(object):
         self._base_url = base_url
 
         self.article_highlights = ArticleHighlightsResource(self)
+        self.article_highlight = self.article_highlights
         self.article_key_term = ArticleKeyTermResource(self)
+        self.article_key_terms = self.article_key_term
         self.article = ArticleResource(self)
+        self.articles = self.article
         self.company_key_term = CompanyKeyTermResource(self)
+        self.company_key_terms = self.company_key_term
         self.company = CompanyResource(self)
+        self.companies = self.company
         self.domain = DomainResource(self)
+        self.domains = self.domain
         self.key_term = KeyTermResource(self)
+        self.key_terms = self.key_term
         self.system_event = SystemEventResource(self)
+        self.system_events = self.system_event
         self.system_task = SystemTaskResource(self)
+        self.system_tasks = self.system_task
         self.text_corpus = TextCorpusResource(self)
+        self.text_corpora = self.text_corpus
         self.user_company = UserCompanyResource(self)
+        self.user_companies = self.user_company
         self.user_digest_subscription = UserDigestSubscriptionResource(self)
+        self.user_digest_subscriptions = self.user_digest_subscription
         self.user_key_term = UserKeyTermResource(self)
+        self.user_key_terms = self.user_key_term
         self.user = UserResource(self)
+        self.users = self.user
 
 
     def http_get(self, path, query_params={}):
