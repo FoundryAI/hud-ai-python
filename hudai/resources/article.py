@@ -1,7 +1,7 @@
 """
 hudai.resources.article
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class ArticleResource(Resource):

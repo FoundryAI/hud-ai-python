@@ -1,7 +1,7 @@
 """
 hudai.resources.user_key_term
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class UserKeyTermResource(Resource):

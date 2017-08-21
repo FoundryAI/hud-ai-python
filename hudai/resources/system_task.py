@@ -3,7 +3,8 @@ hudai.resources.system_task
 """
 from datetime import datetime
 
-from ..resource import Resource
+from ..helpers.resource import Resource
+from ..helpers.http_errors import api_404
 
 
 class SystemTaskResource(Resource):
@@ -47,7 +48,7 @@ class SystemTaskResource(Resource):
         Retrieves the task using its celery id
         """
         tasks = self._list(task_id=task_id).get('rows', [])
-        return tasks[0] if tasks else None
+        return tasks[0] if tasks else api_404()
 
     def update(self, entity_id, started_at=None, completed_at=None):
         """

@@ -1,6 +1,6 @@
 from pydash import omit
 
-from .error import HudAiError
+from ..error import HudAiError
 
 
 class Resource(object):

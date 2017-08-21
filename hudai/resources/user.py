@@ -1,7 +1,7 @@
 """
 hudai.resources.user
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class UserResource(Resource):

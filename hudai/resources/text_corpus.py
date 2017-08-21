@@ -1,7 +1,7 @@
 """
 hudai.resources.text_corpus
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class TextCorpusResource(Resource):

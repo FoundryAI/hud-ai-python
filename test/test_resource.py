@@ -8,7 +8,7 @@ import pytest
 from pytest_mock import mocker
 
 from hudai.client import HudAi
-from hudai.resource import Resource
+from hudai.helpers.resource import Resource
 
 client = HudAi(api_key='mock-api-key')
 

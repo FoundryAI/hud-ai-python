@@ -284,7 +284,9 @@ Takes all of the model attributes as keyword params
 
 Takes all of the model attributes as keyword params
 
-#### `client.system_task.mark_complete(task_id, completed_at?)`
+#### `client.system_task.mark_complete(id, completed_at?)`
+
+When `completed_at` is omitted, it will default to now.
 
 #### `client.system_task.delete(id)`
 
