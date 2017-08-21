@@ -300,17 +300,13 @@ When `completed_at` is omitted, it will default to now.
 | **`type`**     | **String** | Text origin e.g. `email` or `custom` |
 | **`user_id`**  | **String** | User the corpus is used to identify articles for |
 
-#### `client.text_corpora.list(type?, user_id?, page?)`
+#### `client.text_corpora.list(corpus_type?, user_id?, page?)`
 
-#### `client.text_corpora.create(**params)`
-
-Takes all of the model attributes as keyword params
+#### `client.text_corpora.create(user_id?, corpus_type?, body?)`
 
 #### `client.text_corpora.fetch(id)`
 
-#### `client.text_corpora.update(id, **params)`
-
-Takes all of the model attributes as keyword params
+#### `client.text_corpora.update(id, user_id?, corpus_type?, body?)`
 
 #### `client.text_corpora.delete(id)`
 
