@@ -1,7 +1,7 @@
 """
 hudai.resources.domain
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class DomainResource(Resource):

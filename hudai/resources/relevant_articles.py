@@ -1,7 +1,7 @@
 """
 hudai.resources.relevant_articles
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class RelevantArticlesResource(Resource):

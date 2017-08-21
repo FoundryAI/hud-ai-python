@@ -1,7 +1,7 @@
 """
 hudai.resources.system_event
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class SystemEventResource(Resource):

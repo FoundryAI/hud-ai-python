@@ -1,7 +1,7 @@
 """
 hudai.resources.company
 """
-from ..resource import Resource
+from ..helpers.resource import Resource
 
 
 class CompanyResource(Resource):
