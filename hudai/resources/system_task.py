@@ -28,12 +28,17 @@ class SystemTaskResource(Resource):
             started_before=started_before,
             completed=completed)
 
-    def create(self, task_id=None, started_at=None, completed_at=None):
+    def create(self,
+               task_id=None,
+               attempts=None,
+               started_at=None,
+               completed_at=None):
         """
         Creates a new system task
         """
         return self._create(
             task_id=task_id,
+            attempts=attempts,
             started_at=started_at,
             completed_at=completed_at)
 
@@ -50,11 +55,16 @@ class SystemTaskResource(Resource):
         tasks = self._list(task_id=task_id).get('rows', [])
         return tasks[0] if tasks else api_404()
 
-    def update(self, entity_id, started_at=None, completed_at=None):
+    def update(self,
+               entity_id,
+               attempts=None,
+               started_at=None,
+               completed_at=None):
         """
         Update the task's started_at or completed_at
         """
         return self._update(entity_id,
+                            attempts=attempts,
                             started_at=started_at,
                             completed_at=completed_at)
 
