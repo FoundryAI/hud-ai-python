@@ -5,6 +5,7 @@ from .company_key_term import CompanyKeyTermResource
 from .company import CompanyResource
 from .domain import DomainResource
 from .key_term import KeyTermResource
+from .relevant_articles import RelevantArticlesResource
 from .system_event import SystemEventResource
 from .system_task import SystemTaskResource
 from .text_corpus import TextCorpusResource
