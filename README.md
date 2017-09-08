@@ -39,7 +39,52 @@ hud_ai.articles.fetch('17787d76-4198-4775-a49a-b3581c37a482')
 | `auth_url`      | Specify an alternate server to request auth tokens from | `'https://stage.auth.hud.ai'` |
 | `redirect_uri`  | Path to redirect auth requests to (required for `#get_authorize_uri`) | `'https://app.example.com/oauth/callbacks/hud-ai'` |
 
-### Resources
+### Client Auth Flow
+
+In order to access HUD.ai data on a user's behalf, they must authorize you to do
+so. This requires 3 steps.
+
+First, send them to the authorization URL
+
+```python
+from flask import request
+from hudai import Client as HudAiClient
+
+hud_ai = HudAiClient(
+    client_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+    client_secret='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+    redirect_uri='https://app.example.com/oauth/callbacks/hud-ai'
+)
+
+@app.route('/oauth/authorize/hud-ai')
+def hud_ai_authorization():
+    return redirect(hud_ai.get_authorize_uri(), code=302)
+```
+
+Now the user will be presented with a dialog screen where they can accept or
+deny your request. The auth server will redirect back to your app in either
+case.
+
+Finally, parse the response and get the code and attach it to the client. The
+code will be exchanged before the next request is made.
+
+```python
+@app.route('/oauth/callbacks/hud-ai')
+def hud_ai_callback():
+    code = request.args.get('code')
+    hud_ai.set_auth_code(code)
+```
+
+**NOTE:** This method requires `redirect_uri`
+
+Returns a URL to direct users to to authorize your application to act on their
+behalf. You will need to handle the redirect that includes the `code`
+
+### `client.set_auth_code(code)`
+
+Store the required
+
+## Resources
 
 > **DOCUMENTATION NOTES**
 >
