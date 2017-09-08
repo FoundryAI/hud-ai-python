@@ -1,118 +1,98 @@
-from datetime import date, datetime
-from pydash.chaining import chain
-from pydash.objects import map_values
-from pydash.strings import camel_case, snake_case
+"""
+hudai.client
+"""
+
+from datetime import datetime, timedelta
 import requests
 
-from . import __version__
 from .error import HudAiError
 from .resources import *
+from .helpers.http_client import HttpClient
 
-USER_AGENT = 'HUD.ai Python v{} +(https://github.com/FoundryAI/hud-ai-python#readme)'.format(__version__)
 
 class HudAi(object):
     """
-    API Client for HUD.ai that handles the API token injection and translation to/from Python
-    objects
+    API Client for HUD.ai that handles the API token injection and translation
+    to/from Python objects
     """
-    def __init__(self, api_key=None, base_url='https://api.hud.ai/v1'):
-        if not api_key:
-            raise HudAiError('missing api_key', 'initialization_error')
+    def __init__(self,
+                 client_id=None,
+                 client_secret=None,
+                 base_url='https://api.hud.ai/v1',
+                 auth_url='https://auth.hud.ai',
+                 redirect_uri=None):
+        if not client_id:
+            raise HudAiError('missing client_id', 'initialization_error')
 
-        self._api_key = api_key
-        self._base_url = base_url
+        self._client_id = client_id
+        self._client_secret = client_secret
+        self._auth_url = auth_url
+        self._redirect_uri = redirect_uri
 
-        self.article_highlights = ArticleHighlightsResource(self)
-        self.article_key_terms = ArticleKeyTermResource(self)
-        self.articles = ArticleResource(self)
-        self.company_key_terms = CompanyKeyTermResource(self)
-        self.companies = CompanyResource(self)
-        self.domains = DomainResource(self)
-        self.key_terms = KeyTermResource(self)
-        self.relevant_articles = RelevantArticlesResource(self)
-        self.system_events = SystemEventResource(self)
-        self.system_tasks = SystemTaskResource(self)
-        self.text_corpora = TextCorpusResource(self)
-        self.user_companies = UserCompanyResource(self)
-        self.user_digest_subscriptions = UserDigestSubscriptionResource(self)
-        self.user_key_terms = UserKeyTermResource(self)
-        self.users = UserResource(self)
+        self._http_client = HttpClient(self, base_url)
+
+        self.article_highlights = ArticleHighlightsResource(self._http_client)
+        self.article_key_terms = ArticleKeyTermResource(self._http_client)
+        self.articles = ArticleResource(self._http_client)
+        self.company_key_terms = CompanyKeyTermResource(self._http_client)
+        self.companies = CompanyResource(self._http_client)
+        self.domains = DomainResource(self._http_client)
+        self.key_terms = KeyTermResource(self._http_client)
+        self.relevant_articles = RelevantArticlesResource(self._http_client)
+        self.system_events = SystemEventResource(self._http_client)
+        self.system_tasks = SystemTaskResource(self._http_client)
+        self.text_corpora = TextCorpusResource(self._http_client)
+        self.user_companies = UserCompanyResource(self._http_client)
+        self.user_digest_subscriptions = UserDigestSubscriptionResource(self._http_client)
+        self.user_key_terms = UserKeyTermResource(self._http_client)
+        self.users = UserResource(self._http_client)
 
         # Preserve backwards compatibility
         self._add_deprecated_attributes()
 
-
-    def http_get(self, path, query_params={}):
+    def get_authorize_uri(self):
         """
-        Wrapped HTTP action that
-            - translates Python objects to JSON objects
-            - injects the required headers
-            - translates the API response back into a Pythonic form
+        Builds authorization URL to send users to to grant access and return a
+        `code` to the redirect_uri
         """
-        response = requests.get(self._build_url(path),
-                                params=self._jsonify(query_params),
-                                headers=self._get_headers())
+        if not self._redirect_uri:
+            raise HudAiError('cannot generate authorization uri without redirect_uri')
 
-        return self._pythonify(response.json())
+        return (
+            '{host}/oaut2/authorize' +
+            '?response_type=code' +
+            '&client_id={client_id}' +
+            '&redirect_uri={redirect_uri}'
+        ).format(
+            host=self._auth_url,
+            client_id=self._client_id,
+            redirect_uri=self._redirect_uri
+        )
 
-    def http_post(self, path, query_params={}, data={}):
+    def refresh_tokens(self):
         """
-        Wrapped HTTP action that
-            - translates Python objects to JSON objects
-            - injects the required headers
-            - translates the API response back into a Pythonic form
+        Refreshes the tokens (access and refresh) if required
         """
-        response = requests.post(self._build_url(path),
-                                 params=self._jsonify(query_params),
-                                 data=self._jsonify(data),
-                                 headers=self._get_headers())
+        if self._token_expires_at and self._token_expires_at > datetime.now():
+            return
 
-        return self._pythonify(response.json())
+        if self._auth_code:
+            return self._exchange_auth_code()
 
+        if self._refresh_token:
+            return self._refresh_tokens()
 
-    def http_put(self, path, query_params={}, data={}):
+        if self._client_secret:
+            return self._exchange_client_credentials()
+
+    def set_auth_code(self, code):
         """
-        Wrapped HTTP action that
-            - translates Python objects to JSON objects
-            - injects the required headers
-            - translates the API response back into a Pythonic form
+        Store the authorization code given back from the auth server for future
+        exchange to get a user access token
         """
-        response = requests.put(self._build_url(path),
-                                params=self._jsonify(query_params),
-                                data=self._jsonify(data),
-                                headers=self._get_headers())
+        self._auth_code = code
 
-        return self._pythonify(response.json())
-
-
-    def http_patch(self, path, query_params={}, data={}):
-        """
-        Wrapped HTTP action that
-            - translates Python objects to JSON objects
-            - injects the required headers
-            - translates the API response back into a Pythonic form
-        """
-        response = requests.patch(self._build_url(path),
-                                  params=self._jsonify(query_params),
-                                  data=self._jsonify(data),
-                                  headers=self._get_headers())
-
-        return self._pythonify(response.json())
-
-
-    def http_delete(self, path, query_params={}):
-        """
-        Wrapped HTTP action that
-            - translates Python objects to JSON objects
-            - injects the required headers
-            - translates the API response back into a Pythonic form
-        """
-        response = requests.delete(self._build_url(path),
-                                   params=self._jsonify(query_params),
-                                   headers=self._get_headers())
-
-        return self._pythonify(response.json())
-
+    # Private
 
     def _add_deprecated_attributes(self):
         self.article_highlight = self.article_highlights
@@ -131,55 +111,38 @@ class HudAi(object):
         self.user_key_term = self.user_key_terms
         self.user = self.users
 
+    def _get_tokens(self, data):
+        token_url = '{host}/oauth2/token'.format(host=self._auth_url)
 
-    def _build_url(self, path):
-        return '{}{}'.format(self._base_url, path)
+        response = requests.post(token_url, json=data).json()
 
+        self._access_token = response.access_token
 
-    def _get_headers(self):
-        return { 'User-Agent': USER_AGENT, 'x-api-key': self._api_key }
+        if response.refresh_token:
+            self._refresh_token = response.refresh_token
 
+        self._token_expires_at = datetime.now() + timedelta(milliseconds=response.expires_in)
 
-    def _jsonify(self, value):
-        if not isinstance(value, dict):
-            return self._web_safe(value)
+    def _exchange_auth_code(self):
+        self._get_tokens({
+            'grant_type':    'authorization_code',
+            'client_id':     self._client_id,
+            'client_secret': self._client_secret,
+            'code':          self._auth_code,
+            'redirect_uri':  self._redirect_uri,
+        })
 
-        return chain(value) \
-            .map_keys(lambda value, key: camel_case(key)) \
-            .map_values(lambda value: self._jsonify(value)) \
-            .value()
+    def _exchange_client_credentials(self):
+        self._get_tokens({
+            'grant_type':    'client_credentials',
+            'client_id':     self._client_id,
+            'client_secret': self._client_secret,
+        })
 
-
-    def _pythonify(self, value):
-        if isinstance(value, str):
-            try:
-                return datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-            except ValueError:
-                return value
-
-        if isinstance(value, list):
-            return [self._pythonify(item) for item in value]
-
-        if isinstance(value, dict):
-            return chain(value) \
-                .map_keys(lambda value, key: snake_case(key)) \
-                .map_values(lambda value: self._pythonify(value)) \
-                .value()
-
-        return value
-
-
-    def _web_safe(self, value):
-        if isinstance(value, datetime):
-            return value.isoformat()
-
-        if isinstance(value, date):
-            return value.isoformat()
-
-        if isinstance(value, list):
-            return [self._web_safe(item) for item in value]
-
-        if isinstance(value, dict):
-            return map_values(value, lambda element: self._web_safe(element))
-
-        return value
+    def _refresh_tokens(self):
+        self._get_tokens({
+            'grant_type':    'refresh_token',
+            'client_id':     self._client_id,
+            'client_secret': self._client_secret,
+            'refresh_token': self._refresh_token,
+        })

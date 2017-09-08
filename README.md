@@ -20,15 +20,22 @@ You must first acquire a HUD.ai secret key before you can use this module.
 ```python
 from hudai.client import HudAi
 
-client = HudAi(api_key='your-api-token-here')
-
-# Alternatively, if you're working with a non-production environment
-# client = HudAi(api_key='your-api-token-here', base_url='https://stage.api.hud.ai')
+client = HudAi(
+    client_id='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+    client_secret='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+)
 
 client.companies.list()
 
 client.articles.fetch('17787d76-4198-4775-a49a-b3581c37a482')
 ```
+
+### Additional Parameters
+
+| Parameter | Usage |
+|-----------|-------|
+| `base_url` | Specify an alternate server to request resources from e.g. `'https://stage.api.hud.ai/v1'` |
+| `auth_url` | Specify an alternate server to request auth tokens from e.g. `'https://stage.auth.hud.ai'` |
 
 ***DOCUMENTATION NOTES***
 
