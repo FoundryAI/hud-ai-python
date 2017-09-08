@@ -10,7 +10,7 @@ from .resources import *
 from .helpers.http_client import HttpClient
 
 
-class HudAi(object):
+class Client(object):
     """
     API Client for HUD.ai that handles the API token injection and translation
     to/from Python objects
@@ -146,3 +146,5 @@ class HudAi(object):
             'client_secret': self._client_secret,
             'refresh_token': self._refresh_token,
         })
+
+HudAi = Client
