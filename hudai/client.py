@@ -64,7 +64,7 @@ class Client(object):
             raise HudAiError('cannot generate authorization uri without redirect_uri')
 
         return (
-            '{host}/oaut2/authorize' +
+            '{host}/oauth2/authorize' +
             '?response_type=code' +
             '&client_id={client_id}' +
             '&redirect_uri={redirect_uri}'
@@ -79,7 +79,7 @@ class Client(object):
         Refreshes the tokens (access and refresh) if required
         """
         if self.token_expires_at:
-            if self.token_expires_at < datetime.now():
+            if self.token_expires_at > datetime.now():
                 return
             else:
                 return self._refresh_tokens()
@@ -121,12 +121,12 @@ class Client(object):
 
         response = requests.post(token_url, json=data).json()
 
-        self.access_token = response.access_token
+        self.access_token = response.get('access_token')
 
-        if response.refresh_token:
-            self.refresh_token = response.refresh_token
+        self.refresh_token = response.get('refresh_token', None)
 
-        self.token_expires_at = datetime.now() + timedelta(milliseconds=response.expires_in)
+        expires_in = response.get('expires_in', 0)
+        self.token_expires_at = datetime.now() + timedelta(milliseconds=expires_in)
 
     def _exchange_auth_code(self):
         self._get_tokens({
