@@ -77,7 +77,7 @@ def hud_ai_callback():
     hud_ai.set_auth_code(code)
 ```
 
-### `client.get_redirect_uri()`
+### `client.get_authorize_uri()`
 
 **NOTE:** This method requires `redirect_uri`
 
