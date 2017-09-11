@@ -27,93 +27,88 @@ class HttpClient(object):
         self._hud_client = hud_client
         self._base_url = base_url
 
-    def http_get(self, path, query_params={}):
+    def http_get(self, path, query_params={}, refresh_tokens=True):
         """
         Wrapped HTTP action that
             - translates Python objects to JSON objects
             - injects the required headers
             - translates the API response back into a Pythonic form
         """
-        self._hud_client.refresh_tokens()
-
         response = requests.get(self._build_url(path),
                                 params=_jsonify(query_params),
-                                headers=self._get_headers())
+                                headers=self._get_headers(refresh_tokens))
 
         return _pythonify(response.json())
 
-    def http_post(self, path, query_params={}, data={}):
+    def http_post(self, path, query_params={}, data={}, refresh_tokens=True):
         """
         Wrapped HTTP action that
             - translates Python objects to JSON objects
             - injects the required headers
             - translates the API response back into a Pythonic form
         """
-        self._hud_client.refresh_tokens()
-
         response = requests.post(self._build_url(path),
                                  params=_jsonify(query_params),
                                  json=_jsonify(data),
-                                 headers=self._get_headers())
+                                 headers=self._get_headers(refresh_tokens))
 
         return _pythonify(response.json())
 
-    def http_put(self, path, query_params={}, data={}):
+    def http_put(self, path, query_params={}, data={}, refresh_tokens=True):
         """
         Wrapped HTTP action that
             - translates Python objects to JSON objects
             - injects the required headers
             - translates the API response back into a Pythonic form
         """
-        self._hud_client.refresh_tokens()
-
         response = requests.put(self._build_url(path),
                                 params=_jsonify(query_params),
                                 json=_jsonify(data),
-                                headers=self._get_headers())
+                                headers=self._get_headers(refresh_tokens))
 
         return _pythonify(response.json())
 
-    def http_patch(self, path, query_params={}, data={}):
+    def http_patch(self, path, query_params={}, data={}, refresh_tokens=True):
         """
         Wrapped HTTP action that
             - translates Python objects to JSON objects
             - injects the required headers
             - translates the API response back into a Pythonic form
         """
-        self._hud_client.refresh_tokens()
-
         response = requests.patch(self._build_url(path),
                                   params=_jsonify(query_params),
                                   json=_jsonify(data),
-                                  headers=self._get_headers())
+                                  headers=self._get_headers(refresh_tokens))
 
         return _pythonify(response.json())
 
-    def http_delete(self, path, query_params={}):
+    def http_delete(self, path, query_params={}, refresh_tokens=True):
         """
         Wrapped HTTP action that
             - translates Python objects to JSON objects
             - injects the required headers
             - translates the API response back into a Pythonic form
         """
-        self._hud_client.refresh_tokens()
-
         response = requests.delete(self._build_url(path),
                                    params=_jsonify(query_params),
-                                   headers=self._get_headers())
+                                   headers=self._get_headers(refresh_tokens))
 
         return _pythonify(response.json())
+
+    # Private
 
     def _build_url(self, path):
         return '{}{}'.format(self._base_url, path)
 
-    def _get_headers(self):
+    def _get_headers(self, refresh_tokens=True):
         headers = {'User-Agent': USER_AGENT}
+
+        if refresh_tokens:
+            self._hud_client.refresh_tokens()
 
         token = self._hud_client.access_token
         if token:
-            headers['Authorization'] = token
+            headers['Authorization'] = 'Bearer {token}'.format(token=token)
 
         return headers
 

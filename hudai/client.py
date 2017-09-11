@@ -29,6 +29,11 @@ class Client(object):
         self._auth_url = auth_url
         self._redirect_uri = redirect_uri
 
+        self._auth_code = None
+        self.access_token = None
+        self.refresh_token = None
+        self.token_expires_at = None
+
         self._http_client = HttpClient(self, base_url)
 
         self.article_highlights = ArticleHighlightsResource(self._http_client)
@@ -73,14 +78,14 @@ class Client(object):
         """
         Refreshes the tokens (access and refresh) if required
         """
-        if self._token_expires_at and self._token_expires_at > datetime.now():
-            return
+        if self.token_expires_at:
+            if self.token_expires_at < datetime.now():
+                return
+            else:
+                return self._refresh_tokens()
 
         if self._auth_code:
             return self._exchange_auth_code()
-
-        if self._refresh_token:
-            return self._refresh_tokens()
 
         if self._client_secret:
             return self._exchange_client_credentials()
@@ -116,12 +121,12 @@ class Client(object):
 
         response = requests.post(token_url, json=data).json()
 
-        self._access_token = response.access_token
+        self.access_token = response.access_token
 
         if response.refresh_token:
-            self._refresh_token = response.refresh_token
+            self.refresh_token = response.refresh_token
 
-        self._token_expires_at = datetime.now() + timedelta(milliseconds=response.expires_in)
+        self.token_expires_at = datetime.now() + timedelta(milliseconds=response.expires_in)
 
     def _exchange_auth_code(self):
         self._get_tokens({
@@ -144,7 +149,7 @@ class Client(object):
             'grant_type':    'refresh_token',
             'client_id':     self._client_id,
             'client_secret': self._client_secret,
-            'refresh_token': self._refresh_token,
+            'refresh_token': self.refresh_token,
         })
 
 HudAi = Client
