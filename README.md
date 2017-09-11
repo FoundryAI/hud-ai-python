@@ -77,6 +77,8 @@ def hud_ai_callback():
     hud_ai.set_auth_code(code)
 ```
 
+### `client.get_redirect_uri()`
+
 **NOTE:** This method requires `redirect_uri`
 
 Returns a URL to direct users to to authorize your application to act on their
@@ -85,6 +87,14 @@ behalf. You will need to handle the redirect that includes the `code`
 ### `client.set_auth_code(code)`
 
 Store the code for future exchange for an auth token
+
+### `client.refresh_tokens()`
+
+Attempts to ensure that the client has valid auth tokens.
+
+* Refreshes known expired tokens
+* Exchanges auth `code`s for access tokens
+* Exchanges client ID/secret for app access tokens
 
 ## Resources
 
