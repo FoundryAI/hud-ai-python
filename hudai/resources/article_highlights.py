@@ -18,7 +18,7 @@ class ArticleHighlightsResource(Resource):
         return self._create(article_id=article_id, user_id=user_id, body=body)
 
     def fetch(self, entity_id):
-        return self._get(entity_id)
+        return self._fetch(entity_id)
 
     def update(self, entity_id, body=None):
         return self._update(entity_id, body=body)

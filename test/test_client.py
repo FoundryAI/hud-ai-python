@@ -1,22 +1,26 @@
 """HUD.ai Client Specs
 
-Ensure that the client continues to act in a predictable way so that it can be
-extended via the Resources or used directly to perform the required translations
-and inject any required headers
+Makes sure that the client surfaces the right resources and performs the
+required token exchanges
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import pytest
 import requests
 
-from hudai.client import HudAi
+from hudai.client import Client
+from hudai.error import HudAiError
 from hudai.resources import *
 
 
-def test_initialization():
-    client = HudAi(api_key='mock-api-key')
+MOCK_CLIENT_ID = '7fe475ee-aae1-4ff2-82f4-ab48948edad0'
+MOCK_CLIENT_SECRET = '42202699-d526-4505-9218-28e2af284e70'
+MOCK_REDIRECT_URI = 'https://app.example.com/auth/callbacks/hud-ai'
 
-    assert isinstance(client, HudAi)
+def test_initialization():
+    client = Client(client_id=MOCK_CLIENT_ID)
+
+    assert isinstance(client, Client)
     assert isinstance(client.article_highlights, ArticleHighlightsResource)
     assert isinstance(client.article_key_term, ArticleKeyTermResource)
     assert isinstance(client.article, ArticleResource)
@@ -32,106 +36,157 @@ def test_initialization():
     assert isinstance(client.user, UserResource)
 
 
-@pytest.mark.parametrize('http_verb', [('get'), ('post'), ('put'), ('patch'), ('delete')])
-def test_required_parameter_injection(mocker, http_verb):
-    client = HudAi(api_key='mock-api-key')
-    mocker.patch.object(requests, http_verb)
+def test_get_authorize_uri_without_redirect_uri():
+    client = Client(client_id=MOCK_CLIENT_ID)
 
-    # Actual function call, e.g. client.get(path, params)
-    function_under_test = getattr(client, "http_{}".format(http_verb))
-    requests_function = getattr(requests, http_verb)
-
-    assert callable(function_under_test)
-
-    function_under_test('/test/url')
-
-    assert requests_function.call_count == 1
-
-    args, kwargs = requests_function.call_args
-
-    assert args[0] == 'https://api.hud.ai/v1/test/url'
-    assert kwargs['headers']['x-api-key'] == 'mock-api-key'
+    with pytest.raises(HudAiError):
+        client.get_authorize_uri()
 
 
-@pytest.mark.parametrize('http_verb', [('get'), ('delete')])
-def test_passing_requests_params(mocker, http_verb):
-    client = HudAi(api_key='mock-api-key')
-    mocker.patch.object(requests, http_verb)
+def test_get_authorize_uri():
+    redirect_uri = 'https://app.example.com/auth/callbacks/hud-ai'
+    client = Client(client_id=MOCK_CLIENT_ID, redirect_uri=redirect_uri)
 
-    # Actual function call, e.g. client.get(path, params)
-    function_under_test = getattr(client, "http_{}".format(http_verb))
-    requests_function = getattr(requests, http_verb)
+    expected_uri = (
+        'https://auth.hud.ai/oauth2/authorize' +
+        '?response_type=code' +
+        '&client_id={client_id}' +
+        '&redirect_uri={redirect_uri}'
+    ).format(client_id=MOCK_CLIENT_ID, redirect_uri=redirect_uri)
 
-    function_under_test('/test/url', query_params={'foo_bar':'baz'})
-
-    _, kwargs = requests_function.call_args
-
-    assert kwargs['params'] == {'fooBar':'baz'}
+    assert client.get_authorize_uri() == expected_uri
 
 
-@pytest.mark.parametrize('http_verb', [('post'), ('put'), ('patch')])
-def test_passing_requests_params_with_data(mocker, http_verb):
-    client = HudAi(api_key='mock-api-key')
-    mocker.patch.object(requests, http_verb)
+def test_refresh_tokens_valid_token(mocker):
+    client = Client(client_id=MOCK_CLIENT_ID)
+    client.token_expires_at = datetime.now() + timedelta(hours=1)
 
-    # Actual function call, e.g. client.get(path, params)
-    function_under_test = getattr(client, "http_{}".format(http_verb))
-    requests_function = getattr(requests, http_verb)
+    mocker.spy(client, '_refresh_tokens')
 
-    function_under_test('/test/url',
-                        query_params={'foo_bar':'baz'},
-                        data={'fizz_buzz':{'abc':'jackson_five'}})
+    client.refresh_tokens()
 
-    _, kwargs = requests_function.call_args
-
-    assert kwargs['params'] == {'fooBar':'baz'}
-    assert kwargs['data'] == {'fizzBuzz':{'abc':'jackson_five'}}
+    assert client._refresh_tokens.call_count == 0
 
 
-def test_jsonifiying(mocker):
-    client = HudAi(api_key='mock-api-key')
-    mocker.patch('requests.post')
+def test_refresh_tokens_expired_token(mocker):
+    client = Client(client_id=MOCK_CLIENT_ID, client_secret=MOCK_CLIENT_SECRET)
 
-    timestamp = datetime.now()
-    formatted_timestamp = timestamp.isoformat()
+    mock_refresh_token = 'mock-refresh-token'
 
-    client.http_post('/test/url',
-                     query_params={'abc':timestamp},
-                     data={'xyz':timestamp})
+    client.token_expires_at = datetime.now() - timedelta(hours=1)
+    client.refresh_token = mock_refresh_token
 
-    _, kwargs = requests.post.call_args
-
-    assert kwargs['params']['abc'] == formatted_timestamp
-    assert kwargs['data']['xyz'] == formatted_timestamp
-
-
-def test_pythonification(mocker):
-    client = HudAi(api_key='mock-api-key')
-
+    mock_response = mocker.Mock()
     mock_json = {
-        'string': 'test-string',
-        'boolean': True,
-        'number': 123,
-        'date': '2017-07-28T15:30:08.176077',
-        'array': ['test', '2017-07-28T15:30:08.176077', 123],
-        'object': {
-            'nestedString': 'test2',
-            'nestedDate': '2017-07-28T15:30:08.176077'
-        }
+        'access_token': 'new-token',
+        'refresh_token': 'new-refresh-token',
+        'expires_in': 100000
     }
+    mock_response.json.return_value = mock_json
 
-    mock_response = requests.Response()
-    mocker.patch('requests.get').return_value = mock_response
-    mocker.patch.object(mock_response, 'json').return_value = mock_json
+    mocker.patch('requests.post', return_value=mock_response)
 
-    expected_timestamp = datetime(2017, 7, 28, 15, 30, 8, 176077)
+    client.refresh_tokens()
 
-    response = client.http_get('/test/url')
+    request_args, request_kwargs = requests.post.call_args
 
-    assert response['string'] == 'test-string'
-    assert response['boolean']
-    assert response['number'] == 123
-    assert response['date'] == expected_timestamp
-    assert response['array'] == ['test', expected_timestamp, 123]
-    assert response['object']['nested_string'] == 'test2'
-    assert response['object']['nested_date'] == expected_timestamp
+    assert request_args[0] == 'https://auth.hud.ai/oauth2/token'
+    assert request_kwargs['json'] == {
+        'client_id': MOCK_CLIENT_ID,
+        'client_secret': MOCK_CLIENT_SECRET,
+        'grant_type': 'refresh_token',
+        'refresh_token': mock_refresh_token
+    }
+    assert client.access_token == mock_json['access_token']
+    assert client.refresh_token == mock_json['refresh_token']
+
+    projected_expiration = datetime.now() + \
+        timedelta(milliseconds=mock_json['expires_in'])
+
+    assert (
+        (projected_expiration - timedelta(seconds=1))
+        < client.token_expires_at <
+        (projected_expiration + timedelta(seconds=1))
+    )
+
+
+def test_refresh_tokens_auth_code(mocker):
+    client = Client(
+        client_id=MOCK_CLIENT_ID,
+        client_secret=MOCK_CLIENT_SECRET,
+        redirect_uri=MOCK_REDIRECT_URI
+    )
+
+    mock_auth_code = 'mock-auth-code'
+
+    client.set_auth_code(mock_auth_code)
+
+    mock_response = mocker.Mock()
+    mock_json = {
+        'access_token': 'new-token',
+        'refresh_token': 'new-refresh-token',
+        'expires_in': 100000
+    }
+    mock_response.json.return_value = mock_json
+
+    mocker.patch('requests.post', return_value=mock_response)
+
+    client.refresh_tokens()
+
+    request_args, request_kwargs = requests.post.call_args
+
+    assert request_args[0] == 'https://auth.hud.ai/oauth2/token'
+    assert request_kwargs['json'] == {
+        'client_id': MOCK_CLIENT_ID,
+        'client_secret': MOCK_CLIENT_SECRET,
+        'grant_type': 'authorization_code',
+        'code': mock_auth_code,
+        'redirect_uri': MOCK_REDIRECT_URI
+    }
+    assert client.access_token == mock_json['access_token']
+    assert client.refresh_token == mock_json['refresh_token']
+
+    projected_expiration = datetime.now() + \
+        timedelta(milliseconds=mock_json['expires_in'])
+
+    assert (
+        (projected_expiration - timedelta(seconds=1))
+        < client.token_expires_at <
+        (projected_expiration + timedelta(seconds=1))
+    )
+
+
+def test_refresh_tokens_client_credentials(mocker):
+    client = Client(client_id=MOCK_CLIENT_ID, client_secret=MOCK_CLIENT_SECRET)
+
+    mock_response = mocker.Mock()
+    mock_json = {
+        'access_token': 'new-token',
+        'refresh_token': 'new-refresh-token',
+        'expires_in': 100000
+    }
+    mock_response.json.return_value = mock_json
+
+    mocker.patch('requests.post', return_value=mock_response)
+
+    client.refresh_tokens()
+
+    request_args, request_kwargs = requests.post.call_args
+
+    assert request_args[0] == 'https://auth.hud.ai/oauth2/token'
+    assert request_kwargs['json'] == {
+        'client_id': MOCK_CLIENT_ID,
+        'client_secret': MOCK_CLIENT_SECRET,
+        'grant_type': 'client_credentials'
+    }
+    assert client.access_token == mock_json['access_token']
+    assert client.refresh_token == mock_json['refresh_token']
+
+    projected_expiration = datetime.now() + \
+        timedelta(milliseconds=mock_json['expires_in'])
+
+    assert (
+        (projected_expiration - timedelta(seconds=1))
+        < client.token_expires_at <
+        (projected_expiration + timedelta(seconds=1))
+    )
