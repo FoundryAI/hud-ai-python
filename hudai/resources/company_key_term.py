@@ -6,17 +6,24 @@ from ..helpers.resource import Resource
 
 class CompanyKeyTermResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/company-key-terms')
+        Resource.__init__(
+            self, client, base_path='/articles/{company_id}/key-terms')
         self.resource_name = 'CompanyKeyTerm'
 
-    def list(self, company_id=None, page=None):
-        return self._list(company_id=company_id, page=page)
+    def list(self, company_id, page=None):
+        query_params = self._set_limit_offset({'page': page})
 
-    def create(self, company_id=None, term=None):
-        return self._create(company_id=company_id, term=term)
+        return self.http_get('/', params={'company_id': company_id},
+                             query_params=query_params)
 
-    def fetch(self, entity_id):
-        return self._fetch(entity_id)
+    def create(self, company_id, term):
+        return self.http_post('/', params={'company_id': company_id},
+                              data={'term': term})
 
-    def delete(self, entity_id):
-        return self._delete(entity_id)
+    def fetch(self, company_id, term):
+        return self.http_get('/{term}',
+                             params={'company_id': company_id, 'term': term})
+
+    def delete(self, company_id, term):
+        return self.http_delete('/{term}',
+                                params={'company_id': company_id, 'term': term})
