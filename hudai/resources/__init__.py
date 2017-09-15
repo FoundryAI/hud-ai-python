@@ -1,5 +1,10 @@
+"""
+hudai.resources
+"""
+
 from .article_highlights import ArticleHighlightsResource
 from .article_key_term import ArticleKeyTermResource
+from .article_tag import ArticleTagResource
 from .article import ArticleResource
 from .company_key_term import CompanyKeyTermResource
 from .company import CompanyResource
