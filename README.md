@@ -152,7 +152,7 @@ Returns a list of key terms (`String`) associated with the article
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`             | String     | Resource ID **Cannot be edited** |
+| `id`          | String     | Resource ID **Cannot be edited** |
 | `article_id`* | **String** | Article being highlighted |
 | `body`*       | **String** | Phrases that should be highlighted |
 | `user_id`*    | **String** | User the highlights apply to |
@@ -177,7 +177,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`             | String     | Resource ID **Cannot be edited** |
+| `id`          | String     | Resource ID **Cannot be edited** |
 | `article_id`* | **String** | Article identifier |
 | `term`*       | **String** | Key term in article |
 
@@ -209,7 +209,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`       | String     | Resource ID **Cannot be edited** |
+| `id`    | String     | Resource ID **Cannot be edited** |
 | `name`* | **String** | Primary company name (others can be associated as key terms) |
 
 #### `client.companies.list(page?)`
@@ -238,7 +238,7 @@ Lists all `KeyTerm`s associated with the company
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`             | String     | Resource ID **Cannot be edited** |
+| `id`          | String     | Resource ID **Cannot be edited** |
 | `company_id`* | **String** | Associated company |
 | `term`*       | **String** | Term (can be word or phrase) to find in articles |
 
@@ -256,7 +256,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`             | String     | Resource ID **Cannot be edited** |
+| `id`          | String     | Resource ID **Cannot be edited** |
 | `company_id`* | **String** | Associated company |
 | `hostname`*   | **String** | FQDN e.g. `api.hud.ai` |
 
@@ -290,16 +290,84 @@ Takes all of the model attributes as keyword params
 
 #### `client.key_terms.delete(term)`
 
+### Person
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`        | String     | Resource ID **Cannot be edited** |
+| `name`*     | **String** | Full name |
+| `title`*    | **String** | Professional title (e.g. `'Partner, Foundry.ai'`) |
+| `image_url` | String     | URL for a picture of the person |
+
+#### `client.people.list(name?, title?, term?, page?)`
+
+#### `client.people.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.people.fetch(person_id)`
+
+#### `client.people.update(person_id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.people.delete(person_id)`
+
+#### `client.people.quotes(pseron_id, page?)`
+
+Convenience method
+
+### PersonKeyTerm
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`         | String     | Resource ID **Cannot be edited** |
+| `person_id`* | **String** | Related entity ID |
+| `term`*      | **String** | Term (can be word or phrase) to find in articles |
+
+#### `client.person_key_terms.list(person_id, page?)`
+
+#### `client.person_key_terms.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.person_key_terms.fetch(person_id, term)`
+
+#### `client.person_key_terms.delete(person_id, term)`
+
+### PersonQuote
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `id`          | String     | Resource ID **Cannot be edited** |
+| `article_id`* | **String** | Related entity ID |
+| `term`*       | **String** | Term (can be word or phrase) to find in articles |
+| `text`*       | **String** | Section of the article containing the quote (e.g. surrounding paragraph) |
+
+#### `client.person_quotes.list(person_id, article_id?, term?, page?)`
+
+#### `client.person_quotes.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.person_quotes.fetch(person_id, quote_id)`
+
+#### `client.person_quotes.update(person_id, quote_id)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.person_quotes.delete(person_id, quote_id)`
+
 ### RelevantArticle
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`             | String     | Resource ID **Cannot be edited** |
-| `article_id`* | **String** | Scored article |
-| `user_id`*    | **String** | User the score applies to |
-| `score`*      | **Float**  | Score between 0 and 1 |
-| `scored_at`*  | **Date**   | When the scoring was performed |
-| `article_published_at` | **Date** | When scored article was published |
+| `id`                   | String     | Resource ID **Cannot be edited** |
+| `article_id`*          | **String** | Scored article |
+| `user_id`*             | **String** | User the score applies to |
+| `score`*               | **Float**  | Score between 0 and 1 |
+| `scored_at`*           | **Date**   | When the scoring was performed |
+| `article_published_at` | Date       | When scored article was published |
 
 #### `client.relevant_articles.list(article_id?, user_id?, scored_above?, scored_below?, scored_before?, scored_after?, published_before?, published_after?, page?)`
 
@@ -322,7 +390,7 @@ Only the `score` and `scored_at` and `article_published_at` can be updated.
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`          | String         | Resource ID **Cannot be edited** |
+| `id`       | String         | Resource ID **Cannot be edited** |
 | `name`*    | **String**     | Event identifier e.g. `article.processed` |
 | `payload`* | **Dictionary** | Event payload e.g. `{'location': 's3://my-bucket/file-path', type:'rss'}` |
 
@@ -339,7 +407,7 @@ Takes all of the model attributes as keyword params
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`           | String     | Resource ID **Cannot be edited** |
-| `task_id`*  | **String** | Task identifier (typically from `celery`) |
+| `task_id`*     | **String** | Task identifier (typically from `celery`) |
 | `attempts`     | Number     | How many times has this job been started |
 | `completed_at` | Date       | When the job finished (irregardless of success) |
 | `started_at`   | Date       | Last time that the job was attempted |
@@ -368,7 +436,7 @@ When `completed_at` is omitted, it will default to now.
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`           | String     | Resource ID **Cannot be edited** |
+| `id`        | String     | Resource ID **Cannot be edited** |
 | `body`*     | **String** | Text blob to use for relevance matching |
 | `type`*     | **String** | Text origin e.g. `email` or `email` |
 | `user_id`*  | **String** | User the corpus is used to identify articles for |
@@ -388,8 +456,8 @@ When `completed_at` is omitted, it will default to now.
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`        | String     | Resource ID **Cannot be edited** |
-| `email`* | **String** | Primary email address for updates/notifications |
-| `name`*  | **String** | User's full name (used in emails and other communications) |
+| `email`*    | **String** | Primary email address for updates/notifications |
+| `name`*     | **String** | User's full name (used in emails and other communications) |
 | `time_zone` | String     | [tz database][tz-database-link] time zone used to determine when to send notifications (defaults to `America/New_York`) |
 
 #### `client.users.list(email?, digest_subscription_day?, digest_subscription_hour?, name?, key_term?, page?)`
@@ -410,7 +478,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`             | String     | Resource ID **Cannot be edited** |
+| `id`          | String     | Resource ID **Cannot be edited** |
 | `company_id`* | **String** | Associated company |
 | `user_id`*    | **String** | Associated user |
 
@@ -428,7 +496,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`              | String     | Resource ID **Cannot be edited** |
+| `id`           | String     | Resource ID **Cannot be edited** |
 | `day_of_week`* | **String** | `sunday` \| `monday` \| `tuesday` \| `wednesday` \| `thursday` \| `friday` \| `saturday` |
 | `iso_hour`*    | **String** | 24-hour hour e.g. `08` = 8am, `17` = 5pm |
 | `user_id`*     | **String** | Associated user |
@@ -447,7 +515,7 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`          | String     | Resource ID **Cannot be edited** |
+| `id`       | String     | Resource ID **Cannot be edited** |
 | `term`*    | **String** | Term (can be word or phrase) to find in articles |
 | `user_id`* | **String** | Associated user |
 
