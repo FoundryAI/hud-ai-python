@@ -22,6 +22,28 @@ def test_initialization():
 
     assert isinstance(client, Client)
     assert isinstance(client.article_highlights, ArticleHighlightsResource)
+    assert isinstance(client.article_key_terms, ArticleKeyTermResource)
+    assert isinstance(client.articles, ArticleResource)
+    assert isinstance(client.company_key_terms, CompanyKeyTermResource)
+    assert isinstance(client.companies, CompanyResource)
+    assert isinstance(client.domains, DomainResource)
+    assert isinstance(client.key_terms, KeyTermResource)
+    assert isinstance(client.people, PersonResource)
+    assert isinstance(client.person_key_terms, PersonKeyTermResource)
+    assert isinstance(client.person_quotes, PersonQuoteResource)
+    assert isinstance(client.relevant_articles, RelevantArticlesResource)
+    assert isinstance(client.system_events, SystemEventResource)
+    assert isinstance(client.system_tasks, SystemTaskResource)
+    assert isinstance(client.text_corpora, TextCorpusResource)
+    assert isinstance(client.user_companies, UserCompanyResource)
+    assert isinstance(client.user_digest_subscriptions, UserDigestSubscriptionResource)
+    assert isinstance(client.user_key_terms, UserKeyTermResource)
+    assert isinstance(client.users, UserResource)
+
+def test_deprecated_methods():
+    client = Client(client_id=MOCK_CLIENT_ID)
+
+    assert isinstance(client.article_highlights, ArticleHighlightsResource)
     assert isinstance(client.article_key_term, ArticleKeyTermResource)
     assert isinstance(client.article, ArticleResource)
     assert isinstance(client.company_key_term, CompanyKeyTermResource)
