@@ -354,7 +354,7 @@ When `completed_at` is omitted, it will default to now.
 | --------- | ---- | ----------- |
 | `id`           | String     | Resource ID **Cannot be edited** |
 | `body`*     | **String** | Text blob to use for relevance matching |
-| `type`*     | **String** | Text origin e.g. `email` or `custom` |
+| `type`*     | **String** | Text origin e.g. `email` or `email` |
 | `user_id`*  | **String** | User the corpus is used to identify articles for |
 
 #### `client.text_corpora.list(corpus_type?, user_id?, page?)`
