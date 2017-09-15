@@ -283,7 +283,7 @@ Takes all of the model attributes as keyword params
 | `title`*    | **String** | Professional title (e.g. `'Partner, Foundry.ai'`) |
 | `image_url` | String     | URL for a picture of the person |
 
-#### `client.people.list(page?)`
+#### `client.people.list(name?, title?, term?, page?)`
 
 #### `client.people.create(**params)`
 

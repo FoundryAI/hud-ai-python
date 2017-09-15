@@ -9,10 +9,10 @@ class PersonResource(Resource):
         Resource.__init__(self, client, base_path='/people')
         self.resource_name = 'Person'
 
-    def list(self, name=None, title=None, image_url=None, page=None):
+    def list(self, name=None, title=None, term=None, page=None):
         return self._list(name=name,
                           title=title,
-                          image_url=image_url,
+                          term=term,
                           page=page)
 
     def create(self, name=None, title=None, image_url=None):
