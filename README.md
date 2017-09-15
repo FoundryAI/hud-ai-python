@@ -274,6 +274,32 @@ Takes all of the model attributes as keyword params
 
 #### `client.key_terms.delete(term)`
 
+### Person
+
+| Attribute | Type | Description |
+| --------- | ---- | ----------- |
+| `name`*     | **String** | Full name |
+| `title`*    | **String** | Professional title (e.g. `'Partner, Foundry.ai'`) |
+| `image_url` | String     | URL for a picture of the person |
+
+#### `client.people.list(page?)`
+
+#### `client.people.create(**params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.people.fetch(person_id)`
+
+#### `client.people.update(person_id, **params)`
+
+Takes all of the model attributes as keyword params
+
+#### `client.people.delete(person_id)`
+
+#### `client.people.quotes(pseron_id, page?)`
+
+Convenience method
+
 ### RelevantArticle
 
 | Attribute | Type | Description |

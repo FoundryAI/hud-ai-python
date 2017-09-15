@@ -9,25 +9,25 @@ class PersonResource(Resource):
         Resource.__init__(self, client, base_path='/people')
         self.resource_name = 'Person'
 
-    def list(self, name=None, title=None, term=None, page=None):
+    def list(self, name=None, title=None, image_url=None, page=None):
         return self._list(name=name,
                           title=title,
-                          term=term,
+                          image_url=image_url,
                           page=page)
 
-    def create(self, name=None, title=None, term=None):
+    def create(self, name=None, title=None, image_url=None):
         return self._create(name=name,
                             title=title,
-                            term=term)
+                            image_url=image_url)
 
     def fetch(self, entity_id):
         return self._fetch(entity_id)
 
-    def update(self, entity_id, name=None, title=None, term=None):
+    def update(self, entity_id, name=None, title=None, image_url=None):
         return self._update(entity_id,
                             name=name,
                             title=title,
-                            term=term)
+                            image_url=image_url)
 
     def delete(self, entity_id):
         return self._delete(entity_id)
