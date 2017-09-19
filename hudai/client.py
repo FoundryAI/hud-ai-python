@@ -19,7 +19,7 @@ class Client(object):
                  client_id=None,
                  client_secret=None,
                  base_url='https://api.hud.ai/v1',
-                 auth_url='https://auth.hud.ai',
+                 auth_url='https://accounts.hud.ai',
                  redirect_uri=None):
         if not client_id:
             raise HudAiError('missing client_id', 'initialization_error')
