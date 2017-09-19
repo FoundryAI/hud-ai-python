@@ -1,4 +1,8 @@
-from pydash import omit
+"""
+hudai.helpers.resource
+"""
+
+from pydash import omit, omit_by, is_none
 
 from ..error import HudAiError
 
@@ -49,6 +53,9 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
+        if client_params.get('data'):
+            client_params['data'] = omit_by(client_params.get('data'), is_none)
+
         return self._client.http_post(full_path, **client_params)
 
 
@@ -62,6 +69,9 @@ class Resource(object):
 
         client_params = omit(request_params, 'params')
 
+        if client_params.get('data'):
+            client_params['data'] = omit_by(client_params.get('data'), is_none)
+
         return self._client.http_put(full_path, **client_params)
 
 
@@ -74,6 +84,9 @@ class Resource(object):
         full_path = self._build_path(path, request_params.get('params'))
 
         client_params = omit(request_params, 'params')
+
+        if client_params.get('data'):
+            client_params['data'] = omit_by(client_params.get('data'), is_none)
 
         return self._client.http_patch(full_path, **client_params)
 
