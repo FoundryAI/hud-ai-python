@@ -36,7 +36,7 @@ hud_ai.articles.fetch('17787d76-4198-4775-a49a-b3581c37a482')
 | `client_id`*    | Registered Client ID | `'46ef9d9b-89a9-4fd2-84cf-af6de31f2618'` |
 | `client_secret` | Registered Client Secret | `'59170c3e-e2c9-4244-92d8-c3595d4af325'` |
 | `base_url`      | Specify an alternate server to request resources from | `'https://stage.api.hud.ai/v1'` |
-| `auth_url`      | Specify an alternate server to request auth tokens from | `'https://stage.auth.hud.ai'` |
+| `auth_url`      | Specify an alternate server to request auth tokens from | `'https://stage.accounts.hud.ai'` |
 | `redirect_uri`  | Path to redirect auth requests to (required for `#get_authorize_uri`) | `'https://app.example.com/oauth/callbacks/hud-ai'` |
 
 ### Client Auth Flow
