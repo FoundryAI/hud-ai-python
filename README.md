@@ -209,10 +209,11 @@ Takes all of the model attributes as keyword params
 
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
-| `id`    | String     | Resource ID **Cannot be edited** |
-| `name`* | **String** | Primary company name (others can be associated as key terms) |
+| `id`     | String     | Resource ID **Cannot be edited** |
+| `name`*  | **String** | Primary company name (others can be associated as key terms) |
+| `ticker` | String     | Stock ticker (e.g. `"NASDAQ:TWTR"`) |
 
-#### `client.companies.list(page?)`
+#### `client.companies.list(name?, ticker?, key_term?, page?)`
 
 #### `client.companies.create(**params)`
 
