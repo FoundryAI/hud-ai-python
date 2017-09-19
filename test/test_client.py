@@ -70,7 +70,7 @@ def test_get_authorize_uri():
     client = Client(client_id=MOCK_CLIENT_ID, redirect_uri=redirect_uri)
 
     expected_uri = (
-        'https://auth.hud.ai/oauth2/authorize' +
+        'https://accounts.hud.ai/oauth2/authorize' +
         '?response_type=code' +
         '&client_id={client_id}' +
         '&redirect_uri={redirect_uri}'
@@ -112,7 +112,7 @@ def test_refresh_tokens_expired_token(mocker):
 
     request_args, request_kwargs = requests.post.call_args
 
-    assert request_args[0] == 'https://auth.hud.ai/oauth2/token'
+    assert request_args[0] == 'https://accounts.hud.ai/oauth2/token'
     assert request_kwargs['json'] == {
         'client_id': MOCK_CLIENT_ID,
         'client_secret': MOCK_CLIENT_SECRET,
@@ -157,7 +157,7 @@ def test_refresh_tokens_auth_code(mocker):
 
     request_args, request_kwargs = requests.post.call_args
 
-    assert request_args[0] == 'https://auth.hud.ai/oauth2/token'
+    assert request_args[0] == 'https://accounts.hud.ai/oauth2/token'
     assert request_kwargs['json'] == {
         'client_id': MOCK_CLIENT_ID,
         'client_secret': MOCK_CLIENT_SECRET,
@@ -195,7 +195,7 @@ def test_refresh_tokens_client_credentials(mocker):
 
     request_args, request_kwargs = requests.post.call_args
 
-    assert request_args[0] == 'https://auth.hud.ai/oauth2/token'
+    assert request_args[0] == 'https://accounts.hud.ai/oauth2/token'
     assert request_kwargs['json'] == {
         'client_id': MOCK_CLIENT_ID,
         'client_secret': MOCK_CLIENT_SECRET,
