@@ -6,20 +6,24 @@ from ..helpers.resource import Resource
 
 class DomainResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/domains')
+        Resource.__init__(
+            self, client, base_path='/companies/{company_id}/domains')
         self.resource_name = 'Domain'
 
-    def list(self, company_id=None, hostname=None, page=None):
-        return self._list(company_id=company_id, hostname=hostname, page=page)
+    def list(self, company_id, page=None):
+        query_params = self._set_limit_offset({'page': page})
 
-    def create(self, company_id=None, hostname=None):
-        return self._create(company_id=company_id, hostname=hostname)
+        return self.http_get('/', params={'company_id': company_id},
+                             query_params=query_params)
 
-    def fetch(self, entity_id):
-        return self._fetch(entity_id)
+    def create(self, company_id, hostname):
+        return self.http_post('/', params={'company_id': company_id},
+                              data={'hostname': hostname})
 
-    def update(self, entity_id, company_id=None, hostname=None):
-        return self._update(entity_id, company_id=company_id, hostname=hostname)
+    def fetch(self, company_id, entity_id):
+        return self.http_get('/{id}',
+                             params={'company_id': company_id, 'id': entity_id})
 
-    def delete(self, entity_id):
-        return self._delete(entity_id)
+    def delete(self, company_id, entity_id):
+        return self.http_delete('/{id}',
+                                params={'company_id': company_id, 'id': entity_id})

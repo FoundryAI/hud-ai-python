@@ -7,7 +7,7 @@ from ..helpers.resource import Resource
 class CompanyKeyTermResource(Resource):
     def __init__(self, client):
         Resource.__init__(
-            self, client, base_path='/articles/{company_id}/key-terms')
+            self, client, base_path='/companies/{company_id}/key-terms')
         self.resource_name = 'CompanyKeyTerm'
 
     def list(self, company_id, page=None):
