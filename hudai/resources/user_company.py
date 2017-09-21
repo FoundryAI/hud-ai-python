@@ -16,7 +16,7 @@ class UserCompanyResource(Resource):
                             query_params=query_params)
 
     def create(self, user_id, company_id):
-        return self.http_post('/', params={'user_id:' user_id},
+        return self.http_post('/', params={'user_id': user_id},
                             data={'company_id': company_id})
 
     def fetch(self, user_id, company_id):
