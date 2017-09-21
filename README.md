@@ -461,7 +461,7 @@ When `completed_at` is omitted, it will default to now.
 | `name`*     | **String** | User's full name (used in emails and other communications) |
 | `time_zone` | String     | [tz database][tz-database-link] time zone used to determine when to send notifications (defaults to `America/New_York`) |
 
-#### `client.users.list(email?, digest_subscription_day?, digest_subscription_hour?, name?, key_term?, page?)`
+#### `client.users.list(email?, digest_subscription_day?, digest_subscription_hour?, name?, key_term?, company_id?, page?)`
 
 #### `client.users.create(**params)`
 
@@ -483,15 +483,13 @@ Takes all of the model attributes as keyword params
 | `company_id`* | **String** | Associated company |
 | `user_id`*    | **String** | Associated user |
 
-#### `client.user_companies.list(company_id?, user_id?, page?)`
+#### `client.user_companies.list(user_id, page?)`
 
-#### `client.user_companies.create(**params)`
+#### `client.user_companies.create(user_id, company_id)`
 
-Takes all of the model attributes as keyword params
+#### `client.user_companies.fetch(user_id, company_id)`
 
-#### `client.user_companies.fetch(id)`
-
-#### `client.user_companies.delete(id)`
+#### `client.user_companies.delete(user_id, company_id)`
 
 ### UserDigestSubscription
 
