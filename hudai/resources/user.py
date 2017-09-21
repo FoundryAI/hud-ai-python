@@ -15,6 +15,7 @@ class UserResource(Resource):
              digest_subscription_hour=None,
              name=None,
              key_term=None,
+             company_id=None,
              page=None):
         return self._list(
             email=email,
@@ -22,6 +23,7 @@ class UserResource(Resource):
             digest_subscription_hour=digest_subscription_hour,
             name=name,
             key_term=key_term,
+            company_id=company_id,
             page=page
         )
 
