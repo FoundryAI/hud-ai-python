@@ -469,6 +469,8 @@ Takes all of the model attributes as keyword params
 
 #### `client.users.fetch(id)`
 
+#### `client.users.me()`
+
 #### `client.users.update(id, **params)`
 
 Takes all of the model attributes as keyword params
