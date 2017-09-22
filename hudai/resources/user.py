@@ -33,6 +33,9 @@ class UserResource(Resource):
     def fetch(self, entity_id):
         return self._fetch(entity_id)
 
+    def me(self):
+        return self.http_get('/me')
+
     def update(self, entity_id, email=None, name=None, time_zone=None):
         return self._update(entity_id,
                             email=email,

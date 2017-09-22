@@ -6,7 +6,7 @@ from ..helpers.resource import Resource
 
 class RelevantArticlesResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/relevant-articles')
+        Resource.__init__(self, client, base_path='/articles/relevant')
         self.resource_name = 'RelevantArticles'
 
     def list(self,
