@@ -17,15 +17,12 @@ class DomainResource(Resource):
         return self.http_get('/', query_params=query_params)
 
     def create(self, company_id, hostname):
-        return self.http_post('/',
-                              data={'hostname': hostname,'company_id': company_id})
+        return self.http_post('/', data={'hostname': hostname,'company_id': company_id})
 
-    def fetch(self, company_id, entity_id):
+    def fetch(self, entity_id):
         return self.http_get('/{id}',
-                             query_params={'company_id': company_id},
                              params={'id': entity_id})
 
-    def delete(self, company_id, entity_id):
+    def delete(self, entity_id):
         return self.http_delete('/{id}',
-                                query_params={'company_id': company_id},
                                 params={'id': entity_id})
