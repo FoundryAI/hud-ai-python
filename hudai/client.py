@@ -85,11 +85,12 @@ class Client(object):
         if self.token_expires_at:
             if self.token_expires_at > datetime.now():
                 return
-            else:
-                return self._refresh_tokens()
 
         if self._auth_code:
             return self._exchange_auth_code()
+
+        if self.refresh_token:
+            return self._refresh_tokens()
 
         if self._client_secret:
             return self._exchange_client_credentials()
@@ -124,6 +125,8 @@ class Client(object):
         token_url = '{host}/oauth2/token'.format(host=self._auth_url)
 
         response = requests.post(token_url, json=data).json()
+
+
 
         self.access_token = response.get('access_token')
 
