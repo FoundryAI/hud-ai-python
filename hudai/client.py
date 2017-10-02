@@ -82,9 +82,8 @@ class Client(object):
         """
         Refreshes the tokens (access and refresh) if required
         """
-        if self.token_expires_at:
-            if self.token_expires_at > datetime.now():
-                return
+        if self.token_expires_at and self.token_expires_at > datetime.now():
+            return
 
         if self._auth_code:
             return self._exchange_auth_code()
@@ -153,7 +152,7 @@ class Client(object):
 
     def _refresh_tokens(self):
         self._get_tokens({
-            'grant_type':    'refresh_token',
+            'grant_type':    'refresh_grant',
             'client_id':     self._client_id,
             'client_secret': self._client_secret,
             'refresh_token': self.refresh_token,
