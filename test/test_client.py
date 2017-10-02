@@ -116,7 +116,7 @@ def test_refresh_tokens_expired_token(mocker):
     assert request_kwargs['json'] == {
         'client_id': MOCK_CLIENT_ID,
         'client_secret': MOCK_CLIENT_SECRET,
-        'grant_type': 'refresh_token',
+        'grant_type': 'refresh_grant',
         'refresh_token': mock_refresh_token
     }
     assert client.access_token == mock_json['access_token']
