@@ -20,9 +20,12 @@ class Client(object):
                  client_secret=None,
                  base_url='https://api.hud.ai/v1',
                  auth_url='https://accounts.hud.ai',
-                 redirect_uri=None):
+                 redirect_uri=None,
+                 debug=False):
         if not client_id:
             raise HudAiError('missing client_id', 'initialization_error')
+
+        self._debug = debug
 
         self._client_id = client_id
         self._client_secret = client_secret
@@ -125,9 +128,10 @@ class Client(object):
 
         response = requests.post(token_url, json=data).json()
 
-
-
         self.access_token = response.get('access_token')
+
+        if self._debug and not self.access_token:
+            print "hudai.client error:get_token", response
 
         self.refresh_token = response.get('refresh_token', None)
 
