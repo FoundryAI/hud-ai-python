@@ -55,6 +55,7 @@ class Client(object):
         self.system_tasks = SystemTaskResource(self._http_client)
         self.text_corpora = TextCorpusResource(self._http_client)
         self.user_companies = UserCompanyResource(self._http_client)
+        self.user_contacts = UserContactResource(self._http_client)
         self.user_digest_subscriptions = UserDigestSubscriptionResource(self._http_client)
         self.user_key_terms = UserKeyTermResource(self._http_client)
         self.users = UserResource(self._http_client)
