@@ -501,8 +501,8 @@ Takes all of the model attributes as keyword params
 | `company_id`*  | **String** | Associated company |
 | `user_id`*     | **String** | Associated user |
 | `name`*        | **String** | Contact's name |
-| `email`        | **String** | Contact's email address |
-| `phone_number` | **String** | Contact's phone number |
+| `email`        | String     | Contact's email address |
+| `phone_number` | String     | Contact's phone number |
 
 #### `client.user_contacts.list(user_id, company_id?, page?)`
 
