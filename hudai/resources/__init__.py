@@ -18,6 +18,7 @@ from .system_event import SystemEventResource
 from .system_task import SystemTaskResource
 from .text_corpus import TextCorpusResource
 from .user_company import UserCompanyResource
+from .user_contact import UserContactResource
 from .user_digest_subscription import UserDigestSubscriptionResource
 from .user_key_term import UserKeyTermResource
 from .user import UserResource

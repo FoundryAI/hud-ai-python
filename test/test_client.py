@@ -36,6 +36,7 @@ def test_initialization():
     assert isinstance(client.system_tasks, SystemTaskResource)
     assert isinstance(client.text_corpora, TextCorpusResource)
     assert isinstance(client.user_companies, UserCompanyResource)
+    assert isinstance(client.user_contacts, UserContactResource)
     assert isinstance(client.user_digest_subscriptions, UserDigestSubscriptionResource)
     assert isinstance(client.user_key_terms, UserKeyTermResource)
     assert isinstance(client.users, UserResource)
