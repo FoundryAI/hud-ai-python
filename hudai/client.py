@@ -51,6 +51,7 @@ class Client(object):
         self.people = PersonResource(self._http_client)
         self.person_key_terms = PersonKeyTermResource(self._http_client)
         self.person_quotes = PersonQuoteResource(self._http_client)
+        self.relevant_article_collateral = RelevantArticleCollateralResource(self._http_client)
         self.relevant_articles = RelevantArticlesResource(self._http_client)
         self.system_events = SystemEventResource(self._http_client)
         self.system_tasks = SystemTaskResource(self._http_client)
