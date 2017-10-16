@@ -43,6 +43,7 @@ class Client(object):
         self.article_key_terms = ArticleKeyTermResource(self._http_client)
         self.article_tags = ArticleTagResource(self._http_client)
         self.articles = ArticleResource(self._http_client)
+        self.collateral = CollateralResource(self._http_client)
         self.company_key_terms = CompanyKeyTermResource(self._http_client)
         self.companies = CompanyResource(self._http_client)
         self.domains = DomainResource(self._http_client)
