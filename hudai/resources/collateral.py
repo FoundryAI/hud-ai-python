@@ -15,6 +15,10 @@ class CollateralResource(Resource):
         return self.http_get('/', params={'organization_id': organization_id},
                                   query_params=query_params)
 
+    def metadata(self, organization_id):
+        return self.http_get('/metadata',
+                             params={'organization_id': organization_id})
+
     def create(self, organization_id,
                name=None,
                description=None,
