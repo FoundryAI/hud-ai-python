@@ -107,26 +107,27 @@ Attempts to ensure that the client has valid auth tokens.
 
 | Entity | Method Base |
 |--------|-------------|
-| Article | [client.articles]('./docs/Article.md') |
-| ArticleHighlights | [client.article_highlights]('./docs/ArticleHighlights.md') |
-| ArticleKeyTerm | [client.article_key_terms]('./docs/ArticleKeyTerm.md') |
-| ArticleTag | [client.article_tags]('./docs/ArticleTag.md') |
-| Company | [client.companies]('./docs/Company.md') |
-| CompanyKeyTerm | [client.company_key_terms]('./docs/CompanyKeyTerm.md') |
-| Domain | [client.domains]('./docs/Domain.md') |
-| KeyTerm | [client.key_terms]('./docs/KeyTerm.md') |
-| Person | [client.people]('./docs/Person.md') |
-| PersonKeyTerm | [client.person_key_terms]('./docs/PersonKeyTerm.md') |
-| PersonQuote | [client.person_quotes]('./docs/PersonQuote.md') |
-| RelevantArticle | [client.relevant_articles]('./docs/RelevantArticle.md') |
-| SystemEvent | [client.system_events]('./docs/SystemEvent.md') |
-| SystemTask | [client.system_tasks]('./docs/SystemTask.md') |
-| TextCorpus | [client.text_corpora]('./docs/TextCorpus.md') |
-| User | [client.users]('./docs/User.md') |
-| UserCompany | [client.user_companies]('./docs/UserCompany.md') |
-| UserContact | [client.user_contacts]('./docs/UserContact.md') |
-| UserDigestSubscription | [client.user_digest_subscriptions]('./docs/UserDigestSubscription.md') |
-| UserKeyTerm | [client.user_key_terms]('./docs/UserKeyTerm.md') |
+| Article | [client.articles](docs/Article.md) |
+| ArticleHighlights | [client.article_highlights](docs/ArticleHighlights.d') |
+| ArticleKeyTerm | [client.article_key_terms](docs/ArticleKeyTerm.md) |
+| ArticleTag | [client.article_tags](docs/ArticleTag.md) |
+| Company | [client.companies](docs/Company.md) |
+| CompanyEvent | [client.company_events](docs/CompanyEvent.md) |
+| CompanyKeyTerm | [client.company_key_terms](docs/CompanyKeyTerm.md) |
+| Domain | [client.domains](docs/Domain.md) |
+| KeyTerm | [client.key_terms](docs/KeyTerm.md) |
+| Person | [client.people](docs/Person.md) |
+| PersonKeyTerm | [client.person_key_terms](docs/PersonKeyTerm.md) |
+| PersonQuote | [client.person_quotes](docs/PersonQuote.md) |
+| RelevantArticle | [client.relevant_articles](docs/RelevantArticle.md) |
+| SystemEvent | [client.system_events](docs/SystemEvent.md) |
+| SystemTask | [client.system_tasks](docs/SystemTask.md) |
+| TextCorpus | [client.text_corpora](docs/TextCorpus.md) |
+| User | [client.users](docs/User.md) |
+| UserCompany | [client.user_companies](docs/UserCompany.md) |
+| UserContact | [client.user_contacts](docs/UserContact.md) |
+| UserDigestSubscription | [client.user_digest_subscriptions](docs/UserDigestSubscription.md) |
+| UserKeyTerm | [client.user_key_terms](docs/UserKeyTerm.md) |
 
 ## Deployment
 
