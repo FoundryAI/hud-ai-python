@@ -10,10 +10,12 @@ class PersonQuoteResource(Resource):
         self.resource_name = 'PersonQuote'
 
     def list(self, person_id, article_id=None, term=None, page=None):
-        query_params = self._set_limit_offset({'page': page})
-        query_params['person_id'] = person_id
-        query_params['article_id'] = article_id
-        query_params['term'] = term
+        query_params = self._set_limit_offset({
+            'article_id': article_id,
+            'person_id': person_id,
+            'term': term,
+            'page': page
+        })
 
         return self.http_get('/', query_params=query_params)
 
