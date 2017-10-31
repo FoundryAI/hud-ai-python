@@ -112,6 +112,7 @@ Attempts to ensure that the client has valid auth tokens.
 | ArticleKeyTerm | [client.article_key_terms](docs/ArticleKeyTerm.md) |
 | ArticleTag | [client.article_tags](docs/ArticleTag.md) |
 | Company | [client.companies](docs/Company.md) |
+| CompanyEvent | [client.company_events](docs/CompanyEvent.md) |
 | CompanyKeyTerm | [client.company_key_terms](docs/CompanyKeyTerm.md) |
 | Domain | [client.domains](docs/Domain.md) |
 | KeyTerm | [client.key_terms](docs/KeyTerm.md) |
