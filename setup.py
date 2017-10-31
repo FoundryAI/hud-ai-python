@@ -28,7 +28,7 @@ setup(
     author=pkg['__author__'],
     author_email=pkg['__email__'],
     description=pkg['__description__'],
-    packages=find_packages(exclude=['*.test', '*.test.*', 'test.*', 'test', 'docs']),
+    packages=find_packages(exclude=['*.test', '*.test.*', 'test.*', 'test']),
     install_requires=parse_requirements('requirements.txt'),
     download_url='{}/archive/{}.tar.gz'.format(pkg['__url__'], pkg['__version__']),
     keywords=pkg['__keywords__'],
