@@ -26,8 +26,8 @@ class PersonQuoteResource(Resource):
                                   'text': text
                               })
 
-    def fetch(self, person_id, quote_id):
+    def fetch(self, quote_id):
         return self.http_get('/{id}', params={'id': quote_id})
 
-    def delete(self, person_id, quote_id):
+    def delete(self, quote_id):
         return self.http_delete('/{id}', params={'id': quote_id})
