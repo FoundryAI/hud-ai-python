@@ -4,9 +4,9 @@
 | --------- | ---- | ----------- |
 | `id`          | String     | Resource ID **Cannot be edited** |
 | `title`*      | **String** | Name of the event for display/search purposes |
-| `description` | **String** | Term (can be word or phrase) to find in articles |
+| `description` | String     | Term (can be word or phrase) to find in articles |
 | `event_type`* | **String** | Used for filtering (e.g. `earnings_call`) |
-| `link_url`    | **String** | Optional link to the event/more robust description |
+| `link_url`    | String     | Optional link to the event/more robust description |
 | `starts_at`*  | **Date**   | When does this event start |
 | `ends_at`*    | **Date**   | When does this event end |
 
