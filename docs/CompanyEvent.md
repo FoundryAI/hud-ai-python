@@ -16,10 +16,10 @@
 
 Takes all of the model attributes as keyword params
 
-## `client.company_events.fetch(company_id, event_id)`
+## `client.company_events.fetch(company_id, entity_id)`
 
-## `client.company_events.update(company_id, event_id, **params)`
+## `client.company_events.update(company_id, entity_id, **params)`
 
 Takes all of the model attributes as keyword params
 
-## `client.company_events.delete(company_id, event_id)`
+## `client.company_events.delete(company_id, entity_id)`
