@@ -61,15 +61,15 @@ class CompanyEventResource(Resource):
                link_url=None,
                starts_at=None,
                ends_at=None):
-        return self.http_post('/{id}',
-                              params={'company_id': company_id,
-                                      'id': entity_id},
-                              data={'title': title,
-                                    'description': description,
-                                    'type': event_type,
-                                    'link_url': link_url,
-                                    'starts_at': starts_at,
-                                    'ends_at': ends_at})
+        return self.http_put('/{id}',
+                             params={'company_id': company_id,
+                                     'id': entity_id},
+                             data={'title': title,
+                                   'description': description,
+                                   'type': event_type,
+                                   'link_url': link_url,
+                                   'starts_at': starts_at,
+                                   'ends_at': ends_at})
 
 
     def delete(self, company_id, entity_id):
