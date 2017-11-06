@@ -6,11 +6,11 @@ from ..helpers.resource import Resource
 
 class CompanyEventResource(Resource):
     def __init__(self, client):
-        Resource.__init__(
-            self, client, base_path='/companies/{company_id}/events')
+        Resource.__init__(self, client, base_path='/companies/events')
         self.resource_name = 'CompanyEvent'
 
-    def list(self, company_id,
+    def list(self,
+             company_id=None,
              starting_before=None,
              starting_after=None,
              ending_before=None,
@@ -20,6 +20,7 @@ class CompanyEventResource(Resource):
              event_type=None,
              page=None):
         query_params = self._set_limit_offset({
+            'company_id': company_id,
             'starting_before': starting_before,
             'starting_after': starting_after,
             'ending_before': ending_before,
@@ -30,11 +31,10 @@ class CompanyEventResource(Resource):
             'page': page
         })
 
-        return self.http_get('/',
-                             params={'company_id': company_id},
-                             query_params=query_params)
+        return self.http_get('/', query_params=query_params)
 
-    def create(self, company_id,
+    def create(self,
+               company_id=None,
                title=None,
                description=None,
                event_type=None,
@@ -42,19 +42,19 @@ class CompanyEventResource(Resource):
                starts_at=None,
                ends_at=None):
         return self.http_post('/',
-                              params={'company_id': company_id},
-                              data={'title': title,
+                              data={'company_id': company_id,
+                                    'title': title,
                                     'description': description,
                                     'type': event_type,
                                     'link_url': link_url,
                                     'starts_at': starts_at,
                                     'ends_at': ends_at})
 
-    def fetch(self, company_id, entity_id):
-        return self.http_get('/{id}',
-                             params={'company_id': company_id, 'id': entity_id})
+    def fetch(self, entity_id):
+        return self.http_get('/{id}', params={'id': entity_id})
 
-    def update(self, company_id, entity_id,
+    def update(self, entity_id,
+               company_id=None,
                title=None,
                description=None,
                event_type=None,
@@ -62,9 +62,9 @@ class CompanyEventResource(Resource):
                starts_at=None,
                ends_at=None):
         return self.http_put('/{id}',
-                             params={'company_id': company_id,
-                                     'id': entity_id},
-                             data={'title': title,
+                             params={'id': entity_id},
+                             data={'company_id': company_id,
+                                   'title': title,
                                    'description': description,
                                    'type': event_type,
                                    'link_url': link_url,
@@ -72,6 +72,5 @@ class CompanyEventResource(Resource):
                                    'ends_at': ends_at})
 
 
-    def delete(self, company_id, entity_id):
-        return self.http_delete('/{id}',
-                                params={'company_id': company_id, 'id': entity_id})
+    def delete(self, entity_id):
+        return self.http_delete('/{id}', params={'id': entity_id})
