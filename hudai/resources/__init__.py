@@ -9,6 +9,7 @@ from .article import ArticleResource
 from .collateral import CollateralResource
 from .company_event import CompanyEventResource
 from .company_key_term import CompanyKeyTermResource
+from .company_profile import CompanyProfileResource
 from .company import CompanyResource
 from .domain import DomainResource
 from .key_term import KeyTermResource

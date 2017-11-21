@@ -12,6 +12,6 @@
 | `state`    			| String  	 | The state (full name eg. Californina) in which the Company is Headquartered |
 | `Country`    		 	| String  	 | The country (full name) in which the Company is Headquartered |
 
-## `client.company_profiles.fetch(company_id)`
+## `client.company_profile.fetch(company_id)`
 
 This is a read only endpoint
