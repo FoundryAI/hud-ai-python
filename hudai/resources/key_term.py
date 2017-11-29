@@ -20,3 +20,6 @@ class KeyTermResource(Resource):
 
     def delete(self, term):
         return self._delete(term)
+
+    def identify(self, text):
+        return self.http_post('/identify', {'text': text})
