@@ -46,6 +46,7 @@ class Client(object):
         self.collateral = CollateralResource(self._http_client)
         self.company_events = CompanyEventResource(self._http_client)
         self.company_key_terms = CompanyKeyTermResource(self._http_client)
+        self.company_profile = CompanyProfileResource(self._http_client)
         self.companies = CompanyResource(self._http_client)
         self.domains = DomainResource(self._http_client)
         self.key_terms = KeyTermResource(self._http_client)
