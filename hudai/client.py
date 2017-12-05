@@ -59,6 +59,7 @@ class Client(object):
         self.system_events = SystemEventResource(self._http_client)
         self.system_tasks = SystemTaskResource(self._http_client)
         self.text_corpora = TextCorpusResource(self._http_client)
+        self.tweets = TweetResource(self._http_client)
         self.user_companies = UserCompanyResource(self._http_client)
         self.user_contacts = UserContactResource(self._http_client)
         self.user_digest_subscriptions = UserDigestSubscriptionResource(self._http_client)

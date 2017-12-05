@@ -22,6 +22,7 @@ from .relevant_articles import RelevantArticlesResource
 from .system_event import SystemEventResource
 from .system_task import SystemTaskResource
 from .text_corpus import TextCorpusResource
+from .tweets import TweetResource
 from .user_company import UserCompanyResource
 from .user_contact import UserContactResource
 from .user_digest_subscription import UserDigestSubscriptionResource
