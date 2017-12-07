@@ -35,6 +35,7 @@ def test_initialization():
     assert isinstance(client.system_events, SystemEventResource)
     assert isinstance(client.system_tasks, SystemTaskResource)
     assert isinstance(client.text_corpora, TextCorpusResource)
+    assert isinstance(client.tweets, TweetResource)
     assert isinstance(client.user_companies, UserCompanyResource)
     assert isinstance(client.user_contacts, UserContactResource)
     assert isinstance(client.user_digest_subscriptions, UserDigestSubscriptionResource)
