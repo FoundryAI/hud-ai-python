@@ -24,6 +24,7 @@ from .system_task import SystemTaskResource
 from .text_corpus import TextCorpusResource
 from .tweets import TweetResource
 from .user_company import UserCompanyResource
+from .user_company_group import UserCompanyGroupResource
 from .user_contact import UserContactResource
 from .user_digest_subscription import UserDigestSubscriptionResource
 from .user_key_term import UserKeyTermResource
