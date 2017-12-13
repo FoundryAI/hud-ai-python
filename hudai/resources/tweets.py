@@ -17,10 +17,11 @@ class TweetResource(Resource):
 
         return self.http_get('/', query_params=query_params)
 
-    def create(self, person_id, twitter_tweet_id, text):
+    def create(self, person_id, twitter_tweet_id, twitter_created_at, text):
         return self.http_post('/',
                               data={
                                   'twitter_tweet_id': twitter_tweet_id,
+                                  'twitter_created_at': twitter_created_at,
                                   'person_id': person_id,
                                   'text': text
                               })
