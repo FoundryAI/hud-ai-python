@@ -29,5 +29,8 @@ class TweetResource(Resource):
     def fetch(self, tweet_id):
         return self.http_get('/{id}', params={'id': tweet_id})
 
+    def fetch_by_twitter_id(self, twitter_tweet_id):
+        return self.http_get('/by-twitter-id/{id}', params={'id': twitter_tweet_id})
+
     def delete(self, tweet_id):
         return self.http_delete('/{id}', params={'id': tweet_id})

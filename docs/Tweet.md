@@ -15,4 +15,6 @@ Takes all of the model attributes as keyword params
 
 ## `client.tweets.fetch(id)`
 
+## `client.tweets.fetch_by_twitter_id(twitter_tweet_id)`
+
 ## `client.tweets.delete(id)`
