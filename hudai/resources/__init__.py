@@ -19,6 +19,7 @@ from .person_key_term import PersonKeyTermResource
 from .person_quote import PersonQuoteResource
 from .relevant_article_collateral import RelevantArticleCollateralResource
 from .relevant_articles import RelevantArticlesResource
+from .stock_alert import StockAlertResource
 from .system_event import SystemEventResource
 from .system_task import SystemTaskResource
 from .text_corpus import TextCorpusResource
