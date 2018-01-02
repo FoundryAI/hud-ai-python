@@ -6,6 +6,7 @@
 | `name`*     | **String** | Full name |
 | `title`*    | **String** | Professional title (e.g. `'Partner, Foundry.ai'`) |
 | `image_url` | String     | URL for a picture of the person |
+| `source`    | String     | Source of person data |
 
 ## `client.people.list(name?, title?, term?, page?)`
 
