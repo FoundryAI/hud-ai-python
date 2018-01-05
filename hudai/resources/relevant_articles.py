@@ -18,6 +18,7 @@ class RelevantArticlesResource(Resource):
              scored_below=None,
              scored_before=None,
              scored_after=None,
+             flag=None,
              page=None):
         return self._list(
             user_id=user_id,
@@ -28,6 +29,7 @@ class RelevantArticlesResource(Resource):
             scored_below=scored_below,
             scored_before=scored_before,
             scored_after=scored_after,
+            flag=None,
             page=page
         )
 
@@ -36,13 +38,15 @@ class RelevantArticlesResource(Resource):
                article_id=None,
                score=None,
                scored_at=None,
-               article_published_at=None):
+               article_published_at=None,
+               flag=None):
         return self._create(
             user_id=user_id,
             article_id=article_id,
             score=score,
             scored_at=scored_at,
-            article_published_at=article_published_at
+            article_published_at=article_published_at,
+            flag=None
         )
 
     def fetch(self, entity_id):

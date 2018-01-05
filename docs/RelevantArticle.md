@@ -8,8 +8,9 @@
 | `score`*               | **Float**  | Score between 0 and 1 |
 | `scored_at`*           | **Date**   | When the scoring was performed |
 | `article_published_at` | Date       | When scored article was published |
+| `flag`                 | String     | User flag for article |
 
-## `client.relevant_articles.list(article_id?, user_id?, scored_above?, scored_below?, scored_before?, scored_after?, published_before?, published_after?, page?)`
+## `client.relevant_articles.list(article_id?, user_id?, scored_above?, scored_below?, scored_before?, scored_after?, published_before?, published_after?, flag?, page?)`
 
 ## `client.relevant_articles.create(**params)`
 
