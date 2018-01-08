@@ -18,6 +18,7 @@ class RelevantArticlesResource(Resource):
              scored_below=None,
              scored_before=None,
              scored_after=None,
+             flag=None,
              page=None):
         return self._list(
             user_id=user_id,
@@ -28,6 +29,7 @@ class RelevantArticlesResource(Resource):
             scored_below=scored_below,
             scored_before=scored_before,
             scored_after=scored_after,
+            flag=flag,
             page=page
         )
 
