@@ -16,25 +16,27 @@ class PersonResource(Resource):
                           twitter_handle=twitter_handle,
                           page=page)
 
-    def create(self, name=None, title=None, twitter_handle=None, linked_in_url=None, image_url=None, source=None):
+    def create(self, name=None, title=None, twitter_handle=None, linked_in_url=None, image_url=None, source=None, company_id=None):
         return self._create(name=name,
                             title=title,
                             twitter_handle=twitter_handle,
                             linked_in_url=linked_in_url,
                             image_url=image_url,
-                            source=source)
+                            source=source,
+                            company_id=company_id)
 
     def fetch(self, entity_id):
         return self._fetch(entity_id)
 
-    def update(self, entity_id, name=None, title=None, twitter_handle=None, linked_in_url=None, image_url=None, source=None):
+    def update(self, entity_id, name=None, title=None, twitter_handle=None, linked_in_url=None, image_url=None, source=None, company_id=None):
         return self._update(entity_id,
                             name=name,
                             title=title,
                             twitter_handle=twitter_handle,
                             linked_in_url=linked_in_url,
                             image_url=image_url,
-                            source=source)
+                            source=source,
+                            company_id=company_id)
 
     def delete(self, entity_id):
         return self._delete(entity_id)
