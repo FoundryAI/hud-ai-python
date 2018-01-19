@@ -6,8 +6,9 @@
 | `article_id`* | **String** | Related entity ID |
 | `term`*       | **String** | Term (can be word or phrase) to find in articles |
 | `text`*       | **String** | Section of the article containing the quote (e.g. surrounding paragraph) |
+| `importance_score`* | Number | Quote importance score |
 
-## `client.person_quotes.list(person_id, article_id?, term?, page?)`
+## `client.person_quotes.list(person_id, article_id?, min_importance?, term?, page?)`
 
 ## `client.person_quotes.create(**params)`
 

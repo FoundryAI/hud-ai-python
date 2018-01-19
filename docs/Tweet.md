@@ -5,9 +5,10 @@
 | `id`          | String     | Resource ID **Cannot be edited** |
 | `person_id`*       | **String** | Related person ID |
 | `twitter_tweet_id`* | **Number** | Related twitter tweet ID |
+| `importance_score`* | Number | Tweet importance score |
 | `text`*       | **String** | Tweet content |
 
-## `client.tweets.list(person_id?, page?)`
+## `client.tweets.list(person_id?, page?, min_importance?)`
 
 ## `client.tweets.create(**params)`
 

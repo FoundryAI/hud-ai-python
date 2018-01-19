@@ -9,21 +9,23 @@ class TweetResource(Resource):
         Resource.__init__(self, client, base_path='/people/tweets')
         self.resource_name = 'Tweet'
 
-    def list(self, person_id, page=None):
+    def list(self, person_id, min_importance=None, page=None):
         query_params = self._set_limit_offset({
             'person_id': person_id,
+            'min_importance': min_importance,
             'page': page
         })
 
         return self.http_get('/', query_params=query_params)
 
-    def create(self, person_id, twitter_tweet_id, twitter_created_at, text):
+    def create(self, person_id, twitter_tweet_id, twitter_created_at, text, importance_score=None):
         return self.http_post('/',
                               data={
                                   'twitter_tweet_id': twitter_tweet_id,
                                   'twitter_created_at': twitter_created_at,
                                   'person_id': person_id,
-                                  'text': text
+                                  'text': text,
+                                  'importance_score': importance_score,
                               })
 
     def fetch(self, tweet_id):
