@@ -20,14 +20,14 @@ class PersonQuoteResource(Resource):
 
         return self.http_get('/', query_params=query_params)
 
-    def create(self, person_id, article_id, term, text, min_importance=None):
+    def create(self, person_id, article_id, term, text, importance_score=None):
         return self.http_post('/',
                               data={
                                   'article_id': article_id,
                                   'person_id': person_id,
                                   'term': term,
                                   'text': text,
-                                  'min_importance': min_importance
+                                  'importance_score': importance_score
                               })
 
     def fetch(self, quote_id):
