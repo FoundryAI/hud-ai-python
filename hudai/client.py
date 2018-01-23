@@ -40,6 +40,7 @@ class Client(object):
         self._http_client = HttpClient(self, base_url)
 
         self.article_highlights = ArticleHighlightsResource(self._http_client)
+        self.article_companies = ArticleCompanyResource(self._http_client)
         self.article_key_terms = ArticleKeyTermResource(self._http_client)
         self.article_tags = ArticleTagResource(self._http_client)
         self.articles = ArticleResource(self._http_client)
