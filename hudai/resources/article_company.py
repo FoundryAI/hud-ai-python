@@ -9,7 +9,7 @@ class ArticleCompanyResource(Resource):
         Resource.__init__(self, client, base_path='/articles/companies')
         self.resource_name = 'ArticleCompany'
 
-    def list(self, article_id, company_id, page=None):
+    def list(self, article_id=None, company_id=None, page=None):
         query_params = self._set_limit_offset({'page': page})
 
         return self.http_get('/',
