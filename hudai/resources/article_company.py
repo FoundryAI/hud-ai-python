@@ -10,20 +10,17 @@ class ArticleCompanyResource(Resource):
         self.resource_name = 'ArticleCompany'
 
     def list(self, article_id=None, company_id=None, page=None):
-        query_params = self._set_limit_offset({'page': page})
-
-        return self.http_get('/',
-                             query_params={
-                                 'article_id': article_id,
-                                 'company_id': company_id
-                             })
+        return self._list(
+            article_id=article_id,
+            company_id=company_id,
+            page=page
+        )
 
     def create(self, article_id, company_id):
-        return self.http_post('/',
-                              query_params={
-                                  'article_id': article_id,
-                                  'company_id': company_id
-                              })
+        return self._create(
+            article_id=article_id,
+            company_id=company_id
+        )
 
     def delete(self, article_id, company_id):
         return self.http_delete('/',
