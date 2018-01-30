@@ -10,9 +10,11 @@ from .article_tag import ArticleTagResource
 from .collateral import CollateralResource
 from .company import CompanyResource
 from .company_event import CompanyEventResource
+from .company_industry import CompanyIndustryResource
 from .company_key_term import CompanyKeyTermResource
 from .company_profile import CompanyProfileResource
 from .domain import DomainResource
+from .industry import IndustryResource
 from .key_term import KeyTermResource
 from .organization import OrganizationResource
 from .person import PersonResource
