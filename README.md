@@ -113,8 +113,10 @@ Attempts to ensure that the client has valid auth tokens.
 | ArticleTag | [client.article_tags](docs/ArticleTag.md) |
 | Company | [client.companies](docs/Company.md) |
 | CompanyEvent | [client.company_events](docs/CompanyEvent.md) |
+| CompanyIndustry | [client.company_industries](docs/CompanyIndustry.md) |
 | CompanyKeyTerm | [client.company_key_terms](docs/CompanyKeyTerm.md) |
 | Domain | [client.domains](docs/Domain.md) |
+| Industry | [client.industries](docs/Industry.md) |
 | KeyTerm | [client.key_terms](docs/KeyTerm.md) |
 | Person | [client.people](docs/Person.md) |
 | PersonKeyTerm | [client.person_key_terms](docs/PersonKeyTerm.md) |
