@@ -24,4 +24,4 @@ class UserSourceResource(Resource):
             })
 
     def delete(self, user_id, source_id):
-        return self.http_delete('/', query_params={'user_id', user_id, 'source_id': source_id})
+        return self.http_delete('/', query_params={'user_id': user_id, 'source_id': source_id})
