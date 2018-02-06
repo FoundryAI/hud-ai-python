@@ -7,7 +7,6 @@
 | `source_id`*          | **String** | Associated source |
 | `reliability_score`*  | **Float**  | Reliability score for source between 0 and 1 |
 
-
 ## `client.user_sources.list(user_id?, source_id?, page?)`
 
 ## `client.user_sources.create(user_id, source_id, reliability_score)`
