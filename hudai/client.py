@@ -59,8 +59,8 @@ class Client(object):
         self.person_quotes = PersonQuoteResource(self._http_client)
         self.relevant_article_collateral = RelevantArticleCollateralResource(self._http_client)
         self.relevant_articles = RelevantArticlesResource(self._http_client)
-        self.stock_alerts = StockAlertResource(self._http_client)
         self.sources = SourceResource(self._http_client)
+        self.stock_alerts = StockAlertResource(self._http_client)
         self.system_events = SystemEventResource(self._http_client)
         self.system_tasks = SystemTaskResource(self._http_client)
         self.text_corpora = TextCorpusResource(self._http_client)
@@ -70,8 +70,8 @@ class Client(object):
         self.user_contacts = UserContactResource(self._http_client)
         self.user_digest_subscriptions = UserDigestSubscriptionResource(self._http_client)
         self.user_key_terms = UserKeyTermResource(self._http_client)
-        self.users = UserResource(self._http_client)
         self.user_sources = UserSourceResource(self._http_client)
+        self.users = UserResource(self._http_client)
 
         # Preserve backwards compatibility
         self._add_deprecated_attributes()
