@@ -6,7 +6,7 @@ from ..helpers.resource import Resource
 
 class SourceResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/sources')
+        Resource.__init__(self, client, base_path='/articles/sources')
         self.resource_name = 'Source'
 
     def list(self, 
@@ -42,8 +42,8 @@ class SourceResource(Resource):
 
     def update(self, 
             entity_id,
-            domain,  
-            name, 
+            domain=None,  
+            name=None, 
             reliability_score=None, 
             description=None, 
             language=None, 
