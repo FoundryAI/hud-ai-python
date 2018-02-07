@@ -6,7 +6,7 @@ from ..helpers.resource import Resource
 
 class UserSourceResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/articles/users')
+        Resource.__init__(self, client, base_path='/articles/sources/users')
         self.resource_name = 'UserSource'
 
     def list(self, user_id=None, source_id=None, page=None):
