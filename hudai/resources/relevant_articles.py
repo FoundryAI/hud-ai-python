@@ -36,13 +36,13 @@ class RelevantArticlesResource(Resource):
     def create(self,
                user_id=None,
                article_id=None,
-               score=None,
+               relevance_score=None,
                scored_at=None,
                article_published_at=None):
         return self._create(
             user_id=user_id,
             article_id=article_id,
-            score=score,
+            relevance_score=relevance_score,
             scored_at=scored_at,
             article_published_at=article_published_at
         )
