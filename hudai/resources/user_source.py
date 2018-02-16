@@ -9,8 +9,21 @@ class UserSourceResource(Resource):
         Resource.__init__(self, client, base_path='/articles/sources/users')
         self.resource_name = 'UserSource'
 
-    def list(self, user_id=None, source_id=None, page=None):
-        return self._list(user_id=user_id, source_id=name, page=page)
+    def list(
+            self,
+            user_id=None,
+            source_id=None,
+            created_after=None,
+            created_before=None,
+            page=None
+    ):
+        return self._list(
+            user_id=user_id,
+            source_id=source_id,
+            created_after=created_after,
+            created_before=created_before,
+            page=page
+        )
 
     def create(self, user_id, source_id, reliability_score):
         return self._create(user_id=user_id, source_id=source_id, reliability_score=reliability_score)
