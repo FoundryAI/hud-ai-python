@@ -14,12 +14,16 @@ class SourceResource(Resource):
             name=None, 
             min_reliability=None,
             max_reliability=None,
+            created_after=None,
+            created_before=None,
             article_id=None,
             page=None):
         return self._list(domain=domain, 
             name=name,
             min_reliability=min_reliability,
             max_reliability=max_reliability,
+            created_after=created_after,
+            created_before=created_before,
             article_id=article_id,
             page=page)
 
