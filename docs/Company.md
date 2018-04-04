@@ -27,3 +27,7 @@ Lists all `Domain`s (hostnames) associated with the company
 ## `client.companies.key_terms(id)`
 
 Lists all `KeyTerm`s associated with the company
+
+## `client.companies.search(query_string)`
+
+Searches for Companies
