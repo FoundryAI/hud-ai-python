@@ -34,3 +34,6 @@ class CompanyResource(Resource):
     def key_terms(self, entity_id):
         return self.http_get('/{id}/key-terms',
                              params={'id': entity_id})
+
+    def search(self, search_string):
+        return self.http_get('/search', params={'query': search_string})
