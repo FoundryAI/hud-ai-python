@@ -36,4 +36,4 @@ class CompanyResource(Resource):
                              params={'id': entity_id})
 
     def search(self, query_string):
-        return self.http_get('/search', params={'query': query_string})
+        return self.http_get('/search', query_params={'query': query_string})
