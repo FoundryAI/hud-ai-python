@@ -42,3 +42,6 @@ class CompanyResource(Resource):
                 'homepage_url': homepage_url
             }
         )
+
+    def suggest(self, query_string):
+        return self.http_get('/suggest', query_params={'query': query_string})
