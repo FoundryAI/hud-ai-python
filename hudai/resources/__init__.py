@@ -4,6 +4,7 @@ hudai.resources
 
 from .article import ArticleResource
 from .article_company import ArticleCompanyResource
+from .article_person import ArticlePersonResource
 from .article_highlights import ArticleHighlightsResource
 from .article_key_term import ArticleKeyTermResource
 from .article_tag import ArticleTagResource
