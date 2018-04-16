@@ -14,6 +14,7 @@ class ArticleResource(Resource):
              importance_score_min=None,
              key_term=None,
              link_hash=None,
+             person_id=None,
              published_after=None,
              published_before=None,
              page=None):
@@ -21,6 +22,7 @@ class ArticleResource(Resource):
             importance_score_min=importance_score_min,
             key_term=key_term,
             link_hash=link_hash,
+            person_id=person_id,
             published_after=published_after,
             published_before=published_before,
             type=article_type,
