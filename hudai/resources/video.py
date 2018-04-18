@@ -6,7 +6,7 @@ from ..helpers.resource import Resource
 
 class VideoResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/videos')
+        Resource.__init__(self, client, base_path='/articles/videos')
         self.resource_name = 'Video'
 
     def search(self,

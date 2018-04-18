@@ -6,7 +6,7 @@ from ..helpers.resource import Resource
 
 class VideoCompanyResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/videos/companies')
+        Resource.__init__(self, client, base_path='/articles/videos/companies')
         self.resource_name = 'VideoCompany'
 
     def list(self, video_id=None, company_id=None, page=None):
