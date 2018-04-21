@@ -71,6 +71,7 @@ class Client(object):
         self.user_contacts = UserContactResource(self._http_client)
         self.user_digest_subscriptions = UserDigestSubscriptionResource(self._http_client)
         self.user_key_terms = UserKeyTermResource(self._http_client)
+        self.user_person = UserPersonResource(self._http_client)
         self.user_sources = UserSourceResource(self._http_client)
         self.users = UserResource(self._http_client)
         self.videos = VideoResource(self._http_client)
