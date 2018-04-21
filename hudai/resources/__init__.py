@@ -35,6 +35,7 @@ from .user_company_group import UserCompanyGroupResource
 from .user_contact import UserContactResource
 from .user_digest_subscription import UserDigestSubscriptionResource
 from .user_key_term import UserKeyTermResource
+from .user_person import UserPersonResource
 from .user_source import UserSourceResource
 from .video import VideoResource
 from .video_company import VideoCompanyResource
