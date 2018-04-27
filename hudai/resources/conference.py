@@ -1,10 +1,10 @@
 """
-hudai.resources.company
+hudai.resources.conference
 """
 from ..helpers.resource import Resource
 
 
-class CompanyResource(Resource):
+class ConferenceResource(Resource):
     def __init__(self, client):
         Resource.__init__(self, client, base_path='/conferences')
         self.resource_name = 'Conference'

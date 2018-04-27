@@ -14,6 +14,8 @@ from .company_event import CompanyEventResource
 from .company_industry import CompanyIndustryResource
 from .company_key_term import CompanyKeyTermResource
 from .company_profile import CompanyProfileResource
+from .conference import ConferenceResource
+from .conference_speaker import ConferenceSpeakerResource
 from .domain import DomainResource
 from .industry import IndustryResource
 from .key_term import KeyTermResource
