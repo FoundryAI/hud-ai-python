@@ -51,6 +51,8 @@ class Client(object):
         self.company_industries = CompanyIndustryResource(self._http_client)
         self.company_key_terms = CompanyKeyTermResource(self._http_client)
         self.company_profile = CompanyProfileResource(self._http_client)
+        self.conference = ConferenceResource(self._http_client)
+        self.conference_speaker = ConferenceSpeakerResource(self._http_client)
         self.domains = DomainResource(self._http_client)
         self.industries = IndustryResource(self._http_client)
         self.key_terms = KeyTermResource(self._http_client)
