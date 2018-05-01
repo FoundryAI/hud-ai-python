@@ -23,7 +23,7 @@ class FeedResource(Resource):
         tags=None,
         text=None,
         types=None,
-        weights=None,
+        weights=None
     ):
         return self._list(
             userId=userId,
@@ -41,5 +41,5 @@ class FeedResource(Resource):
             tags=tags,
             text=text,
             types=types,
-            weights=weights,
+            weights=weights
         )
