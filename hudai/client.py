@@ -55,6 +55,7 @@ class Client(object):
         self.conference_speaker = ConferenceSpeakerResource(self._http_client)
         self.domains = DomainResource(self._http_client)
         self.industries = IndustryResource(self._http_client)
+        self.feed = FeedResource(self._http_client)
         self.key_terms = KeyTermResource(self._http_client)
         self.organizations = OrganizationResource(self._http_client)
         self.people = PersonResource(self._http_client)
