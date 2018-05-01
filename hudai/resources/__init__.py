@@ -17,6 +17,7 @@ from .company_profile import CompanyProfileResource
 from .conference import ConferenceResource
 from .conference_speaker import ConferenceSpeakerResource
 from .domain import DomainResource
+from .feed import FeedResource
 from .industry import IndustryResource
 from .key_term import KeyTermResource
 from .organization import OrganizationResource
