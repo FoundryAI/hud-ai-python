@@ -9,7 +9,7 @@ class PersonQuoteResource(Resource):
         Resource.__init__(self, client, base_path='/people/quotes')
         self.resource_name = 'PersonQuote'
 
-    def list(self, person_id, article_id=None, term=None, min_importance=None, page=None):
+    def list(self, person_id=None, article_id=None, term=None, min_importance=None, page=None):
         query_params = self._set_limit_offset({
             'article_id': article_id,
             'person_id': person_id,
