@@ -18,7 +18,8 @@ class VideoResource(Resource):
              published_after=None,
              published_before=None,
              created_after=None,
-             created_before=None):
+             created_before=None,
+             page=None):
         return self.http_get('/search',
             query_params={
                 'max_importance': max_importance,
@@ -30,7 +31,7 @@ class VideoResource(Resource):
                 'published_before': published_before,
                 'created_after': created_after,
                 'created_before': created_before,
-                'created_before': created_before,
+                'page': page,
             }
         )
 
