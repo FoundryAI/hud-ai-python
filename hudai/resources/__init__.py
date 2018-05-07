@@ -2,6 +2,7 @@
 hudai.resources
 """
 
+from .action_item import ActionItemResource
 from .article import ArticleResource
 from .article_company import ArticleCompanyResource
 from .article_person import ArticlePersonResource
