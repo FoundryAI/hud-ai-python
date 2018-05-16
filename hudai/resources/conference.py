@@ -6,7 +6,7 @@ from ..helpers.resource import Resource
 
 class ConferenceResource(Resource):
     def __init__(self, client):
-        Resource.__init__(self, client, base_path='/conferences')
+        Resource.__init__(self, client, base_path='/people/conferences')
         self.resource_name = 'Conference'
 
     def list(self, name=None, person_id=None, before=None, after=None, page=None):
