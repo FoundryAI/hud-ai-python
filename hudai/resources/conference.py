@@ -16,8 +16,8 @@ class ConferenceResource(Resource):
                           after=after,
                           page=page)
 
-    def create(self, name=None, description=None, startsAt=None, endsAt=None, timezone=None):
-        return self._create(name=name, description=description, startsAt=startsAt, endsAt=endsAt, timezone=timezone)
+    def create(self, name=None, description=None, startsAt=None, endsAt=None, timezone=None, url=None):
+        return self._create(name=name, description=description, startsAt=startsAt, endsAt=endsAt, timezone=timezone, url=url)
 
     def fetch(self, entity_id):
         return self._fetch(entity_id)
