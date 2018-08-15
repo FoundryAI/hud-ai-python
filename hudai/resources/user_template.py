@@ -20,18 +20,17 @@ class UserTemplateResource(Resource):
 
         return self.http_get('/', query_params=query_params)
 
-    def create(self, user_id, content_type, markdown, name):
+    def create(self, content_type, markdown, name, user_id=None):
         return self.http_post('/',
                               data={'markdown': markdown,
                                     'name': name,
                                     'content_type': content_type,
                                     'user_id': user_id})
 
-    def fetch(self, user_id, template_id):
+    def fetch(self, template_id):
         return self.http_get('/{id}',
                              params={'id': template_id})
 
-    def delete(self, user_id, template_id):
+    def delete(self, template_id):
         return self.http_delete('/{id}',
-                                query_params={'user_id': user_id},
                                 params={'id': template_id})
