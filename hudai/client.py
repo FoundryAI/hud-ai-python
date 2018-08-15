@@ -77,6 +77,7 @@ class Client(object):
         self.user_key_terms = UserKeyTermResource(self._http_client)
         self.user_person = UserPersonResource(self._http_client)
         self.user_sources = UserSourceResource(self._http_client)
+        self.user_template = UserTemplateResource(self._http_client)
         self.users = UserResource(self._http_client)
         self.videos = VideoResource(self._http_client)
         self.video_companies = VideoCompanyResource(self._http_client)

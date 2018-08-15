@@ -41,6 +41,7 @@ from .user_digest_subscription import UserDigestSubscriptionResource
 from .user_key_term import UserKeyTermResource
 from .user_person import UserPersonResource
 from .user_source import UserSourceResource
+from .user_template import UserTemplateResource
 from .video import VideoResource
 from .video_company import VideoCompanyResource
 from .video_person import VideoPersonResource
