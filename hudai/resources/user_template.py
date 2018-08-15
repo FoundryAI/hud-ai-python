@@ -29,7 +29,6 @@ class UserTemplateResource(Resource):
 
     def fetch(self, user_id, template_id):
         return self.http_get('/{id}',
-                             query_params={'user_id': user_id},
                              params={'id': template_id})
 
     def delete(self, user_id, template_id):
