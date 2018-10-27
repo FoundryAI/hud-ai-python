@@ -1,5 +1,5 @@
 """
-hudai.resources.article_key_term
+hudai.resources.article_companies
 """
 from ..helpers.resource import Resource
 
