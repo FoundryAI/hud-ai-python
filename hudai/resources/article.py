@@ -87,3 +87,43 @@ class ArticleResource(Resource):
     def key_terms(self, entity_id):
         return self.http_get('/{id}/key-terms',
                              params={'id': entity_id})
+
+    def search(self,
+            limit=None,
+            offset=None,
+            authors=None,
+            companyId=None,
+            createdAfter=None,
+            createdBefore=None,
+            keyTerms=None,
+            maxImportance=None,
+            minImportance=None,
+            groupId=None,
+            publishedAfter=None,
+            publishedBefore=None,
+            scoredAfter=None,
+            scoredBefore=None,
+            tags=None,
+            text=None,
+            type=None):
+        return self.http_get(
+            '/search',
+            params={
+                limit,
+                offset,
+                authors,
+                companyId,
+                createdAfter,
+                createdBefore,
+                keyTerms,
+                maxImportance,
+                minImportance,
+                groupId,
+                publishedAfter,
+                publishedBefore,
+                scoredAfter,
+                scoredBefore,
+                tags,
+                text,
+                type,
+            })
