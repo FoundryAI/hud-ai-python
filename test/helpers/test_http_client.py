@@ -89,7 +89,7 @@ def test_jsonifiying(mocker):
 
     _, kwargs = requests.post.call_args
 
-    print kwargs
+    print(kwargs)
 
     assert kwargs['params']['timestamp'] == formatted_timestamp
     assert kwargs['json']['timestamp'] == formatted_timestamp

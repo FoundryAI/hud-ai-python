@@ -155,7 +155,7 @@ class Client(object):
         self.access_token = response.get('access_token')
 
         if self._debug and not self.access_token:
-            print "hudai.client error:get_token", response
+            print("hudai.client error:get_token", response)
 
         self.refresh_token = response.get('refresh_token', None)
 
