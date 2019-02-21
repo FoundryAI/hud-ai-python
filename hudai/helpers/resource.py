@@ -120,6 +120,9 @@ class Resource(object):
     def _update(self, entity_id, **data):
         return self.http_put('/{id}', params={'id': entity_id}, data=data)
 
+    def _upsert(self, **data):
+        return self.http_put('/', data=data)
+
     def _delete(self, entity_id):
         return self.http_delete('/{id}', params={'id': entity_id})
 

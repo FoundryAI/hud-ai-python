@@ -58,6 +58,7 @@ class Client(object):
         self.industries = IndustryResource(self._http_client)
         self.feed = FeedResource(self._http_client)
         self.key_terms = KeyTermResource(self._http_client)
+        self.model_scores = ModelScoreResource(self._http_client)
         self.organizations = OrganizationResource(self._http_client)
         self.people = PersonResource(self._http_client)
         self.person_key_terms = PersonKeyTermResource(self._http_client)
