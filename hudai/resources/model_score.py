@@ -59,7 +59,7 @@ class ModelScoreResource(Resource):
                tipsheet_X_G_B_score=None,
                local_X_G_B_score=None,
                shill_X_G_B_score=None):
-        return self._create(
+        return self._upsert(
             content_id=content_id,
             content_type=content_type,
             importance_score=importance_score,
