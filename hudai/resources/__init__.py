@@ -21,6 +21,7 @@ from .domain import DomainResource
 from .feed import FeedResource
 from .industry import IndustryResource
 from .key_term import KeyTermResource
+from .model_score import ModelScoreResource
 from .organization import OrganizationResource
 from .person import PersonResource
 from .person_key_term import PersonKeyTermResource
