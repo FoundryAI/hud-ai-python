@@ -10,62 +10,49 @@ class ModelScoreResource(Resource):
         self.resource_name = 'ModelScore'
 
     def list(self,
-               content_id=None,
-               content_type=None,
-               importance_score_min=None,
-               tipsheet_X_G_B_score_min=None,
-               local_X_G_B_score_min=None,
-               shill_X_G_B_score_min=None,
-               importance_score_max=None,
-               tipsheet_X_G_B_score_max=None,
-               local_X_G_B_score_max=None,
-               shill_X_G_B_score_max=None):
-        return self._create(
-            content_id=content_id,
-            content_type=content_type,
-            importance_score_min=importance_score_min,
-            tipsheet_X_G_B_score_min=tipsheet_X_G_B_score_min,
-            local_X_G_B_score_min=local_X_G_B_score_min,
-            shill_X_G_B_score_min=shill_X_G_B_score_min,
-            importance_score_max=importance_score_max,
-            tipsheet_X_G_B_score_max=tipsheet_X_G_B_score_max,
-            local_X_G_B_score_max=local_X_G_B_score_max,
-            shill_X_G_B_score_max=shill_X_G_B_score_max
+             article_id=None,
+             model=None,
+             ):
+        return self._list(
+            article_id=article_id,
+            model=model,
         )
 
     def create(self,
-               content_id=None,
-               content_type=None,
-               importance_score=None,
-               tipsheet_X_G_B_score=None,
-               local_X_G_B_score=None,
-               shill_X_G_B_score=None):
+               article_id=None,
+               model_id=None,
+               model_name=None,
+               model_version=None,
+               model_url=None,
+               data_url=None,
+               ):
         return self._create(
-            content_id=content_id,
-            content_type=content_type,
-            importance_score=importance_score,
-            tipsheet_X_G_B_score=tipsheet_X_G_B_score,
-            local_X_G_B_score=local_X_G_B_score,
-            shill_X_G_B_score=shill_X_G_B_score
+            article_id=article_id,
+            model_id=model_id,
+            model_name=model_name,
+            model_version=model_version,
+            model_url=model_url,
+            data_url=data_url,
         )
 
     def fetch(self, entity_id):
         return self._fetch(entity_id)
 
     def upsert(self,
-               content_id=None,
-               content_type=None,
-               importance_score=None,
-               tipsheet_X_G_B_score=None,
-               local_X_G_B_score=None,
-               shill_X_G_B_score=None):
+               article_id=None,
+               model_id=None,
+               model_name=None,
+               model_version=None,
+               model_url=None,
+               data_url=None,
+               ):
         return self._upsert(
-            content_id=content_id,
-            content_type=content_type,
-            importance_score=importance_score,
-            tipsheet_X_G_B_score=tipsheet_X_G_B_score,
-            local_X_G_B_score=local_X_G_B_score,
-            shill_X_G_B_score=shill_X_G_B_score
+            article_id=article_id,
+            model_id=model_id,
+            model_name=model_name,
+            model_version=model_version,
+            model_url=model_url,
+            data_url=data_url,
         )
 
     def delete(self, entity_id):
