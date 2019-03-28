@@ -105,6 +105,7 @@ class ArticleResource(Resource):
                scored_after=None,
                scored_before=None,
                tags=None,
+               geographies=None,
                text=None,
                type=None):
         return self.http_get(
@@ -126,6 +127,7 @@ class ArticleResource(Resource):
                 "scored_after": scored_after,
                 "scored_before": scored_before,
                 "tags": tags,
+                "geographies": geographies,
                 "text": text,
                 "type": type,
             })

@@ -9,6 +9,7 @@ from .article_person import ArticlePersonResource
 from .article_highlights import ArticleHighlightsResource
 from .article_key_term import ArticleKeyTermResource
 from .article_tag import ArticleTagResource
+from .article_geography import ArticleGeographyResource
 from .collateral import CollateralResource
 from .company import CompanyResource
 from .company_event import CompanyEventResource
