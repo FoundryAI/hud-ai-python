@@ -111,6 +111,7 @@ Attempts to ensure that the client has valid auth tokens.
 | ArticleHighlights | [client.article_highlights](docs/ArticleHighlights.d') |
 | ArticleKeyTerm | [client.article_key_terms](docs/ArticleKeyTerm.md) |
 | ArticleTag | [client.article_tags](docs/ArticleTag.md) |
+| ArticleGeography | [client.article_geographies](docs/ArticleGeography.md) |
 | Company | [client.companies](docs/Company.md) |
 | CompanyEvent | [client.company_events](docs/CompanyEvent.md) |
 | CompanyIndustry | [client.company_industries](docs/CompanyIndustry.md) |
