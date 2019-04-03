@@ -31,7 +31,6 @@ class ArticleResource(Resource):
 
     def create(self,
                article_type=None,
-               authors=[],
                image_url=None,
                importance_score=None,
                link_url=None,
@@ -41,7 +40,6 @@ class ArticleResource(Resource):
                text=None,
                title=None):
         return self._create(
-            authors=authors,
             image_url=image_url,
             importance_score=importance_score,
             link_url=link_url,
@@ -58,7 +56,6 @@ class ArticleResource(Resource):
 
     def update(self, entity_id,
                article_type=None,
-               authors=[],
                image_url=None,
                importance_score=None,
                link_url=None,
@@ -69,7 +66,6 @@ class ArticleResource(Resource):
                title=None):
         return self._update(
             entity_id,
-            authors=authors,
             image_url=image_url,
             importance_score=importance_score,
             link_url=link_url,
@@ -90,8 +86,7 @@ class ArticleResource(Resource):
 
     def search(self,
                limit=None,
-               offset=None,
-               authors=None,
+               offset=None,               
                company_id=None,
                created_after=None,
                created_before=None,
@@ -113,7 +108,6 @@ class ArticleResource(Resource):
             params={
                 "limit": limit,
                 "offset": offset,
-                "authors": authors,
                 "company_id": company_id,
                 "created_after": created_after,
                 "created_before": created_before,
