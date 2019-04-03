@@ -3,7 +3,6 @@
 | Attribute | Type | Description |
 | --------- | ---- | ----------- |
 | `id`               | String         | Resource ID **Cannot be edited** |
-| `authors`          | list\<String\> | List of author names |
 | `image_url`        | String         | Image published in the article's metadata |
 | `importance_score` | Number         | `hudai-importance-scorer` output |
 | `link_hash`        | String         | MD5 hash of the `link_url` **Cannot be edited** |
