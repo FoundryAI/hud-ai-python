@@ -122,7 +122,6 @@ Attempts to ensure that the client has valid auth tokens.
 | Person | [client.people](docs/Person.md) |
 | PersonKeyTerm | [client.person_key_terms](docs/PersonKeyTerm.md) |
 | PersonQuote | [client.person_quotes](docs/PersonQuote.md) |
-| RelevantArticle | [client.relevant_articles](docs/RelevantArticle.md) |
 | SystemEvent | [client.system_events](docs/SystemEvent.md) |
 | SystemTask | [client.system_tasks](docs/SystemTask.md) |
 | TextCorpus | [client.text_corpora](docs/TextCorpus.md) |

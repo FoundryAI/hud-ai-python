@@ -31,7 +31,6 @@ def test_initialization():
     assert isinstance(client.people, PersonResource)
     assert isinstance(client.person_key_terms, PersonKeyTermResource)
     assert isinstance(client.person_quotes, PersonQuoteResource)
-    assert isinstance(client.relevant_articles, RelevantArticlesResource)
     assert isinstance(client.system_events, SystemEventResource)
     assert isinstance(client.system_tasks, SystemTaskResource)
     assert isinstance(client.text_corpora, TextCorpusResource)
