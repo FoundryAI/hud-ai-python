@@ -64,8 +64,6 @@ class Client(object):
         self.people = PersonResource(self._http_client)
         self.person_key_terms = PersonKeyTermResource(self._http_client)
         self.person_quotes = PersonQuoteResource(self._http_client)
-        self.relevant_article_collateral = RelevantArticleCollateralResource(self._http_client)
-        self.relevant_articles = RelevantArticlesResource(self._http_client)
         self.sources = SourceResource(self._http_client)
         self.stock_alerts = StockAlertResource(self._http_client)
         self.system_events = SystemEventResource(self._http_client)
@@ -140,7 +138,6 @@ class Client(object):
         self.company = self.companies
         self.domain = self.domains
         self.key_term = self.key_terms
-        self.relevant_article = self.relevant_articles
         self.system_event = self.system_events
         self.system_task = self.system_tasks
         self.text_corpus = self.text_corpora

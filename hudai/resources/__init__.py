@@ -27,8 +27,6 @@ from .organization import OrganizationResource
 from .person import PersonResource
 from .person_key_term import PersonKeyTermResource
 from .person_quote import PersonQuoteResource
-from .relevant_article_collateral import RelevantArticleCollateralResource
-from .relevant_articles import RelevantArticlesResource
 from .source import SourceResource
 from .stock_alert import StockAlertResource
 from .system_event import SystemEventResource
